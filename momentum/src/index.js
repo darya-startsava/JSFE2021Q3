@@ -1,3 +1,7 @@
-import './js/clock.js';
+import {showTime} from './js/clock.js';
+import {setLocalStorage, getLocalStorage} from './js/greeting.js';
 
-console.log('I\'m fine!');
+
+showTime();
+window.addEventListener('beforeunload', setLocalStorage);
+window.addEventListener('load', getLocalStorage);

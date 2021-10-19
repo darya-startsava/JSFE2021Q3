@@ -237,7 +237,7 @@ body {
 
 .name::placeholder {
   color: #fff;
-  opacity: .6;
+  opacity: .4;
 }
 
 .footer {
