@@ -6,18 +6,18 @@ function getTimeOfDay() {
     const hour = date.getHours();
     switch (Math.floor(hour / 6)) {
         case 1:
-            return 'Good morning,';
+            return 'morning';
         case 2:
-            return 'Good afternoon,';
+            return 'afternoon';
         case 3:
-            return 'Good evening,';
+            return 'evening';
         case 0:
-            return 'Good night,';
+            return 'night';
     }
 }
 
 function showGreeting() {
-    greeting.textContent = getTimeOfDay();
+    greeting.textContent = `Good ${getTimeOfDay()},`;
 }
 
 function setLocalStorage() {
@@ -31,4 +31,4 @@ function getLocalStorage() {
 }
 
 
-export { showGreeting, setLocalStorage, getLocalStorage };
+export { getTimeOfDay, showGreeting, setLocalStorage, getLocalStorage };
