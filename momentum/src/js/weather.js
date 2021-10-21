@@ -6,10 +6,12 @@ const humidity = document.querySelector('.humidity');
 const weatherError = document.querySelector('.weather-error');
 const city = document.querySelector('.city');
 
-async function getWeather() {
+function getCity() {
     if (!city.value) {
         getLocalStorageCity();
     }
+}
+async function getWeather() {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=e4f05c638c1d3df262d927daf0594260&units=metric`;
     const res = await fetch(url);
     const data = await res.json();
@@ -17,10 +19,10 @@ async function getWeather() {
     if (!data.name) {
         weatherError.textContent = 'Please, enter correct city';
         weatherIcon.className = 'weather-icon owf';
-        temperature.textContent ='';
-        weatherDescription.textContent ='';
-        wind.textContent ='';
-        humidity.textContent ='';
+        temperature.textContent = '';
+        weatherDescription.textContent = '';
+        wind.textContent = '';
+        humidity.textContent = '';
     } else {
         weatherError.textContent = '';
         weatherIcon.className = 'weather-icon owf';
@@ -33,6 +35,11 @@ async function getWeather() {
     }
 }
 
+function getWeatherOnLoad() {
+    getCity();
+    getWeather();
+}
+
 function setLocalStorageCity() {
     localStorage.setItem('city', city.value);
 }
@@ -43,4 +50,4 @@ function getLocalStorageCity() {
     } else city.value = 'Minsk';
 }
 
-export { city, getWeather, getLocalStorageCity, setLocalStorageCity }
+export { city, getWeather, getWeatherOnLoad, getLocalStorageCity, setLocalStorageCity }
