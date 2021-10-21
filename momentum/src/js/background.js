@@ -1,6 +1,9 @@
 import { getTimeOfDay } from './greeting.js';
 
 const body = document.querySelector('.body');
+const slideNext = document.querySelector('.slide-next');
+const slidePrev = document.querySelector('.slide-prev');
+
 
 function getRandomNum() {
     return Math.floor(Math.random() * 20) + 1;
@@ -16,7 +19,6 @@ function setBg() {
     img.onload = () => {
         body.style.backgroundImage = `url(${img.src})`;
     };
-    console.log(bgNum);
 }
 
 function getSlideNext() {
@@ -40,7 +42,7 @@ function getSlidePrev() {
     setBg();
 };
 
-export { setBg, getSlideNext, getSlidePrev };
+export { slideNext, slidePrev, setBg, getSlideNext, getSlidePrev };
 
 
 
