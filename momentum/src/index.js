@@ -3,8 +3,13 @@ import { setLocalStorage, getLocalStorage } from './js/greeting.js';
 import { slideNext, slidePrev, setBg, getSlideNext, getSlidePrev } from './js/background.js';
 import { city, getWeather, getWeatherOnLoad, getLocalStorageCity, setLocalStorageCity } from './js/weather.js';
 import { changeQuote, getQuotes } from './js/quote.js';
-import { playNum, isPlay, playButton, playPrevButton, playNextButton, createPlayList, highlightActiveTrack, playAudio, playPrev, playNext } from './js/player.js';
-import './js/player.js';
+import {
+    audio, playNum, isPlay, playButton, playPrevButton, playNextButton,
+    createPlayList, highlightActiveTrack, playAudio, playPrev, playNext,
+    changeTrackInformation, updateCurrentTime, timeline, volume, changeTrackPoint,
+    changeVolume, soundButton, onOffSound, playWithOwnButton, playItems
+} from './js/player.js';
+
 
 showTime();
 window.addEventListener('beforeunload', setLocalStorage);
@@ -20,7 +25,17 @@ getQuotes();
 changeQuote.addEventListener('click', () => getQuotes());
 createPlayList();
 highlightActiveTrack();
-playButton.addEventListener('click', () => playAudio());
+playButton.addEventListener('click', playAudio);
 playPrevButton.addEventListener('click', () => playPrev());
 playNextButton.addEventListener('click', () => playNext());
+audio.addEventListener('loadeddata', () => changeTrackInformation());
+audio.addEventListener('timeupdate', () => updateCurrentTime());
+timeline.addEventListener("click", changeTrackPoint);
+volume.addEventListener('click', changeVolume);
+soundButton.addEventListener('click', onOffSound);
+audio.addEventListener('ended', playNext);
+playItems.forEach((item, index) => { item.addEventListener('click', () => playWithOwnButton(item, index)) });
+
+
+
 
