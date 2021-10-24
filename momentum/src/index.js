@@ -9,32 +9,36 @@ import {
     changeTrackInformation, updateCurrentTime, timeline, volume, changeTrackPoint,
     changeVolume, soundButton, onOffSound, playWithOwnButton, playItems
 } from './js/player.js';
+import { inputsLanguage, changeLanguageIcon, changeLanguageRadiobutton } from './js/localization-strings.js';
 
 
 showTime();
 window.addEventListener('beforeunload', setLocalStorage);
 window.addEventListener('load', getLocalStorage);
 setBg();
-slideNext.addEventListener('click', () => getSlideNext());
-slidePrev.addEventListener('click', () => getSlidePrev());
+slideNext.addEventListener('click', getSlideNext);
+slidePrev.addEventListener('click', getSlidePrev);
 getWeatherOnLoad();
-city.addEventListener('change', () => getWeather());
+city.addEventListener('change', getWeather);
 window.addEventListener('beforeunload', setLocalStorageCity);
 window.addEventListener('load', getLocalStorageCity);
 getQuotes();
-changeQuote.addEventListener('click', () => getQuotes());
+changeQuote.addEventListener('click', getQuotes);
 createPlayList();
 highlightActiveTrack();
 playButton.addEventListener('click', playAudio);
-playPrevButton.addEventListener('click', () => playPrev());
-playNextButton.addEventListener('click', () => playNext());
-audio.addEventListener('loadeddata', () => changeTrackInformation());
-audio.addEventListener('timeupdate', () => updateCurrentTime());
+playPrevButton.addEventListener('click', playPrev);
+playNextButton.addEventListener('click', playNext);
+audio.addEventListener('loadeddata', changeTrackInformation);
+audio.addEventListener('timeupdate', updateCurrentTime);
 timeline.addEventListener("click", changeTrackPoint);
 volume.addEventListener('click', changeVolume);
 soundButton.addEventListener('click', onOffSound);
 audio.addEventListener('ended', playNext);
 playItems.forEach((item, index) => { item.addEventListener('click', () => playWithOwnButton(item, index)) });
+inputsLanguage.forEach((item, index) => { item.addEventListener('change', () => changeLanguageRadiobutton(item, index)) });
+window.addEventListener('load', changeLanguageIcon);
+
 
 
 

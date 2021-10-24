@@ -1,23 +1,26 @@
+import { getLocalizedString } from './localization-strings.js'
+
 const greeting = document.querySelector('.greeting');
 const name = document.querySelector('.name');
 
-function getTimeOfDay() {
+function getGreeting() {
     const date = new Date;
     const hour = date.getHours();
     switch (Math.floor(hour / 6)) {
         case 1:
-            return 'morning';
+            return getLocalizedString('greeting.morning');
         case 2:
-            return 'afternoon';
+            return getLocalizedString('greeting.afternoon');
         case 3:
-            return 'evening';
+            return getLocalizedString('greeting.evening');
         case 0:
-            return 'night';
+            return getLocalizedString('greeting.night');
     }
 }
 
 function showGreeting() {
-    greeting.textContent = `Good ${getTimeOfDay()},`;
+    greeting.textContent = getGreeting();
+    name.placeholder = localStorage.getItem('name') || getLocalizedString('placeholder.name');
 }
 
 function setLocalStorage() {
@@ -31,4 +34,4 @@ function getLocalStorage() {
 }
 
 
-export { getTimeOfDay, showGreeting, setLocalStorage, getLocalStorage };
+export { showGreeting, setLocalStorage, getLocalStorage };

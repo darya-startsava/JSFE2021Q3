@@ -1,3 +1,5 @@
+import {currentLanguage, getLocalizedString} from './localization-strings.js'
+
 const weatherIcon = document.querySelector('.weather-icon');
 const temperature = document.querySelector('.temperature');
 const weatherDescription = document.querySelector('.weather-description');
@@ -12,7 +14,7 @@ function getCity() {
     }
 }
 async function getWeather() {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=e4f05c638c1d3df262d927daf0594260&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${currentLanguage}&appid=e4f05c638c1d3df262d927daf0594260&units=metric`;
     const res = await fetch(url);
     const data = await res.json();
 
@@ -29,8 +31,8 @@ async function getWeather() {
         weatherIcon.classList.add(`owf-${data.weather[0].id}`);
         temperature.textContent = `${Math.round(data.main.temp)}°C`;
         weatherDescription.textContent = data.weather[0].description;
-        wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-        humidity.textContent = `Humidity: ${Math.round(data.main.humidity)} %`
+        wind.textContent = `${getLocalizedString('weather.wind')} ${Math.round(data.wind.speed)} ${getLocalizedString('wind.dimension')}`;
+        humidity.textContent = `${getLocalizedString('weather.humidity')} ${Math.round(data.main.humidity)} %`
         localStorage.setItem('city', city.value);
     }
 }
@@ -45,9 +47,9 @@ function setLocalStorageCity() {
 }
 
 function getLocalStorageCity() {
-    if (localStorage.getItem('city')) {
+    if (localStorage.getItem('city') && localStorage.getItem('city') != 'Minsk' && localStorage.getItem('city') != 'Минск') {
         city.value = localStorage.getItem('city');
-    } else city.value = 'Minsk';
+    } else city.value = getLocalizedString('default.city');
 }
 
 export { city, getWeather, getWeatherOnLoad, getLocalStorageCity, setLocalStorageCity }
