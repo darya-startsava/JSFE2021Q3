@@ -30,6 +30,11 @@ body {
   padding: 20px;
 }
 
+.player {
+    opacity: 0;
+    transition: opacity 0;
+}
+
 .player-controls {
   display: flex;
   align-items: center;
@@ -254,16 +259,16 @@ body {
 }
 
 .time {
-  opacity: 1;
+
   min-height: 124px;
   margin-bottom: 10px;
   font-family: 'Arial-MT';
   font-size: 100px;
   letter-spacing: -4px;
-  transition: opacity .5s;
 }
 
 .date {
+
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
@@ -271,6 +276,7 @@ body {
 }
 
 .greeting-container {
+
   display: flex;
   flex-wrap: wrap;
   justify-content: stretch;
@@ -317,6 +323,9 @@ body {
 .change-quote {
   margin-bottom: 30px;
   background-image: url("../assets/svg/reload.svg");
+}
+
+.quote-and-author {
 }
 
 .quote {
@@ -409,8 +418,7 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   height: 86px;
-    row-gap: 3px;
-
+  row-gap: 3px;
 }
 
 .input-show-time {
@@ -418,7 +426,7 @@ body {
 }
 
 .container-show-quote {
-    margin-top: 24px;
+  margin-top: 24px;
 }
 
 @media (max-width: 768px) {

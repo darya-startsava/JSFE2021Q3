@@ -7,6 +7,7 @@ const wind = document.querySelector('.wind');
 const humidity = document.querySelector('.humidity');
 const weatherError = document.querySelector('.weather-error');
 const city = document.querySelector('.city');
+const weather = document.querySelector('.weather');
 
 function getCity() {
     if (!city.value) {
@@ -52,4 +53,4 @@ function getLocalStorageCity() {
     } else city.value = getLocalizedString('default.city');
 }
 
-export { city, getWeather, getWeatherOnLoad, getLocalStorageCity, setLocalStorageCity }
+export { city, weather, getWeather, getWeatherOnLoad, getLocalStorageCity, setLocalStorageCity }

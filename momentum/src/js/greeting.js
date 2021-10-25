@@ -2,6 +2,8 @@ import { getLocalizedString } from './localization-strings.js'
 
 const greeting = document.querySelector('.greeting');
 const name = document.querySelector('.name');
+const greetingContainer = document.querySelector('.greeting-container');
+
 
 function getGreeting() {
     const date = new Date;
@@ -34,4 +36,4 @@ function getLocalStorage() {
 }
 
 
-export { showGreeting, setLocalStorage, getLocalStorage };
+export { greetingContainer, showGreeting, setLocalStorage, getLocalStorage };

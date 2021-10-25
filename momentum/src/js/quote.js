@@ -3,6 +3,7 @@ import {currentLanguage} from './localization-strings.js';
 const quote = document.querySelector('.quote');
 const author = document.querySelector('.author');
 const changeQuote = document.querySelector('.change-quote');
+const quoteAndAuthor = document.querySelector('.quote-and-author');
 
 function getRandomNum() {
     return Math.floor(Math.random() * 20);
@@ -17,4 +18,4 @@ async function getQuotes() {
     author.textContent = `${data.quotes[quoteNumber].author}`;
 };
 
-export { changeQuote, getQuotes };
+export { changeQuote, quoteAndAuthor, getQuotes };

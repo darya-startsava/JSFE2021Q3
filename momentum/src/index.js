@@ -10,7 +10,10 @@ import {
     changeVolume, soundButton, onOffSound, playWithOwnButton, playItems
 } from './js/player.js';
 import { inputsLanguage, changeLanguageRadiobutton } from './js/localization-strings.js';
-import {inputShowTime, toggleTimeWidget, translateSettings} from './js/settings.js';
+import {inputShowTime, inputShowDate, inputShowGreeting, inputShowQuote, inputShowWeather,
+     inputShowPlayer, toggleTimeWidget, toggleDateWidget, toggleGreetingWidget, 
+     toggleQuoteWidget, toggleWeatherWidget, togglePlayerWidget, translateSettings, 
+     setLocalStorageSettings, getLocalStorageSettings } from './js/settings.js';
 
 
 showTime();
@@ -40,6 +43,14 @@ playItems.forEach((item, index) => { item.addEventListener('click', () => playWi
 inputsLanguage.forEach((item, index) => { item.addEventListener('change', () => changeLanguageRadiobutton(item, index)) });
 window.addEventListener('load', translateSettings);
 inputShowTime.addEventListener('change', toggleTimeWidget);
+inputShowDate.addEventListener('change', toggleDateWidget);
+inputShowGreeting.addEventListener('change', toggleGreetingWidget);
+inputShowQuote.addEventListener('change', toggleQuoteWidget);
+inputShowWeather.addEventListener('change', toggleWeatherWidget);
+inputShowPlayer.addEventListener('change', togglePlayerWidget);
+window.addEventListener('beforeunload', setLocalStorageSettings);
+window.addEventListener('load', getLocalStorageSettings);
+
 
 
 

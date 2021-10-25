@@ -9,6 +9,7 @@ const volume = document.querySelector('.volume');
 const volumePercentage = document.querySelector('.volume-percentage');
 const soundButton = document.querySelector('.sound');
 let playItems;
+const player = document.querySelector('.player');
 
 
 
@@ -148,7 +149,7 @@ function playWithOwnButton(item, index) {
 
 
 export {
-    audio, playNum, isPlay, playButton, playPrevButton, playNextButton,
+    audio, playNum, isPlay, player, playButton, playPrevButton, playNextButton,
     createPlayList, highlightActiveTrack, playAudio, playPrev, playNext,
     changeTrackInformation, updateCurrentTime, timeline, volume, changeTrackPoint,
     changeVolume, soundButton, onOffSound, playWithOwnButton, playItems
