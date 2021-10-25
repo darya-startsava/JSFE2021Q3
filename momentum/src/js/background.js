@@ -1,3 +1,5 @@
+import { getBackgroundFlickr,  getBackgroundUnsplash } from './background-api.js';
+
 const body = document.querySelector('.body');
 const slideNext = document.querySelector('.slide-next');
 const slidePrev = document.querySelector('.slide-prev');
@@ -25,9 +27,16 @@ function getTimeOfDay() {
     }
 }
 
-function setBg() {
+async function setBg() {
     const img = new Image();
-    img.src = `https://raw.githubusercontent.com/darya-startsava/stage1-tasks/assets/images/${getTimeOfDay()}/${bgNum}.jpg`
+    if (!currentBackground || currentBackground == 'gitHub') {
+        img.src = `https://raw.githubusercontent.com/darya-startsava/stage1-tasks/assets/images/${getTimeOfDay()}/${bgNum}.jpg`
+    } else if (currentBackground == 'flickr') {
+        const res = await getBackgroundFlickr();
+        img.src = res[+bgNum];
+    } else if (currentBackground == 'unsplash'){
+        img.src = await getBackgroundUnsplash();
+    }
     img.onload = () => {
         body.style.backgroundImage = `url(${img.src})`;
     };
@@ -54,7 +63,7 @@ function getSlidePrev() {
     setBg();
 };
 
-export { slideNext, slidePrev, setBg, getSlideNext, getSlidePrev };
+export { slideNext, slidePrev, setBg, getSlideNext, getSlidePrev, getTimeOfDay };
 
 
 

@@ -29,6 +29,7 @@ const strings = {
         'show.quote': 'Quote',
         'show.weather': 'Weather',
         'show.player':'Player',
+        'tag.button':'Apply',
 
 
     },
@@ -57,6 +58,7 @@ const strings = {
         'show.quote': 'Цитата',
         'show.weather': 'Погода',
         'show.player':'Плеер',
+        'tag.button':'Применить',
     }
 };
 

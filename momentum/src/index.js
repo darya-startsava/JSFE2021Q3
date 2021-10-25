@@ -10,11 +10,13 @@ import {
     changeVolume, soundButton, onOffSound, playWithOwnButton, playItems
 } from './js/player.js';
 import { inputsLanguage, changeLanguageRadiobutton } from './js/localization-strings.js';
-import {inputShowTime, inputShowDate, inputShowGreeting, inputShowQuote, inputShowWeather,
-     inputShowPlayer, toggleTimeWidget, toggleDateWidget, toggleGreetingWidget, 
-     toggleQuoteWidget, toggleWeatherWidget, togglePlayerWidget, translateSettings, 
-     setLocalStorageSettings, getLocalStorageSettings } from './js/settings.js';
-
+import {
+    inputShowTime, inputShowDate, inputShowGreeting, inputShowQuote, inputShowWeather,
+    inputShowPlayer, toggleTimeWidget, toggleDateWidget, toggleGreetingWidget,
+    toggleQuoteWidget, toggleWeatherWidget, togglePlayerWidget, translateSettings,
+    setLocalStorageSettings, getLocalStorageSettings, buttonClose, settingsClose, buttonSettings, showSettings
+} from './js/settings.js';
+import { inputsBackground, chooseBackground, tagButton, setTag } from './js/background-api.js'
 
 showTime();
 window.addEventListener('beforeunload', setLocalStorage);
@@ -50,6 +52,10 @@ inputShowWeather.addEventListener('change', toggleWeatherWidget);
 inputShowPlayer.addEventListener('change', togglePlayerWidget);
 window.addEventListener('beforeunload', setLocalStorageSettings);
 window.addEventListener('load', getLocalStorageSettings);
+inputsBackground.forEach((item) => { item.addEventListener('change', () => chooseBackground(item)) });
+tagButton.addEventListener('click', setTag);
+buttonClose.addEventListener('click', settingsClose);
+buttonSettings.addEventListener('click', showSettings);
 
 
 

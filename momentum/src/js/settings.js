@@ -6,6 +6,8 @@ import { greetingContainer } from './greeting.js';
 import { quoteAndAuthor } from './quote.js';
 import { weather } from './weather.js';
 import { player } from './player.js';
+import {tagButton} from './background-api.js';
+
 
 const radiobuttonText = document.querySelector('.radiobutton-text');
 const englishLanguage = document.getElementById('english-language');
@@ -28,6 +30,15 @@ const showGreeting = document.querySelector('.show-greeting');
 const showQuote = document.querySelector('.show-quote');
 const showWeather = document.querySelector('.show-weather');
 const showPlayer = document.querySelector('.show-player');
+let isTimeChecked;
+let isDateChecked;
+let isGreetingChecked;
+let isQuoteChecked;
+let isWeatherChecked;
+let isPlayerChecked;
+export const buttonClose = document.querySelector('.button-close');
+const settingsPopup = document.querySelector('.settings-popup');
+export const buttonSettings = document.querySelector('.button-settings');
 
 
 export function translateSettings() {
@@ -47,6 +58,7 @@ export function translateSettings() {
     showQuote.textContent = getLocalizedString('show.quote');
     showWeather.textContent = getLocalizedString('show.weather');
     showPlayer.textContent = getLocalizedString('show.player');
+    tagButton.textContent = getLocalizedString('tag.button');
 }
 
 function changeBackgroundIcon() {
@@ -55,19 +67,10 @@ function changeBackgroundIcon() {
         labelsBackground[0].classList.add('background-active');
     } else if (currentBackground == 'unsplash') {
         labelsBackground[1].classList.add('background-active');
-    } else {
+    } else if (currentBackground == 'flickr'){
         labelsBackground[2].classList.add('background-active');
     }
 };
-
-let isTimeChecked;
-let isDateChecked;
-let isGreetingChecked;
-let isQuoteChecked;
-let isWeatherChecked;
-let isPlayerChecked;
-
-
 
 export function toggleTimeWidget() {
     if (inputShowTime.checked) {
@@ -171,5 +174,14 @@ export function getLocalStorageSettings() {
     if (!(localStorage.getItem('isPlayerChecked')) || localStorage.getItem('isPlayerChecked') == 'yes') {
         inputShowPlayer.click();
     } togglePlayerWidget();
+}
 
+export function settingsClose() {
+    settingsPopup.style.display = 'none';
+    buttonClose.style.display = 'none';
+}
+
+export function showSettings(){
+    settingsPopup.style.display = 'unset';
+    buttonClose.style.display = 'unset';
 }
