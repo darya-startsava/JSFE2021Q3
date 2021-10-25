@@ -70,15 +70,60 @@
         <div class="settings-popup">
             <div class="settings-container">
                 <div class="radiobutton">
-                    Choose language
-                    <label class = "language">
-                        <input type="radio" name="language" value="en" class="input-language">
-                        English
-                    </label>
-                    <label class = "language">
-                        <input type="radio" name="language" value="ru" class="input-language">
-                        Russian
-                    </label>
+                    <div class="radiobutton-text text"></div>
+                    <input type="radio" name="language" value="en" class="input-language" id="input-language-en">
+                    <label for="input-language-en" class="language" id="english-language"></label>
+                    <input type="radio" name="language" value="ru" class="input-language" id="input-language-ru">
+                    <label for="input-language-ru" class="language" id="russian-language"></label>
+                </div>
+                <div class="set-background">
+                    <div class="text">
+                        <div class="set-background-text"></div>
+                        <div class="set-background-text-explanation explanation"></div>
+                    </div>
+                    <input type="radio" name="background" value="gitHub" class="input-background"
+                        id="input-background-gitHub">
+                    <label for="input-background-gitHub" class="background" id="gitHub-background">GitHub</label>
+                    <input type="radio" name="background" value="unsplash" class="input-background"
+                        id="input-background-unsplash">
+                    <label for="input-background-unsplash" class="background" id="unsplash-background">Unsplash
+                        API</label>
+                    <input type="radio" name="background" value="flickr" class="input-background"
+                        id="input-background-flickr">
+                    <label for="input-background-flickr" class="background" id="flickr-background">Flickr API</label>
+                </div>
+                <div class="set-tag">
+                    <div>
+                        <div class="set-tag-text"></div>
+                        <div class="set-tag-text-explanation explanation"></div>
+                    </div>
+                </div>
+                <div class="set-show-hide">
+                    <div class="show-time-text"></div>
+                    <div>
+                        <input type="checkbox" name="show-time" class="input-show-time" checked>
+                        <label for="show-time" class="show-time"></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="show-date" class="input-show-date" checked>
+                        <label for="show-date" class="show-date"></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="show-greeting" class="input-show-greeting" checked>
+                        <label for="show-greeting" class="show-greeting"></label>
+                    </div>
+                    <div class="container-show-quote">
+                        <input type="checkbox" name="show-quote" class="input-show-quote" checked>
+                        <label for="show-quote" class="show-quote"></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="show-weather" class="input-show-weather" checked>
+                        <label for="show-weather" class="show-weather"></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="show-player" class="input-show-player" checked>
+                        <label for="show-player" class="show-player"></label>
+                    </div>
                 </div>
             </div>
         </div>

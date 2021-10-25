@@ -21,4 +21,4 @@ function showDate() {
     setTimeout(showDate, 1000);
 };
 
-export { showTime };
+export { time, showTime };

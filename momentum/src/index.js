@@ -9,7 +9,8 @@ import {
     changeTrackInformation, updateCurrentTime, timeline, volume, changeTrackPoint,
     changeVolume, soundButton, onOffSound, playWithOwnButton, playItems
 } from './js/player.js';
-import { inputsLanguage, changeLanguageIcon, changeLanguageRadiobutton } from './js/localization-strings.js';
+import { inputsLanguage, changeLanguageRadiobutton } from './js/localization-strings.js';
+import {inputShowTime, toggleTimeWidget, translateSettings} from './js/settings.js';
 
 
 showTime();
@@ -37,7 +38,8 @@ soundButton.addEventListener('click', onOffSound);
 audio.addEventListener('ended', playNext);
 playItems.forEach((item, index) => { item.addEventListener('click', () => playWithOwnButton(item, index)) });
 inputsLanguage.forEach((item, index) => { item.addEventListener('change', () => changeLanguageRadiobutton(item, index)) });
-window.addEventListener('load', changeLanguageIcon);
+window.addEventListener('load', translateSettings);
+inputShowTime.addEventListener('change', toggleTimeWidget);
 
 
 

@@ -1,6 +1,7 @@
 const body = document.querySelector('.body');
 const slideNext = document.querySelector('.slide-next');
 const slidePrev = document.querySelector('.slide-prev');
+export let currentBackground = localStorage.getItem('background') || 'gitHub';
 
 
 function getRandomNum() {
