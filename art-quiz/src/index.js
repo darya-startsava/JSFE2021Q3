@@ -1,10 +1,8 @@
-import showStartPage from './js/showPage/show-start-page.js';
+import showStartPage from './js/pages/show-start-page.js';
+import App from './js/app/index.js';
+
+showStartPage();
 
 
 
-
-
-
-
-  showStartPage();
 
