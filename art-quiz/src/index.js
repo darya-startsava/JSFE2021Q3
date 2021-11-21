@@ -6,11 +6,6 @@ showStartPage();
 async function start() {
     await App.buildState();
     console.log(App.categories);
-};
+}
 
 start();
-
-
-
-
-

@@ -38,18 +38,22 @@ function showArtistQuestionPage(type, index, questionNum) {
     <button type="button" class="back-to-button" id="back-to-categories-button">Категории</button>
 </div>`;
 
-
-
-    const answersAuthorQuizWrapper = document.querySelector('.answers-author-quiz-wrapper');
+    const answersAuthorQuizWrapper = document.querySelector(
+        '.answers-author-quiz-wrapper'
+    );
     const backToStartButton = document.querySelector('#back-to-start-button');
-    const backToCategoriesButton = document.querySelector('#back-to-categories-button');
+    const backToCategoriesButton = document.querySelector(
+        '#back-to-categories-button'
+    );
     // const answerAuthorButton = document.querySelectorAll('.answer-author-button');
     const continueButton = document.querySelector('.continue-button');
-    const windowCorrectAnswer = document.querySelector('.window-correct-answer');
+    const windowCorrectAnswer = document.querySelector(
+        '.window-correct-answer'
+    );
 
     function showRightAnswerWindow() {
         windowCorrectAnswer.style.display = 'unset';
-    };
+    }
 
     function nextQuestion() {
         windowCorrectAnswer.style.display = 'none';
@@ -59,7 +63,7 @@ function showArtistQuestionPage(type, index, questionNum) {
             questionNum++;
             showArtistQuestionPage(type, index, questionNum);
         }
-    };
+    }
 
     backToStartButton.addEventListener('click', showStartPage);
     backToCategoriesButton.addEventListener('click', () => showQuizPage(type));

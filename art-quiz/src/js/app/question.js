@@ -1,6 +1,5 @@
-
-class Question{
-    constructor(){
+class Question {
+    constructor() {
         this.title = null;
         this.type = null;
         this.imageNum = null;

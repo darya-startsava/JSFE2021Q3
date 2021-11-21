@@ -59,7 +59,6 @@ function showSettingsPage() {
         App.settings.setVolume();
     });
 
-
     const timeText = document.querySelector('.time-text');
     const rangeTime = document.getElementById('range-time');
     rangeTime.value = App.settings.time;
@@ -69,8 +68,6 @@ function showSettingsPage() {
         App.settings.setTime();
         timeText.innerHTML = `Время: ${App.settings.time} c`;
     });
-
-
-};
+}
 
 export default showSettingsPage;

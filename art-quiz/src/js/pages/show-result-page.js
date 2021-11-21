@@ -25,10 +25,12 @@ function showResultPage(type) {
         <button type="button" class="back-to-button" id="back-to-categories-button">Категории</button>
     </div>`;
     const backToStartButton = document.querySelector('#back-to-start-button');
-    const backToCategoriesButton = document.querySelector('#back-to-categories-button');
+    const backToCategoriesButton = document.querySelector(
+        '#back-to-categories-button'
+    );
 
     backToStartButton.addEventListener('click', showStartPage);
     backToCategoriesButton.addEventListener('click', () => showQuizPage(type));
-};
+}
 
 export default showResultPage;

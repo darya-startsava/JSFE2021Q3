@@ -14,17 +14,17 @@ function showStartPage() {
             <button type="button" class="start-button button-art-quiz">Угадать картину</button>
         </div>
     </div>
-</section>`
+</section>`;
     body.style.backgroundImage = `url('./assets/img/j-retrato-de-cardenal-rafael.png')`;
     const buttonArtistQuiz = document.querySelector('.button-artist-quiz');
     const buttonArtQuiz = document.querySelector('.button-art-quiz');
     const settings = document.querySelector('.settings');
 
-    buttonArtistQuiz.addEventListener('click', () => showQuizPage('findArtist'));
+    buttonArtistQuiz.addEventListener('click', () =>
+        showQuizPage('findArtist')
+    );
     buttonArtQuiz.addEventListener('click', () => showQuizPage('findPicture'));
-    settings.addEventListener('click', showSettingsPage)
-
-
+    settings.addEventListener('click', showSettingsPage);
 }
 
 export default showStartPage;

@@ -32,23 +32,31 @@ function showPictureQuestionPage() {
     </div>`;
 
     const backToStartButton = document.querySelector('#back-to-start-button');
-    const backToCategoriesButton = document.querySelector('#back-to-categories-button');
-    const answerPictureButton = document.querySelectorAll('.answer-picture-button');
+    const backToCategoriesButton = document.querySelector(
+        '#back-to-categories-button'
+    );
+    const answerPictureButton = document.querySelectorAll(
+        '.answer-picture-button'
+    );
     const continueButton = document.querySelector('.continue-button');
-    const windowCorrectAnswer = document.querySelector('.window-correct-answer');
+    const windowCorrectAnswer = document.querySelector(
+        '.window-correct-answer'
+    );
 
     function showRightAnswerWindow() {
         windowCorrectAnswer.style.display = 'unset';
-    };
+    }
 
     function nextQuestion() {
         windowCorrectAnswer.style.display = 'none';
-    };
+    }
 
     backToStartButton.addEventListener('click', showStartPage);
     backToCategoriesButton.addEventListener('click', showPictureQuizPage);
-    answerPictureButton.forEach(item => item.addEventListener('click', showRightAnswerWindow));
+    answerPictureButton.forEach((item) =>
+        item.addEventListener('click', showRightAnswerWindow)
+    );
     continueButton.addEventListener('click', nextQuestion);
-};
+}
 
 export default showPictureQuestionPage;

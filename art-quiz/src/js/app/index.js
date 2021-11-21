@@ -3,8 +3,6 @@ import Category from './category.js';
 import Question from './question.js';
 import Option from './option.js';
 
-
-
 class App {
     constructor() {
         this.settings = Settings;
@@ -16,18 +14,18 @@ class App {
                 const j = Math.floor(Math.random() * (i + 1));
                 [array[i], array[j]] = [array[j], array[i]];
             }
-        };
+        }
 
         const imageInformation = '../assets/json/images-information.json';
         const res = await fetch(imageInformation);
         const data = await res.json();
-        const createCategories = type => {
+        const createCategories = (type) => {
             let start = 0;
             let end = 12;
             if (type == 'findPicture') {
                 start += 12;
                 end += 12;
-            };
+            }
             for (let i = start; i < end; i++) {
                 const category = new Category();
                 this.categories.push(category);
@@ -40,20 +38,34 @@ class App {
                     if (question.type == 'findAuthor') {
                         question.title = 'Кто автор этой картины?';
                     } else {
-                        question.title = 'Какую из этих картин написал ' + author + '?';
-                    };
-                    const option = new Option(imageNum, author, name, year, true);
+                        question.title =
+                            'Какую из этих картин написал ' + author + '?';
+                    }
+                    const option = new Option(
+                        imageNum,
+                        author,
+                        name,
+                        year,
+                        true
+                    );
                     question.options.push(option);
 
                     while (question.options.length < 4) {
                         const randomNumber = Math.floor(Math.random() * 240);
-                        const { author, name, year, imageNum } = data[randomNumber];
-                        const isUniq = question.options.every((o) =>
-                            o.author !== author &&
-                            o.imageNum !== imageNum
+                        const { author, name, year, imageNum } =
+                            data[randomNumber];
+                        const isUniq = question.options.every(
+                            (o) =>
+                                o.author !== author && o.imageNum !== imageNum
                         );
                         if (isUniq) {
-                            const option = new Option(imageNum, author, name, year, false);
+                            const option = new Option(
+                                imageNum,
+                                author,
+                                name,
+                                year,
+                                false
+                            );
                             question.options.push(option);
                         }
                     }

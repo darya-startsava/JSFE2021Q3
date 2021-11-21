@@ -27,7 +27,7 @@ function showQuizPage(type) {
         if (type == 'findPicture') {
             start += 12;
             end += 12;
-        };
+        }
         for (let i = start; i < end; i++) {
             const { imageNum } = App.categories[i].questions[0];
             const image = `url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${imageNum}.jpg')`;
@@ -42,18 +42,21 @@ function showQuizPage(type) {
     }
     createCategory(type);
 
-    const buttonCategoryImage = document.querySelectorAll('.button-category-image');
+    const buttonCategoryImage = document.querySelectorAll(
+        '.button-category-image'
+    );
     const backToStartButton = document.querySelector('.back-to-start-button');
     const showResult = document.querySelectorAll('.show-result');
 
-
-
-
     backToStartButton.addEventListener('click', showStartPage);
-    showResult.forEach(item => item.addEventListener('click', () => showResultPage(type)));
-    buttonCategoryImage.forEach((item, index) => item.addEventListener('click', () => showArtistQuestionPage(type, index, 0)));
-
-
+    showResult.forEach((item) =>
+        item.addEventListener('click', () => showResultPage(type))
+    );
+    buttonCategoryImage.forEach((item, index) =>
+        item.addEventListener('click', () =>
+            showArtistQuestionPage(type, index, 0)
+        )
+    );
 }
 
 export default showQuizPage;

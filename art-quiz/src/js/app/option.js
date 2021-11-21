@@ -1,4 +1,3 @@
-
 class Option {
     constructor(imageNum, author, name, year, isCorrect) {
         this.imageNum = imageNum;

@@ -1,6 +1,5 @@
-
 class Category {
-    constructor(){
+    constructor() {
         this.questions = [];
     }
 }
