@@ -274,7 +274,7 @@ input[type='checkbox'] {
     height: 70%;
     top: 10%;
     left: 10%;
-    background-color: var(--right-answer-color);
+    /* background-color: var(--right-answer-color); */
     border-radius: 15px;
     border: var(--light-text-color) solid 3px;
     text-align: center;

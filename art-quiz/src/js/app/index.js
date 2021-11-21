@@ -49,6 +49,9 @@ class App {
                         true
                     );
                     question.options.push(option);
+                    question.author = option.author;
+                    question.name = option.name;
+                    question.year = option.year;
 
                     while (question.options.length < 4) {
                         const randomNumber = Math.floor(Math.random() * 240);

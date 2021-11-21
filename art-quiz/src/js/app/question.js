@@ -4,6 +4,9 @@ class Question {
         this.type = null;
         this.imageNum = null;
         this.options = [];
+        this.author = null;
+        this.name = null;
+        this.year = null;
     }
 }
 
