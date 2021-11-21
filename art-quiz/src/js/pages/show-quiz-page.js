@@ -1,5 +1,6 @@
 import showStartPage from './show-start-page.js';
 import showArtistQuestionPage from './show-artist-question-page.js';
+import showPictureQuestionPage from './show-picture-question-page.js';
 import showResultPage from './show-result-page.js';
 import App from '../app/index.js';
 
@@ -46,6 +47,9 @@ function showQuizPage(type) {
         '.button-category-image'
     );
     const backToStartButton = document.querySelector('.back-to-start-button');
+    
+    // TO DO!! Realise showRresult
+
     const showResult = document.querySelectorAll('.show-result');
 
     backToStartButton.addEventListener('click', showStartPage);
@@ -53,9 +57,13 @@ function showQuizPage(type) {
         item.addEventListener('click', () => showResultPage(type))
     );
     buttonCategoryImage.forEach((item, index) =>
-        item.addEventListener('click', () =>
-            showArtistQuestionPage(type, index, 0)
-        )
+        item.addEventListener('click', () => {
+            if (type == 'findArtist') {
+                showArtistQuestionPage(type, index, 0);
+            } else {
+                showPictureQuestionPage(type, index+12, 0);
+            }
+        })
     );
 }
 

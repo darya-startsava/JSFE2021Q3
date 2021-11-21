@@ -68,7 +68,6 @@ function showArtistQuestionPage(type, index, questionNum) {
 
     function nextQuestion() {
         windowCorrectAnswer.style.display = 'none';
-        console.log(questionNum);
         if (questionNum == 9) {
             showResultPage();
         } else {
