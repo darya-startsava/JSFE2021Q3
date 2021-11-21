@@ -201,7 +201,7 @@ input[type=checkbox] {
 }
 
 .image-author-quiz {
-  background-image: url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/0.jpg');
+  /* background-image: url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/0.jpg'); */
   background-size: cover;
   height: 300px;
   width: 300px;

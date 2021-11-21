@@ -1,19 +1,23 @@
 import showStartPage from './show-start-page.js';
-import showArtistQuizPage from './show-artist-quiz-page.js';
+import showQuizPage from './show-quiz-page.js';
+import App from '../app/index.js';
+import showResultPage from './show-result-page.js';
 
 const main = document.querySelector('main');
 
-function showArtistQuestionPage() {
+function showArtistQuestionPage(type, index, questionNum) {
+    const question = App.categories[index].questions[questionNum];
+    const { imageNum } = question;
     main.innerHTML = `<h3 class="title">Кто автор этой картины?</h3>
 <div class="time-left">У вас осталось 30 секунд для ответа.</div>
 <div class="image-author-quiz-wrapper">
-    <div class="image-author-quiz" id="image-author-quiz"></div>
+    <div class="image-author-quiz" id="image-author-quiz" style="background-image:url(https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${imageNum}.jpg)" ></div>
 </div>
 <div class="answers-author-quiz-wrapper">
-    <button type="button" class="answer-author-button answer-1-author-button">Николай Богданов-Бельский</button>
-    <button type="button" class="answer-author-button answer-2-author-button">Ван Гог</button>
-    <button type="button" class="answer-author-button answer-3-author-button">Николай Богданов-Бельский</button>
-    <button type="button" class="answer-author-button answer-4-author-button">Николай Богданов-Бельский</button>
+    <button type="button" class="answer-author-button" data-isCorrect="${question.options[0].isCorrect}">${question.options[0].author}</button>
+    <button type="button" class="answer-author-button" data-isCorrect="${question.options[1].isCorrect}">${question.options[1].author}</button>
+    <button type="button" class="answer-author-button" data-isCorrect="${question.options[2].isCorrect}">${question.options[2].author}</button>
+    <button type="button" class="answer-author-button" data-isCorrect="${question.options[3].isCorrect}">${question.options[3].author}</button>
     <div class="window-correct-answer">
         <div class="correct-answer-message">Неверно.</div>
         <div class="correct-answer-image-with-information">
@@ -34,9 +38,12 @@ function showArtistQuestionPage() {
     <button type="button" class="back-to-button" id="back-to-categories-button">Категории</button>
 </div>`;
 
+
+
+    const answersAuthorQuizWrapper = document.querySelector('.answers-author-quiz-wrapper');
     const backToStartButton = document.querySelector('#back-to-start-button');
     const backToCategoriesButton = document.querySelector('#back-to-categories-button');
-    const answerAuthorButton = document.querySelectorAll('.answer-author-button');
+    // const answerAuthorButton = document.querySelectorAll('.answer-author-button');
     const continueButton = document.querySelector('.continue-button');
     const windowCorrectAnswer = document.querySelector('.window-correct-answer');
 
@@ -46,11 +53,22 @@ function showArtistQuestionPage() {
 
     function nextQuestion() {
         windowCorrectAnswer.style.display = 'none';
+        if (questionNum == 9) {
+            ShowResultPage();
+        } else {
+            questionNum++;
+            showArtistQuestionPage(type, index, questionNum);
+        }
     };
 
     backToStartButton.addEventListener('click', showStartPage);
-    backToCategoriesButton.addEventListener('click', showArtistQuizPage);
-    answerAuthorButton.forEach(item => item.addEventListener('click', showRightAnswerWindow));
+    backToCategoriesButton.addEventListener('click', () => showQuizPage(type));
+    // answerAuthorButton.forEach(item => item.addEventListener('click', showRightAnswerWindow));
+    answersAuthorQuizWrapper.addEventListener('click', (e) => {
+        if (e.target.className == 'answer-author-button') {
+            console.log(e.target.dataset.iscorrect);
+        }
+    });
     continueButton.addEventListener('click', nextQuestion);
 }
 

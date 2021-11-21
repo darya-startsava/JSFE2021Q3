@@ -1,11 +1,12 @@
 import showStartPage from './show-start-page.js';
 import showArtistQuestionPage from './show-artist-question-page.js';
 import showResultPage from './show-result-page.js';
+import App from '../app/index.js';
 
 const body = document.querySelector('body');
 const main = document.querySelector('main');
 
-function showArtistQuizPage() {
+function showQuizPage(type) {
     main.innerHTML = `<h2 class="title">Категории</h2>
     <div class="categories-wrapper">
         <div class="categories">
@@ -19,10 +20,17 @@ function showArtistQuizPage() {
 
     const categories = document.querySelector('.categories');
 
-    function createCategory() {
+    function createCategory(type) {
         let counter = 1;
-        for (let i = 0; i <= 119; i = i + 10) {
-            let image = `url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${i}.jpg')`;
+        let start = 0;
+        let end = 12;
+        if (type == 'findPicture') {
+            start += 12;
+            end += 12;
+        };
+        for (let i = start; i < end; i++) {
+            const { imageNum } = App.categories[i].questions[0];
+            const image = `url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${imageNum}.jpg')`;
             const category = document.createElement('div');
             category.classList.add('category');
             category.innerHTML = `<div class="category-information">${counter}&nbsp;&nbsp;&nbsp;&nbsp;10/10</div>
@@ -32,7 +40,7 @@ function showArtistQuizPage() {
             counter++;
         }
     }
-    createCategory();
+    createCategory(type);
 
     const buttonCategoryImage = document.querySelectorAll('.button-category-image');
     const backToStartButton = document.querySelector('.back-to-start-button');
@@ -42,9 +50,10 @@ function showArtistQuizPage() {
 
 
     backToStartButton.addEventListener('click', showStartPage);
-    showResult.forEach(item => item.addEventListener('click', showResultPage));
-    buttonCategoryImage.forEach(item => item.addEventListener('click', showArtistQuestionPage));
+    showResult.forEach(item => item.addEventListener('click', () => showResultPage(type)));
+    buttonCategoryImage.forEach((item, index) => item.addEventListener('click', () => showArtistQuestionPage(type, index, 0)));
+
 
 }
 
-export default showArtistQuizPage;
+export default showQuizPage;

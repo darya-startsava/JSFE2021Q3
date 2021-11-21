@@ -1,5 +1,4 @@
-import showArtistQuizPage from './show-artist-quiz-page.js';
-import showPictureQuizPage from './show-picture-quiz-page.js';
+import showQuizPage from './show-quiz-page.js';
 import showSettingsPage from './show-settings-page.js';
 
 const body = document.querySelector('body');
@@ -21,8 +20,8 @@ function showStartPage() {
     const buttonArtQuiz = document.querySelector('.button-art-quiz');
     const settings = document.querySelector('.settings');
 
-    buttonArtistQuiz.addEventListener('click', showArtistQuizPage);
-    buttonArtQuiz.addEventListener('click', showPictureQuizPage);
+    buttonArtistQuiz.addEventListener('click', () => showQuizPage('findArtist'));
+    buttonArtQuiz.addEventListener('click', () => showQuizPage('findPicture'));
     settings.addEventListener('click', showSettingsPage)
 
 

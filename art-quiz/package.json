@@ -8,6 +8,7 @@
     "build": "rss-scripts build"
   },
   "devDependencies": {
+    "prettier": "^2.4.1",
     "rss-scripts": "^0.2.4"
   }
 }

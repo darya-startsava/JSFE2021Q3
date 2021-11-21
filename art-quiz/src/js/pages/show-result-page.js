@@ -1,13 +1,9 @@
-//  TODO  button back to category lead to only Artist Quiz category. Solution: 1. realize two show-result-page 
-// for artist and for pictures or 2. to check from which category results was shown
- 
-
 import showStartPage from './show-start-page.js';
-import showArtistQuizPage from './show-artist-quiz-page.js';
+import showQuizPage from './show-quiz-page.js';
 
 const main = document.querySelector('main');
 
-function showResultPage() {
+function showResultPage(type) {
     main.innerHTML = `<h3 class="title">Результаты раунда:</h3>
     <div class="result">7/10</div>
     <div class="results-wrapper">
@@ -32,7 +28,7 @@ function showResultPage() {
     const backToCategoriesButton = document.querySelector('#back-to-categories-button');
 
     backToStartButton.addEventListener('click', showStartPage);
-    backToCategoriesButton.addEventListener('click', showArtistQuizPage);
+    backToCategoriesButton.addEventListener('click', () => showQuizPage(type));
 };
 
 export default showResultPage;
