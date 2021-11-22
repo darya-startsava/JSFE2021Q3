@@ -17,11 +17,11 @@ function showQuizPage(type) {
         <button type="button" class="back-to-start-button">На главную</button>
     </div>`;
 
-    body.style.backgroundImage = `none`;
+    body.style.backgroundImage = 'none';
 
     const categories = document.querySelector('.categories');
 
-    function createCategory(type) {
+    function createCategory() {
         let counter = 1;
         let start = 0;
         let end = 12;
@@ -41,27 +41,23 @@ function showQuizPage(type) {
             counter++;
         }
     }
-    createCategory(type);
+    createCategory();
 
-    const buttonCategoryImage = document.querySelectorAll(
-        '.button-category-image'
-    );
+    const buttonCategoryImage = document.querySelectorAll('.button-category-image');
     const backToStartButton = document.querySelector('.back-to-start-button');
-    
-    // TO DO!! Realise showRresult
+
+    // TO DO!! Realise showResult
 
     const showResult = document.querySelectorAll('.show-result');
 
     backToStartButton.addEventListener('click', showStartPage);
-    showResult.forEach((item) =>
-        item.addEventListener('click', () => showResultPage(type))
-    );
+    showResult.forEach((item) => item.addEventListener('click', () => showResultPage(type)));
     buttonCategoryImage.forEach((item, index) =>
         item.addEventListener('click', () => {
             if (type == 'findArtist') {
                 showArtistQuestionPage(type, index, 0);
             } else {
-                showPictureQuestionPage(type, index+12, 0);
+                showPictureQuestionPage(type, index + 12, 0);
             }
         })
     );

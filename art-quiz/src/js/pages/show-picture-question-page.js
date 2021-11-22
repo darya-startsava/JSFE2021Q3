@@ -35,33 +35,23 @@ function showPictureQuestionPage(type, index, questionNum) {
         <button type="button" class="back-to-button" id="back-to-categories-button">Категории</button>
     </div>`;
 
-    const answersPicturesQuizWrapper = document.querySelector(
-        '.answers-pictures-quiz-wrapper'
-    );
+    const answersPicturesQuizWrapper = document.querySelector('.answers-pictures-quiz-wrapper');
 
     const backToStartButton = document.querySelector('#back-to-start-button');
-    const backToCategoriesButton = document.querySelector(
-        '#back-to-categories-button'
-    );
+    const backToCategoriesButton = document.querySelector('#back-to-categories-button');
 
     const continueButton = document.querySelector('.continue-button');
-    const windowCorrectAnswer = document.querySelector(
-        '.window-correct-answer'
-    );
-    const correctAnswerMessage = document.querySelector(
-        '.correct-answer-message'
-    );
+    const windowCorrectAnswer = document.querySelector('.window-correct-answer');
+    const correctAnswerMessage = document.querySelector('.correct-answer-message');
 
     function showRightAnswerWindow(isCorrect) {
         windowCorrectAnswer.style.display = 'unset';
         if (isCorrect) {
-            windowCorrectAnswer.style.backgroundColor =
-                'var(--right-answer-color)';
-            correctAnswerMessage.innerHTML = `Верно!`;
+            windowCorrectAnswer.style.backgroundColor = 'var(--right-answer-color)';
+            correctAnswerMessage.innerHTML = 'Верно!';
         } else {
-            windowCorrectAnswer.style.backgroundColor =
-                'var(--wrong-answer-color)';
-            correctAnswerMessage.innerHTML = `Неверно.`;
+            windowCorrectAnswer.style.backgroundColor = 'var(--wrong-answer-color)';
+            correctAnswerMessage.innerHTML = 'Неверно.';
         }
     }
 
@@ -79,7 +69,7 @@ function showPictureQuestionPage(type, index, questionNum) {
     backToCategoriesButton.addEventListener('click', () => showQuizPage(type));
     answersPicturesQuizWrapper.addEventListener('click', (e) => {
         if (e.target.className == 'answer-picture-button') {
-            let isCorrect = JSON.parse(e.target.dataset.iscorrect);
+            const isCorrect = JSON.parse(e.target.dataset.iscorrect);
             showRightAnswerWindow(isCorrect);
         }
     });

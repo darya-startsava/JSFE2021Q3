@@ -15,7 +15,7 @@ function showStartPage() {
         </div>
     </div>
 </section>`;
-    body.style.backgroundImage = `url('./assets/img/j-retrato-de-cardenal-rafael.png')`;
+    body.style.backgroundImage = 'url(\'./assets/img/j-retrato-de-cardenal-rafael.png\')';
     const buttonArtistQuiz = document.querySelector('.button-artist-quiz');
     const buttonArtQuiz = document.querySelector('.button-art-quiz');
     const settings = document.querySelector('.settings');

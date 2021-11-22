@@ -38,8 +38,7 @@ class App {
                     if (question.type == 'findAuthor') {
                         question.title = 'Кто автор этой картины?';
                     } else {
-                        question.title =
-                            'Какую из этих картин написал ' + author + '?';
+                        question.title = `Какую из этих картин написал ${author}?`;
                     }
                     const option = new Option(
                         imageNum,
@@ -55,8 +54,7 @@ class App {
 
                     while (question.options.length < 4) {
                         const randomNumber = Math.floor(Math.random() * 240);
-                        const { author, name, year, imageNum } =
-                            data[randomNumber];
+                        const { author, name, year, imageNum } = data[randomNumber];
                         const isUniq = question.options.every(
                             (o) =>
                                 o.author !== author && o.imageNum !== imageNum
