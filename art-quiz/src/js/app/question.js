@@ -8,16 +8,28 @@ class Question {
         this.name = null;
         this.year = null;
         this.status = null;
-        this.loadStatus();
+        // this.loadStatus();
     }
     setStatus(status) {
         // set value to local storage
+        let statusArr;
+        if (!localStorage.getItem('statusArr')) {
+            statusArr = ['no answers'];
+            localStorage.setItem('statusArr', JSON.stringify(statusArr));
+        }
         this.status = status;
+        statusArr = JSON.parse(localStorage.getItem('statusArr'));
+        statusArr[this.imageNum] = this.status;
+        localStorage.setItem('statusArr', JSON.stringify(statusArr));
     }
 
     loadStatus() {
-        // get value from local storage
-        // this.status = value
+        let statusArr;
+        if (!localStorage.getItem('statusArr')) {
+            statusArr = [];
+            localStorage.setItem('statusArr', JSON.stringify(statusArr));
+        }
+        this.status = JSON.parse(localStorage.getItem('statusArr'))[this.imageNum];
     }
 }
 

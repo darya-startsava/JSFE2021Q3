@@ -22,7 +22,7 @@ class App {
         const createCategories = (type) => {
             let start = 0;
             let end = 12;
-            if (type == 'findPicture') {
+            if (type === 'findPicture') {
                 start += 12;
                 end += 12;
             }
@@ -35,7 +35,7 @@ class App {
                     category.questions.push(question);
                     question.type = type;
                     question.imageNum = imageNum;
-                    if (question.type == 'findAuthor') {
+                    if (question.type === 'findAuthor') {
                         question.title = 'Кто автор этой картины?';
                     } else {
                         question.title = `Какую из этих картин написал ${author}?`;

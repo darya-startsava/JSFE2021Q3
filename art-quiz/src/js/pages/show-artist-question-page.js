@@ -50,15 +50,17 @@ function showArtistQuestionPage(type, index, questionNum) {
         if (isCorrect) {
             windowCorrectAnswer.style.backgroundColor = 'var(--right-answer-color)';
             correctAnswerMessage.innerHTML = 'Верно!';
+            question.setStatus('right');
         } else {
             windowCorrectAnswer.style.backgroundColor = 'var(--wrong-answer-color)';
             correctAnswerMessage.innerHTML = 'Неверно.';
+            question.setStatus('wrong');
         }
     }
 
     function nextQuestion() {
         windowCorrectAnswer.style.display = 'none';
-        if (questionNum == 9) {
+        if (questionNum === 9) {
             showResultPage();
         } else {
             questionNum++;
@@ -69,7 +71,7 @@ function showArtistQuestionPage(type, index, questionNum) {
     backToStartButton.addEventListener('click', showStartPage);
     backToCategoriesButton.addEventListener('click', () => showQuizPage(type));
     answersAuthorQuizWrapper.addEventListener('click', (e) => {
-        if (e.target.className == 'answer-author-button') {
+        if (e.target.className === 'answer-author-button') {
             const isCorrect = JSON.parse(e.target.dataset.iscorrect);
             showRightAnswerWindow(isCorrect);
         }
