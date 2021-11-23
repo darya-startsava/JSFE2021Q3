@@ -22,7 +22,7 @@ class App {
             img.src = url;
         }
 
-        const imageInformation = 'https://rolling-scopes-school.github.io/darya-startsava-JSFE2021Q3/art-quiz/art-quiz/assets/json/images-information.json';
+        const imageInformation = '../art-quiz/assets/json/images-information.json';
         const res = await fetch(imageInformation);
         const data = await res.json();
 
