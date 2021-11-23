@@ -22,7 +22,7 @@ class App {
             img.src = url;
         }
 
-        const imageInformation = '../art-quiz/assets/json/images-information.json';
+        const imageInformation = '../assets/json/images-information.json';
         const res = await fetch(imageInformation);
         const data = await res.json();
 
