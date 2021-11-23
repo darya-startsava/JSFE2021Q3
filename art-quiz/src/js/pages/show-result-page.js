@@ -49,6 +49,7 @@ function showResultPage(type, index) {
                 counterRightAnswers++;
                 resultPictureButton.classList.remove('button-grayscale');
             }
+            result.innerHTML = `${counterRightAnswers}/10`;
             resultPictureButton.style.backgroundImage = `${image}`;
             results.append(resultPictureButton);
         }
@@ -63,7 +64,6 @@ function showResultPage(type, index) {
         aboutPictureImage.src = `https://raw.githubusercontent.com/darya-startsava/image-data/master/full/${num}full.jpg`;
     }
 
-    result.innerHTML = `${counterRightAnswers}/10`;
 
     const hideAboutPictureButton = document.querySelector('.hide-about-picture-button');
     function hideInformation() {
