@@ -16,6 +16,7 @@ module.exports = {
         'no-param-reassign': 'off',
         'no-plusplus': 'off',
         'no-shadow': 'off',
+        'no-restricted-syntax': 'off',
         // formatting is forced by prettier
         'linebreak-style': 'off',
         'implicit-arrow-linebreak': 'off',

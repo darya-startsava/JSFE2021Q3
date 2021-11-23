@@ -9,6 +9,7 @@ const main = document.querySelector('main');
 
 function showQuizPage(type) {
     main.innerHTML = `<h2 class="title">Категории</h2>
+    <h3 class="title" id="category-title"></h3>
     <div class="categories-wrapper">
         <div class="categories">
         </div>
@@ -19,28 +20,54 @@ function showQuizPage(type) {
 
     body.style.backgroundImage = 'none';
 
+    const categoryTitle = document.getElementById('category-title');
+    if (type === 'findArtist') {
+        categoryTitle.innerHTML = 'Угадайте автора картины';
+    } else {
+        categoryTitle.innerHTML = 'Угадайте картину по автору';
+    }
+
     const categories = document.querySelector('.categories');
 
     function createCategory() {
         let counter = 1;
         let start = 0;
         let end = 12;
-        if (type == 'findPicture') {
+        if (type === 'findPicture') {
             start += 12;
             end += 12;
         }
         for (let i = start; i < end; i++) {
+            let counterRightAnswers = 0;
+            let counterAnswers = 0;
+            let result = '';
+            let myButtonImageClass = 'button-grayscale';
+            let myButtonShowResultClass = 'button-hide';
+            for (let j = 0; j < 10; j++) {
+                if (App.categories[i].questions[j].status === 'right') {
+                    counterRightAnswers++;
+                    counterAnswers++;
+                } else if (App.categories[i].questions[j].status === 'wrong') {
+                    counterAnswers++;
+                }
+            }
+            if (counterAnswers) {
+                result = `${counterRightAnswers}/${counterAnswers}`;
+                myButtonImageClass = '';
+                myButtonShowResultClass = '';
+            }
             const { imageNum } = App.categories[i].questions[0];
             const image = `url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${imageNum}.jpg')`;
             const category = document.createElement('div');
             category.classList.add('category');
-            category.innerHTML = `<div class="category-information">${counter}&nbsp;&nbsp;&nbsp;&nbsp;10/10</div>
-            <button type="button" class="button-category-image" style="background-image:${image}"></button>
-            <button type="button" class="show-result">Смотреть<br>детали</button>`;
+            category.innerHTML = `<div class="category-information">${counter}&nbsp;&nbsp;&nbsp;&nbsp;${result}</div>
+            <button type="button" class="button-category-image ${myButtonImageClass}" style="background-image:${image}"></button>
+            <button type="button" class="show-result ${myButtonShowResultClass}">Смотреть<br>детали</button>`;
             categories.append(category);
             counter++;
         }
     }
+
     createCategory();
 
     const buttonCategoryImage = document.querySelectorAll('.button-category-image');
@@ -51,10 +78,18 @@ function showQuizPage(type) {
     const showResult = document.querySelectorAll('.show-result');
 
     backToStartButton.addEventListener('click', showStartPage);
-    showResult.forEach((item) => item.addEventListener('click', () => showResultPage(type)));
+    showResult.forEach((item, index) =>
+        item.addEventListener('click', () => {
+            if (type === 'findArtist') {
+                showResultPage(type, index);
+            } else {
+                showResultPage(type, index + 12);
+            }
+        })
+    );
     buttonCategoryImage.forEach((item, index) =>
         item.addEventListener('click', () => {
-            if (type == 'findArtist') {
+            if (type === 'findArtist') {
                 showArtistQuestionPage(type, index, 0);
             } else {
                 showPictureQuestionPage(type, index + 12, 0);

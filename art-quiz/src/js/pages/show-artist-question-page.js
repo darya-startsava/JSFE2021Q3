@@ -1,7 +1,6 @@
 import showStartPage from './show-start-page.js';
 import showQuizPage from './show-quiz-page.js';
 import App from '../app/index.js';
-import showResultPage from './show-result-page.js';
 
 const main = document.querySelector('main');
 
@@ -32,6 +31,10 @@ function showArtistQuestionPage(type, index, questionNum) {
             </div>
         </div>
     </div>
+    <div class="end-quiz-window">
+        <div class="end-quiz-message"></div>
+        <button type="button" class="back-to-button" id="go-to-categories-button">Продолжить</button>
+    </div>
 </div>
 <div class="buttons-wrapper">
     <button type="button" class="back-to-button" id="back-to-start-button" >На главную</button>
@@ -39,14 +42,20 @@ function showArtistQuestionPage(type, index, questionNum) {
 </div>`;
 
     const answersAuthorQuizWrapper = document.querySelector('.answers-author-quiz-wrapper');
+
     const backToStartButton = document.querySelector('#back-to-start-button');
     const backToCategoriesButton = document.querySelector('#back-to-categories-button');
+    const goToCategoriesButton = document.querySelector('#go-to-categories-button');
+
     const continueButton = document.querySelector('.continue-button');
     const windowCorrectAnswer = document.querySelector('.window-correct-answer');
     const correctAnswerMessage = document.querySelector('.correct-answer-message');
+    const endQuizWindow = document.querySelector('.end-quiz-window');
+    const endQuizMessage = document.querySelector('.end-quiz-message');
 
     function showRightAnswerWindow(isCorrect) {
-        windowCorrectAnswer.style.display = 'unset';
+        windowCorrectAnswer.style.visibility = 'visible';
+        windowCorrectAnswer.style.opacity = 1;
         if (isCorrect) {
             windowCorrectAnswer.style.backgroundColor = 'var(--right-answer-color)';
             correctAnswerMessage.innerHTML = 'Верно!';
@@ -57,17 +66,30 @@ function showArtistQuestionPage(type, index, questionNum) {
             question.setStatus('wrong');
         }
     }
+    function showEndMessage() {
+        endQuizWindow.style.visibility = 'visible';
+        endQuizWindow.style.opacity = 1;
+        endQuizWindow.style.backgroundColor = 'var(--end-quiz-color)';
+        let counter = 0;
+        for (let q of App.categories[index].questions) {
+            if (q.status === 'right') {
+                counter++;
+            }
+        }
+        endQuizMessage.innerHTML = ` Конец игры! <br> Ваш результат:<br> ${counter}/10`;
+    }
 
     function nextQuestion() {
         windowCorrectAnswer.style.display = 'none';
         if (questionNum === 9) {
-            showResultPage();
+            showEndMessage();
         } else {
             questionNum++;
             showArtistQuestionPage(type, index, questionNum);
         }
     }
 
+    goToCategoriesButton.addEventListener('click', () => showQuizPage(type));
     backToStartButton.addEventListener('click', showStartPage);
     backToCategoriesButton.addEventListener('click', () => showQuizPage(type));
     answersAuthorQuizWrapper.addEventListener('click', (e) => {

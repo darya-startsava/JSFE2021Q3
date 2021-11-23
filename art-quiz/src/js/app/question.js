@@ -1,14 +1,14 @@
 class Question {
-    constructor() {
+    constructor(imageNum) {
+        this.imageNum = imageNum;
         this.title = null;
         this.type = null;
-        this.imageNum = null;
         this.options = [];
         this.author = null;
         this.name = null;
         this.year = null;
         this.status = null;
-        // this.loadStatus();
+        this.loadStatus();
     }
     setStatus(status) {
         // set value to local storage
