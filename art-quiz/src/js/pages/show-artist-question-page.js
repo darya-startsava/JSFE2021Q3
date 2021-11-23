@@ -53,6 +53,16 @@ function showArtistQuestionPage(type, index, questionNum) {
     const endQuizWindow = document.querySelector('.end-quiz-window');
     const endQuizMessage = document.querySelector('.end-quiz-message');
 
+    function playSound(source) {
+        let audioElement = new Audio(source);
+        if (App.settings.isVolume === 'true') {
+            audioElement.volume = App.settings.volume;
+        } else {
+            audioElement.volume = 0;
+        }
+        audioElement.play();
+    }
+
     function showRightAnswerWindow(isCorrect) {
         windowCorrectAnswer.style.visibility = 'visible';
         windowCorrectAnswer.style.opacity = 1;
@@ -60,12 +70,15 @@ function showArtistQuestionPage(type, index, questionNum) {
             windowCorrectAnswer.style.backgroundColor = 'var(--right-answer-color)';
             correctAnswerMessage.innerHTML = 'Верно!';
             question.setStatus('right');
+            playSound('../assets/mp3/right.mp3');
         } else {
             windowCorrectAnswer.style.backgroundColor = 'var(--wrong-answer-color)';
             correctAnswerMessage.innerHTML = 'Неверно.';
             question.setStatus('wrong');
+            playSound('../assets/mp3/wrong.mp3');
         }
     }
+
     function showEndMessage() {
         endQuizWindow.style.visibility = 'visible';
         endQuizWindow.style.opacity = 1;
