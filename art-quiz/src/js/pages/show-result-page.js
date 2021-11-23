@@ -5,8 +5,6 @@ import App from '../app/index.js';
 const main = document.querySelector('main');
 
 function showResultPage(type, index) {
-    // const question = App.categories[index].questions[questionNum];
-    // const { imageNum } = question;
     main.innerHTML = `<h3 class="title">Результаты раунда:</h3>
     <div class="result"></div>
     <div class="results-wrapper">
@@ -15,9 +13,7 @@ function showResultPage(type, index) {
         <div class="correct-answer-image-with-information">
             <img alt="тут должна быть картина" class="about-picture-image">
             <div class="window-about-picture-right-block">
-                <div class="correct-answer-information">Автор: {question.author}<br>
-                            name: {question.name}<br>
-                            year: {question.year}
+                <div class="correct-answer-information">
                 </div>
                 
                 
@@ -39,10 +35,13 @@ function showResultPage(type, index) {
     let counterRightAnswers = 0;
     function createResultPicture() {
         for (let i = 0; i < 10; i++) {
-            const { imageNum } = App.categories[index].questions[i];
+            const { imageNum, author, name, year } = App.categories[index].questions[i];
             const image = `url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${imageNum}.jpg')`;
             const resultPictureButton = document.createElement('button');
             resultPictureButton.dataset.num = imageNum;
+            resultPictureButton.dataset.aut = author;
+            resultPictureButton.dataset.name = name;
+            resultPictureButton.dataset.year = year;
             resultPictureButton.classList.add('result-picture-button');
             resultPictureButton.classList.add('button-grayscale');
             if (App.categories[index].questions[i].status === 'right') {
@@ -57,13 +56,16 @@ function showResultPage(type, index) {
 
     const aboutPicture = document.querySelector('.about-picture');
     const aboutPictureImage = document.querySelector('.about-picture-image');
+    const correctAnswerInformation = document.querySelector('.correct-answer-information');
 
-    function showInformation(num) {
+    function showInformation(num, aut, name, year) {
         aboutPicture.style.visibility = 'visible';
         aboutPicture.style.opacity = 1;
         aboutPictureImage.src = `https://raw.githubusercontent.com/darya-startsava/image-data/master/full/${num}full.jpg`;
+        correctAnswerInformation.innerHTML = `${aut}<br>
+        ${name}<br>
+        ${year}`;
     }
-
 
     const hideAboutPictureButton = document.querySelector('.hide-about-picture-button');
     function hideInformation() {
@@ -81,7 +83,10 @@ function showResultPage(type, index) {
             e.target.className === 'result-picture-button button-grayscale'
         ) {
             const num = JSON.parse(e.target.dataset.num);
-            showInformation(num);
+            const aut = e.target.dataset.aut;
+            const name = e.target.dataset.name;
+            const year = e.target.dataset.year;
+            showInformation(num, aut, name, year);
         }
     });
 }
