@@ -15,7 +15,6 @@ html {
 /* START PAGE */
 body {
   background-size: cover;
-  /* background-image: url('./assets/img/j-retrato-de-cardenal-rafael.png'); */
   background-repeat: no-repeat;
   background-position: top;
   background-color: black;
@@ -172,7 +171,6 @@ input[type='checkbox'] {
 }
 
 .button-category-image {
-  /* background-image: url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/0.jpg'); */
   background-size: cover;
   height: 100px;
   width: 100px;
@@ -211,7 +209,6 @@ input[type='checkbox'] {
 }
 
 .image-author-quiz {
-  /* background-image: url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/0.jpg'); */
   background-size: cover;
   height: 300px;
   width: 300px;
@@ -272,7 +269,6 @@ input[type='checkbox'] {
 }
 
 .answer-picture-button {
-  /* background-image: url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/0.jpg'); */
   background-size: cover;
   height: 150px;
   width: 150px;
@@ -372,7 +368,6 @@ input[type='checkbox'] {
   width: 120px;
   border-radius: 10px;
   border: var(--light-text-color) solid 2px;
-  /* filter: grayscale(100%); */
 }
 
 .about-picture {
