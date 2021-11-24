@@ -8,7 +8,7 @@ function showPictureQuestionPage(type, index, questionNum) {
     const question = App.categories[index].questions[questionNum];
     const { imageNum } = question;
     main.innerHTML = `<h3 class="title">Какую картину написал<br> ${question.author} ?</h3>
-        <div class="time-left">У вас осталось 30 секунд для ответа.</div>
+    <div class="time-left">&nbsp;</div>
         <div class="answers-pictures-quiz-wrapper">
             <button type="button" class="answer-picture-button" style="background-image:url(https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${question.options[0].imageNum}.jpg)" data-isCorrect="${question.options[0].isCorrect}" ></button>
             <button type="button" class="answer-picture-button" style="background-image:url(https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${question.options[1].imageNum}.jpg)" data-isCorrect="${question.options[1].isCorrect}" ></button>
@@ -50,7 +50,24 @@ function showPictureQuestionPage(type, index, questionNum) {
     const endQuizWindow = document.querySelector('.end-quiz-window');
     const endQuizMessage = document.querySelector('.end-quiz-message');
 
+    const timeLeft = document.querySelector('.time-left');
+
+    let seconds = App.settings.time;
+    let intervalId;
+    if (App.settings.isTime === 'true') {
+        intervalId = setInterval(() => {
+            timeLeft.innerHTML = `У вас осталось ${seconds} секунд для ответа.`;
+            seconds--;
+            if (seconds === -1) {
+                showRightAnswerWindow(false);
+            }
+        }, 1000);
+    }
+
     function playSound(source) {
+        if (App.settings.isTime === 'true') {
+            clearInterval(intervalId);
+        }
         let audioElement = new Audio(source);
         if (App.settings.isVolume === 'true') {
             audioElement.volume = App.settings.volume;
@@ -100,8 +117,18 @@ function showPictureQuestionPage(type, index, questionNum) {
     }
 
     goToCategoriesButton.addEventListener('click', () => showQuizPage(type));
-    backToStartButton.addEventListener('click', showStartPage);
-    backToCategoriesButton.addEventListener('click', () => showQuizPage(type));
+    backToStartButton.addEventListener('click', () => {
+        if (App.settings.isTime === 'true') {
+            clearInterval(intervalId);
+        }
+        showStartPage();
+    });
+    backToCategoriesButton.addEventListener('click', () => {
+        if (App.settings.isTime === 'true') {
+            clearInterval(intervalId);
+        }
+        showQuizPage(type);
+    });
     answersPicturesQuizWrapper.addEventListener('click', (e) => {
         if (e.target.className === 'answer-picture-button') {
             const isCorrect = JSON.parse(e.target.dataset.iscorrect);

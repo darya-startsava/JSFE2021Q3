@@ -8,7 +8,7 @@ function showArtistQuestionPage(type, index, questionNum) {
     const question = App.categories[index].questions[questionNum];
     const { imageNum } = question;
     main.innerHTML = `<h3 class="title">Кто автор этой картины?</h3>
-<div class="time-left">У вас осталось 30 секунд для ответа.</div>
+<div class="time-left">&nbsp;</div>
 <div class="image-author-quiz-wrapper">
     <div class="image-author-quiz" id="image-author-quiz" style="background-image:url(https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${imageNum}.jpg)" ></div>
 </div>
@@ -53,7 +53,24 @@ function showArtistQuestionPage(type, index, questionNum) {
     const endQuizWindow = document.querySelector('.end-quiz-window');
     const endQuizMessage = document.querySelector('.end-quiz-message');
 
+    const timeLeft = document.querySelector('.time-left');
+
+    let seconds = App.settings.time;
+    let intervalId;
+    if (App.settings.isTime === 'true') {
+        intervalId = setInterval(() => {
+            timeLeft.innerHTML = `У вас осталось ${seconds} секунд для ответа.`;
+            seconds--;
+            if (seconds === -1) {
+                showRightAnswerWindow(false);
+            }
+        }, 1000);
+    }
+
     function playSound(source) {
+        if (App.settings.isTime === 'true') {
+            clearInterval(intervalId);
+        }
         let audioElement = new Audio(source);
         if (App.settings.isVolume === 'true') {
             audioElement.volume = App.settings.volume;
@@ -103,8 +120,18 @@ function showArtistQuestionPage(type, index, questionNum) {
     }
 
     goToCategoriesButton.addEventListener('click', () => showQuizPage(type));
-    backToStartButton.addEventListener('click', showStartPage);
-    backToCategoriesButton.addEventListener('click', () => showQuizPage(type));
+    backToStartButton.addEventListener('click', () => {
+        if (App.settings.isTime === 'true') {
+            clearInterval(intervalId);
+        }
+        showStartPage();
+    });
+    backToCategoriesButton.addEventListener('click', () => {
+        if (App.settings.isTime === 'true') {
+            clearInterval(intervalId);
+        }
+        showQuizPage(type);
+    });
     answersAuthorQuizWrapper.addEventListener('click', (e) => {
         if (e.target.className === 'answer-author-button') {
             const isCorrect = JSON.parse(e.target.dataset.iscorrect);
