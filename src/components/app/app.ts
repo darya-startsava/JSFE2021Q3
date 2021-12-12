@@ -7,6 +7,9 @@ class App {
         this.view = new AppView();
     }
 
+    controller: AppController;
+    view: AppView;
+    
     start() {
         document
             .querySelector('.sources')
