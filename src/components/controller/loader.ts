@@ -3,8 +3,8 @@ import ResponseObjectSources from '../interfaces/responseObjectSources';
 import { CallbackType } from '../types/CallbackType';
 
 class Loader {
-    baseLink: string;
-    options?: { [apiKey: string]: string };
+    public baseLink: string;
+    public options?: { [apiKey: string]: string };
 
     constructor(baseLink: string, options?: { [apiKey: string]: string }) {
         this.baseLink = baseLink;

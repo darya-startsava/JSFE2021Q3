@@ -7,8 +7,8 @@ class App {
         this.view = new AppView();
     }
 
-    controller: AppController;
-    view: AppView;
+    private controller: AppController;
+    private view: AppView;
     
     start() {
         document

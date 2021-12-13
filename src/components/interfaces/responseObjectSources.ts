@@ -1,6 +1,11 @@
-import Source from "./sourceInterface";
+import Source from './sourceInterface';
+
+enum Status {
+    ok,
+    error,
+}
 
 export default interface ResponseObjectSources {
-    status: string;
+    status: Status;
     sources: Array<Source>;
 }

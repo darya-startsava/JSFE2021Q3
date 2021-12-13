@@ -1,7 +1,7 @@
 import Source from './sourceInterface';
 
 export default interface Article {
-    source: Source;
+    source: Partial<Source>;
     author: string | null;
     title: string;
     description: string | null;
