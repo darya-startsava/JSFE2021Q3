@@ -83,9 +83,9 @@ function showResultPage(type, index) {
             e.target.className === 'result-picture-button button-grayscale'
         ) {
             const num = JSON.parse(e.target.dataset.num);
-            const aut = e.target.dataset.aut;
-            const name = e.target.dataset.name;
-            const year = e.target.dataset.year;
+            const { aut } = e.target.dataset;
+            const { name } = e.target.dataset;
+            const { year } = e.target.dataset;
             showInformation(num, aut, name, year);
         }
     });

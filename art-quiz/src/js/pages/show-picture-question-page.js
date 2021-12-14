@@ -54,21 +54,12 @@ function showPictureQuestionPage(type, index, questionNum) {
 
     let seconds = App.settings.time;
     let intervalId;
-    if (App.settings.isTime === 'true') {
-        intervalId = setInterval(() => {
-            timeLeft.innerHTML = `У вас осталось ${seconds} секунд для ответа.`;
-            seconds--;
-            if (seconds === -1) {
-                showRightAnswerWindow(false);
-            }
-        }, 1000);
-    }
 
     function playSound(source) {
         if (App.settings.isTime === 'true') {
             clearInterval(intervalId);
         }
-        let audioElement = new Audio(source);
+        const audioElement = new Audio(source);
         if (App.settings.isVolume === 'true') {
             audioElement.volume = App.settings.volume;
         } else {
@@ -91,6 +82,16 @@ function showPictureQuestionPage(type, index, questionNum) {
             question.setStatus('wrong');
             playSound('../assets/mp3/wrong.mp3');
         }
+    }
+
+    if (App.settings.isTime === 'true') {
+        intervalId = setInterval(() => {
+            timeLeft.innerHTML = `У вас осталось ${seconds} секунд для ответа.`;
+            seconds--;
+            if (seconds === -1) {
+                showRightAnswerWindow(false);
+            }
+        }, 1000);
     }
 
     function showEndMessage() {

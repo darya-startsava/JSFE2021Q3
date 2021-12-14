@@ -26,5 +26,6 @@ module.exports = {
         'max-len': 'off',
         indent: 'off',
         'comma-dangle': 'off',
+        'operator-linebreak': 'off',
     }
 };

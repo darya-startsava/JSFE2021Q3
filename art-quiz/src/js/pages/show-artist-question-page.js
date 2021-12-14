@@ -57,21 +57,12 @@ function showArtistQuestionPage(type, index, questionNum) {
 
     let seconds = App.settings.time;
     let intervalId;
-    if (App.settings.isTime === 'true') {
-        intervalId = setInterval(() => {
-            timeLeft.innerHTML = `У вас осталось ${seconds} секунд для ответа.`;
-            seconds--;
-            if (seconds === -1) {
-                showRightAnswerWindow(false);
-            }
-        }, 1000);
-    }
 
     function playSound(source) {
         if (App.settings.isTime === 'true') {
             clearInterval(intervalId);
         }
-        let audioElement = new Audio(source);
+        const audioElement = new Audio(source);
         if (App.settings.isVolume === 'true') {
             audioElement.volume = App.settings.volume;
         } else {
@@ -96,12 +87,22 @@ function showArtistQuestionPage(type, index, questionNum) {
         }
     }
 
+    if (App.settings.isTime === 'true') {
+        intervalId = setInterval(() => {
+            timeLeft.innerHTML = `У вас осталось ${seconds} секунд для ответа.`;
+            seconds--;
+            if (seconds === -1) {
+                showRightAnswerWindow(false);
+            }
+        }, 1000);
+    }
+
     function showEndMessage() {
         endQuizWindow.style.visibility = 'visible';
         endQuizWindow.style.opacity = 1;
         endQuizWindow.style.backgroundColor = 'var(--end-quiz-color)';
         let counter = 0;
-        for (let q of App.categories[index].questions) {
+        for (const q of App.categories[index].questions) {
             if (q.status === 'right') {
                 counter++;
             }

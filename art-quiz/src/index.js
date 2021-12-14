@@ -9,4 +9,6 @@ async function start() {
 
 start();
 
+/* eslint-disable no-console */
 console.log('Анимация:    - плавное появление окна с правильным ответом.');
+/* eslint-enable no-console */
