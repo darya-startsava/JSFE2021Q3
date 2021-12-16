@@ -1,13 +1,46 @@
-$body-color: #ceddfc;
+$text-color: #fff4f4;
+$bottom-border-color: #0091b0;
 
 body {
-    height: 95vh;
-    // background-color: $body-color;
+    margin: 0;
+    height: 97vh;
     background-image: url('./assets/img/bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    backdrop-filter: blur(3px);
 }
 
+button {
+    cursor: pointer;
+}
+
+// HEADER
+
+.header-button-wrapper {
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+}
+
+.header-button {
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: $text-color;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.active {
+    border-bottom: 7px solid $bottom-border-color;
+}
+
+// FOOTER
+
 .footer {
-    height: 5vh;
+    height: 2vh;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -22,7 +55,7 @@ body {
 .logo-rs-school {
     height: 50px;
     width: 85px;
-    background: url("./assets/svg/rs_school_js.svg");
+    background: url('./assets/svg/rs_school_js.svg');
     background-repeat: no-repeat;
     background-size: auto auto;
 }
