@@ -1,5 +1,9 @@
-$text-color: #fff4f4;
-$bottom-border-color: #0091b0;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+$light-text-color: #fff4f4;
+$border-color: #0091b0;
+$dark-text-color: #07084f;
+$field-color: #fff4f4;
 
 body {
     margin: 0;
@@ -10,6 +14,7 @@ body {
     background-size: cover;
     background-color: black;
     backdrop-filter: blur(3px);
+    font-family: 'Roboto', sans-serif;
 }
 
 button {
@@ -28,13 +33,65 @@ button {
     text-transform: uppercase;
     background-color: rgba(255, 255, 255, 0);
     border: none;
-    color: $text-color;
+    color: $light-text-color;
     font-size: 30px;
     padding: 10px;
 }
 
 .active {
-    border-bottom: 7px solid $bottom-border-color;
+    border-bottom: 7px solid $border-color;
+}
+// MAIN
+// SEARCH-CHOSEN-SELECT SECTION 
+.search-chosen {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    column-gap: 20px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.search-form {
+    width: 400px;
+}
+
+// @mixin element-color($color) {
+//     background-image: url('data:image/svg+xml;utf8,<svg ...><g stroke="#{$color}" ... /></g></svg>');
+// }
+
+.search-input {
+    // @include element-color($dark-text-color);
+    background-image: url('./assets/svg/search.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 25px auto;
+    outline: 0;
+}
+
+.search-chosen-select-fields {
+    border: 4px solid $border-color;
+    font-size: 20px;
+    color: $dark-text-color;
+    padding: 17px;
+    width: 400px;
+    background-color: $field-color;
+    border-radius: 10px;
+}
+
+.chosen,
+.select {
+    box-sizing: border-box;
+}
+
+.select {
+display: flex;
+}
+
+.sort-select{
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 2px solid $border-color;
 }
 
 // FOOTER
