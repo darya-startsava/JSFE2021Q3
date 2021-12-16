@@ -1,0 +1,38 @@
+$body-color: #ceddfc;
+
+body {
+    height: 95vh;
+    // background-color: $body-color;
+    background-image: url('./assets/img/bg.jpg');
+}
+
+.footer {
+    height: 5vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    width: 70%;
+    position: fixed;
+    bottom: 0;
+    left: 15%;
+}
+
+.logo-rs-school {
+    height: 50px;
+    width: 85px;
+    background: url("./assets/svg/rs_school_js.svg");
+    background-repeat: no-repeat;
+    background-size: auto auto;
+}
+
+.github-link {
+    text-decoration: none;
+}
+
+.github-link:visited,
+.github-link:link,
+.github-link:hover {
+    color: white;
+}
