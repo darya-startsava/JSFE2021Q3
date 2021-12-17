@@ -259,6 +259,43 @@ button {
     padding: 5px 10px;
 }
 
+// SLIDER
+
+.range-filter {
+    padding: 0 30px;
+}
+
+.filter-subtitle {
+    padding-bottom: 30px;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 26px;
+    height: 26px;
+    border-radius: 11px;
+}
+
+.noUi-connect {
+    background: $border-color;
+}
+
+.noUi-tooltip {
+    border: 2px solid $border-color;
+    border-radius: 16px;
+    background: $field-color;
+    color: $dark-text-color;
+}
+
+.noUi-target {
+    background: $field-color;
+    border-radius: 10px;
+    border: 1px solid $border-color;
+}
+
+.noUi-horizontal {
+    height: 17px;
+}
+
 // FOOTER
 
 .footer {
