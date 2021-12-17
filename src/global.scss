@@ -15,6 +15,7 @@ body {
     background-color: black;
     backdrop-filter: blur(3px);
     font-family: 'Roboto', sans-serif;
+    color: $light-text-color;
 }
 
 button {
@@ -42,8 +43,8 @@ button {
     border-bottom: 7px solid $border-color;
 }
 // MAIN
-// SEARCH-CHOSEN-SELECT SECTION 
-.search-chosen {
+// SEARCH-CHOSEN-SELECT SECTION
+.search-chosen-select-section {
     display: flex;
     margin-top: 20px;
     justify-content: center;
@@ -56,12 +57,7 @@ button {
     width: 400px;
 }
 
-// @mixin element-color($color) {
-//     background-image: url('data:image/svg+xml;utf8,<svg ...><g stroke="#{$color}" ... /></g></svg>');
-// }
-
 .search-input {
-    // @include element-color($dark-text-color);
     background-image: url('./assets/svg/search.svg');
     background-repeat: no-repeat;
     background-position: right 10px center;
@@ -85,13 +81,182 @@ button {
 }
 
 .select {
-display: flex;
+    display: flex;
 }
 
-.sort-select{
+.sort-select {
     margin-left: 10px;
     border-radius: 5px;
     border: 2px solid $border-color;
+}
+
+//FILTER SECTION
+
+.filter-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.filter-wrapper {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 20px;
+}
+
+.filter-item {
+    width: 400px;
+    height: 300px;
+    background-color: rgba(0, 145, 176, 0.3);
+    border-radius: 10px;
+}
+
+.filter-title {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.shape-filter,
+.color-filter,
+.size-filter {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.shape-filter .shape-button:nth-child(1) {
+    background-image: url('./assets/svg/shapes/ball.svg');
+}
+
+.shape-filter .shape-button:nth-child(2) {
+    background-image: url('./assets/svg/shapes/toy.svg');
+}
+
+.shape-filter .shape-button:nth-child(3) {
+    background-image: url('./assets/svg/shapes/bell.svg');
+}
+
+.shape-filter .shape-button:nth-child(4) {
+    background-image: url('./assets/svg/shapes/cone.svg');
+}
+
+.shape-filter .shape-button:nth-child(5) {
+    background-image: url('./assets/svg/shapes/snowflake.svg');
+}
+
+.shape-button {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    background-size: auto 40px;
+    background-repeat: no-repeat;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.color-filter {
+    padding-left: 12px;
+}
+
+.color-filter .color-button:nth-child(1) {
+    background-color: yellow;
+}
+
+.color-filter .color-button:nth-child(2) {
+    background-color: green;
+}
+
+.color-filter .color-button:nth-child(3) {
+    background-color: red;
+}
+
+.color-filter .color-button:nth-child(4) {
+    background-color: white;
+}
+
+.color-filter .color-button:nth-child(5) {
+    background-color: blue;
+}
+
+.color-button {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    border-radius: 10px;
+    border: 2px solid $border-color;
+    transition: 0.3s;
+}
+
+.size-filter .size-button:nth-child(1) {
+    background-size: auto 45px;
+}
+
+.size-filter .size-button:nth-child(2) {
+    background-size: auto 35px;
+}
+
+.size-filter .size-button:nth-child(3) {
+    background-size: auto 25px;
+}
+
+.size-button {
+    width: 45px;
+    height: 45px;
+    margin: 0 10px;
+    background-image: url('./assets/svg/shapes/ball.svg');
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.3s;
+}
+
+.shape-button:hover,
+.size-button:hover {
+    filter: invert(40%);
+}
+
+.color-button:hover {
+    border: 2px solid $dark-text-color;
+}
+
+.active-shape-size {
+    filter: invert(27%) sepia(32%) saturate(796%) hue-rotate(96deg) brightness(97%) contrast(89%);
+}
+
+.active-shape-size:hover {
+    filter: invert(27%) sepia(32%) saturate(796%) hue-rotate(96deg) brightness(97%) contrast(89%);
+}
+
+.active-color::after {
+    content: '';
+    display: block;
+    margin-bottom: 20px;
+    height: 10px;
+    border: solid $border-color;
+    border-width: 0 4px 4px 0;
+    transform: rotate(45deg);
+}
+
+.favourite {
+    text-align: center;
+}
+
+.favourite-checkbox {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+
+.reset-filters {
+    margin: 0 auto;
+    border-radius: 6px;
+    border: 2px solid $border-color;
+    padding: 5px 10px;
 }
 
 // FOOTER

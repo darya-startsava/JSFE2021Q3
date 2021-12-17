@@ -17,7 +17,7 @@
         </div>
     </header>
     <main>
-        <section class="search-chosen">
+        <section class="search-chosen-select-section">
             <form class="search-form">
                 <input type="search" placeholder="Найти игрушку" class="search-input search-chosen-select-fields">
             </form>
@@ -31,6 +31,43 @@
                     <option value="year-reverse">по году покупки от 2020 до 1940</option>
                 </select>
             </div>
+        </section>
+        <section class="filter-section">
+            <div class="filter-wrapper">
+                <div class="appearance-filter filter-item">
+                    <h3 class="filter-title">Фильтры по значению</h3>
+                    <div class="shape-filter">
+                        Форма:
+                        <button class="shape-button active-shape-size"></button>
+                        <button class="shape-button"></button>
+                        <button class="shape-button"></button>
+                        <button class="shape-button"></button>
+                        <button class="shape-button"></button>
+                    </div>
+                    <div class="color-filter">
+                        Цвет:
+                        <button class="color-button active-color"></button>
+                        <button class="color-button"></button>
+                        <button class="color-button"></button>
+                        <button class="color-button"></button>
+                        <button class="color-button"></button>
+                    </div>
+                    <div class="size-filter">
+                        Размер:
+                        <button class="size-button active-shape-size"></button>
+                        <button class="size-button"></button>
+                        <button class="size-button"></button>
+                    </div>
+                    <div class="favourite">
+                        <label for="favourite-checkbox" class="favourite-checkbox-label">Только любимые</label>
+                        <input type="checkbox" id="favourite-checkbox" class="favourite-checkbox">
+                    </div>
+                </div>
+                <div class="range-filter filter-item">
+                    <h3 class="filter-title">Фильтры по диапазону</h3>
+                </div>
+            </div>
+            <button class="reset-filters">Сбросить фильтры</button>
         </section>
     </main>
     <footer class="footer">
