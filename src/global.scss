@@ -7,18 +7,23 @@ $field-color: #fff4f4;
 
 body {
     margin: 0;
-    height: 97vh;
+    font-family: 'Roboto', sans-serif;
+    color: $light-text-color;
+    background-color: black;
+}
+
+main {
     background-image: url('./assets/img/bg.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: black;
     backdrop-filter: blur(3px);
-    font-family: 'Roboto', sans-serif;
-    color: $light-text-color;
+    background-attachment: fixed;
+    margin-bottom: 50px;
 }
 
-button {
+button,
+.favourite-checkbox {
     cursor: pointer;
 }
 
@@ -28,6 +33,7 @@ button {
     display: flex;
     justify-content: center;
     column-gap: 50px;
+    padding-bottom: 10px;
 }
 
 .header-button {
@@ -46,7 +52,7 @@ button {
 // SEARCH-CHOSEN-SELECT SECTION
 .search-chosen-select-section {
     display: flex;
-    margin-top: 20px;
+    padding-top: 20px;
     justify-content: center;
     column-gap: 20px;
     row-gap: 20px;
@@ -296,11 +302,55 @@ button {
     height: 17px;
 }
 
+.noUi-handle {
+    cursor: pointer;
+}
+// TOY-CARDS
+
+.toys-section {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.toy-card {
+    width: 300px;
+    height: 300px;
+    background-color: rgba(0, 145, 176, 0.3);
+    border-radius: 10px;
+}
+
+.toy-card-wrapper {
+    display: flex;
+    column-gap: 30px;
+}
+
+.toy-name {
+    text-align: center;
+}
+
+.toy-image {
+    width: auto;
+    height: 100px;
+}
+
+.icon-chosen {
+    background-image: url('./assets/svg/star.svg');
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    margin: 25px;
+}
+
 // FOOTER
 
 .footer {
     height: 2vh;
-    margin: 0 auto;
+    margin: 10px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
