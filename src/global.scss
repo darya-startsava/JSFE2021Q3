@@ -49,8 +49,8 @@ button,
     border-bottom: 7px solid $border-color;
 }
 // MAIN
-// SEARCH-CHOSEN-SELECT SECTION
-.search-chosen-select-section {
+// SEARCH-CHOSEN-SORT SECTION
+.search-chosen-sort-section {
     display: flex;
     padding-top: 20px;
     justify-content: center;
@@ -71,7 +71,7 @@ button,
     outline: 0;
 }
 
-.search-chosen-select-fields {
+.search-chosen-sort-fields {
     border: 4px solid $border-color;
     font-size: 20px;
     color: $dark-text-color;
@@ -82,15 +82,15 @@ button,
 }
 
 .chosen,
-.select {
+.sort {
     box-sizing: border-box;
 }
 
-.select {
+.sort {
     display: flex;
 }
 
-.sort-select {
+.sort-field {
     margin-left: 10px;
     border-radius: 5px;
     border: 2px solid $border-color;
@@ -265,46 +265,6 @@ button,
     padding: 5px 10px;
 }
 
-// SLIDER
-
-.range-filter {
-    padding: 0 30px;
-}
-
-.filter-subtitle {
-    padding-bottom: 30px;
-}
-
-.noUi-horizontal .noUi-handle {
-    width: 26px;
-    height: 26px;
-    border-radius: 11px;
-}
-
-.noUi-connect {
-    background: $border-color;
-}
-
-.noUi-tooltip {
-    border: 2px solid $border-color;
-    border-radius: 16px;
-    background: $field-color;
-    color: $dark-text-color;
-}
-
-.noUi-target {
-    background: $field-color;
-    border-radius: 10px;
-    border: 1px solid $border-color;
-}
-
-.noUi-horizontal {
-    height: 17px;
-}
-
-.noUi-handle {
-    cursor: pointer;
-}
 // TOY-CARDS
 
 .toys-section {
