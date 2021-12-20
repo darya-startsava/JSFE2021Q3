@@ -4,34 +4,17 @@ import './toy-card.scss';
 import Component from '../abstract-component';
 
 export default class ToyCard extends Component {
-    num: string;
-    name: string;
-    count: string;
-    year: string;
-    shape: string;
-    color: string;
-    size: string;
-    favorite: boolean;
-
     constructor(
-        num: string,
-        name: string,
-        count: string,
-        year: string,
-        shape: string,
-        color: string,
-        size: string,
-        favorite: boolean
+        private num: string,
+        private name: string,
+        private count: string,
+        private year: string,
+        private shape: string,
+        private color: string,
+        private size: string,
+        private favorite: boolean
     ) {
         super('toy-card');
-        this.num = num;
-        this.name = name;
-        this.count = count;
-        this.year = year;
-        this.shape = shape;
-        this.color = color;
-        this.size = size;
-        this.favorite = favorite;
     }
 
     render(): HTMLElement {
