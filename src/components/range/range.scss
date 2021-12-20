@@ -1,0 +1,47 @@
+@import 'nouislider';
+
+$light-text-color: #fff4f4;
+$border-color: #0091b0;
+$dark-text-color: #07084f;
+$field-color: #fff4f4;
+
+// SLIDER
+
+.range-filter {
+    padding: 0 30px;
+}
+
+.filter-subtitle {
+    padding-bottom: 30px;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 26px;
+    height: 26px;
+    border-radius: 11px;
+}
+
+.noUi-connect {
+    background: $border-color;
+}
+
+.noUi-tooltip {
+    border: 2px solid $border-color;
+    border-radius: 16px;
+    background: $field-color;
+    color: $dark-text-color;
+}
+
+.noUi-target {
+    background: $field-color;
+    border-radius: 10px;
+    border: 1px solid $border-color;
+}
+
+.noUi-horizontal {
+    height: 17px;
+}
+
+.noUi-handle {
+    cursor: pointer;
+}

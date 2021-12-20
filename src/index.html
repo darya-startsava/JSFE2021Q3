@@ -5,11 +5,107 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./static/favicon.ico" type="image/png/ico" />
     <title>Christmas task</title>
 </head>
 
 <body>
+    <header>
+        <div class="header-button-wrapper">
+            <button class="header-button active"><b>Выбрать игрушки</b></button>
+            <button class="header-button"><b>Нарядить елку</b></button>
+        </div>
+    </header>
+    <main>
+        <section class="search-chosen-sort-section">
+            <form class="search-form">
+                <input type="search" placeholder="Найти игрушку" class="search-input search-chosen-sort-fields">
+            </form>
+            <div class="chosen search-chosen-sort-fields">Избранные игрушки: 0/20</div>
+            <div class="sort search-chosen-sort-fields">
+                <label for="sort-field">Сортировать: </label>
+                <select class="sort-field" id="sort-field">
+                    <option value="name">по названию от "А" до "Я"</option>
+                    <option value="name-reverse">по названию от "Я" до "А"</option>
+                    <option value="year">по году покупки от 1940 до 2020 </option>
+                    <option value="year-reverse">по году покупки от 2020 до 1940</option>
+                </select>
+            </div>
+        </section>
+        <section class="filter-section">
+            <div class="filter-wrapper">
+                <div class="appearance-filter filter-item">
+                    <h3 class="filter-title">Фильтры по значению</h3>
+                    <div class="shape-filter">
+                        Форма:
+                        <button class="shape-button active-shape-size"></button>
+                        <button class="shape-button"></button>
+                        <button class="shape-button"></button>
+                        <button class="shape-button"></button>
+                        <button class="shape-button"></button>
+                    </div>
+                    <div class="color-filter">
+                        Цвет:
+                        <button class="color-button active-color"></button>
+                        <button class="color-button"></button>
+                        <button class="color-button"></button>
+                        <button class="color-button"></button>
+                        <button class="color-button"></button>
+                    </div>
+                    <div class="size-filter">
+                        Размер:
+                        <button class="size-button active-shape-size"></button>
+                        <button class="size-button"></button>
+                        <button class="size-button"></button>
+                    </div>
+                    <div class="favourite">
+                        <label for="favourite-checkbox" class="favourite-checkbox-label">Только любимые</label>
+                        <input type="checkbox" id="favourite-checkbox" class="favourite-checkbox">
+                    </div>
+                </div>
+                <div class="range-filter filter-item">
+                    <h3 class="filter-title">Фильтры по диапазону</h3>
+                    <h4 class="filter-subtitle">Количество экземпляров:</h4>
+                    <div id="slider-quantity"></div>
+                    <h4 class="filter-subtitle">Год приобретения:</h4>
+                    <div id="slider-year"></div>
+                </div>
+            </div>
+            <button class="reset-filters">Сбросить фильтры</button>
+        </section>
+        <section class="toys-section">
+            <div class="toy-card">
+                <h4 class="toy-name">Большой шар с рисунком</h4>
+                <div class="toy-card-wrapper">
+                    <div>
+                    <div class="toy-image"></div>
+                    <div class="icon-chosen"></div>
+                </div>
+                    <div class="toy-information-wrapper">
+                        <p>Количество: 2</p>
+                        <p>Год покупки: 1960</p>
+                        <p>Форма: шар</p>
+                        <p>Цвет: желтый</p>
+                        <p>Размер: большой</p>
+                        <p>Любимая: нет</p>
+                    </div>
+                </div>
+            </div>
+            <div class="toy-card"></div>
+            <div class="toy-card"></div>
+            <div class="toy-card"></div>
+            <div class="toy-card"></div>
+            <div class="toy-card"></div>
+            <div class="toy-card"></div>
+            <div class="toy-card"></div>
 
+        </section>
+    </main>
+    <footer class="footer">
+        <a href="https://github.com/darya-startsava" class="github-link">@darya-startsava</a>
+        <time datetime="2021">2021</time>
+        <a href="https://rs.school/js/" class="logo-rs-school"></a>
+    </footer>
 </body>
 
 </html>
