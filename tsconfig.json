@@ -1,11 +1,10 @@
 {
     "compilerOptions": {
         /* Language and Environment */
-        "target": "es2015" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    
+        "target": "es2017" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
 
         /* Modules */
-        "module": "commonjs" /* Specify what module code is generated. */,
+        "module": "esnext" /* Specify what module code is generated. */,
         // "rootDir": "./",                                  /* Specify the root folder within your source files. */
         "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
         // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
@@ -17,7 +16,7 @@
         // "resolveJsonModule": true,                        /* Enable importing .json files */
         // "noResolve": true,                                /* Disallow `import`s, `require`s or `<reference>`s from expanding the number of files TypeScript should add to a project. */
 
-        "allowJs": false,                                  /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */
+        "allowJs": false /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */,
 
         /* Emit */
         // "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
@@ -39,7 +38,7 @@
         // "newLine": "crlf",                                /* Set the newline character for emitting files. */
         // "stripInternal": true,                            /* Disable emitting declarations that have `@internal` in their JSDoc comments. */
         // "noEmitHelpers": true,                            /* Disable generating custom helper functions like `__extends` in compiled output. */
-         "noEmitOnError": false,                            /* Disable emitting files if any type checking errors are reported. */
+        "noEmitOnError": false /* Disable emitting files if any type checking errors are reported. */,
         // "preserveConstEnums": true,                       /* Disable erasing `const enum` declarations in generated code. */
         // "declarationDir": "./",                           /* Specify the output directory for generated declaration files. */
         // "preserveValueImports": true,                     /* Preserve unused imported values in the JavaScript output that would otherwise be removed. */

@@ -47,6 +47,11 @@ const baseConfig = {
                     },
                 ],
             },
+            {
+                test: /\.html$/,
+                exclude: /node_modules/,
+                use: { loader: 'html-loader' }
+            }
         ],
     },
     resolve: {
@@ -64,6 +69,7 @@ const baseConfig = {
         }),
         new CleanWebpackPlugin(),
     ],
+    experiments: { topLevelAwait: true }
 };
 
 module.exports = ({ mode }) => {
