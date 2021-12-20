@@ -15,7 +15,7 @@
     "license": "ISC",
     "homepage": "",
     "devDependencies": {
-        "@types/lodash.template": "^4.5.0",
+        "@types/wnumb": "^1.2.1",
         "@typescript-eslint/eslint-plugin": "^5.7.0",
         "@typescript-eslint/parser": "^5.7.0",
         "clean-webpack-plugin": "^3.0.0",
@@ -42,8 +42,6 @@
         "webpack-merge": "^5.7.3"
     },
     "dependencies": {
-        "@types/wnumb": "^1.2.1",
-        "lodash.template": "^4.5.0",
         "nouislider": "^15.5.0",
         "wnumb": "^1.2.0"
     }
