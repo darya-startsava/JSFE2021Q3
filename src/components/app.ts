@@ -2,6 +2,7 @@ import './range/range';
 import ToyCard from './toy-card/toy-card';
 import readData from './service';
 import NameFilter from './filters/name-filter/name-filter';
+import ShapeFilter from './filters/shape-filter/shape-filter';
 
 export async function bootstrap(): Promise<void> {
     const result = await readData();
@@ -24,5 +25,12 @@ export async function bootstrap(): Promise<void> {
     }
     renderCards(toyCards);
 
-    new NameFilter(toyCards, (filteredToyCards) => renderCards(filteredToyCards));
+    const nameFilter = new NameFilter(toyCards, (filteredToyCards) => {
+        const filtered = shapeFilter.filter(filteredToyCards);
+        renderCards(filtered);
+    });
+    const shapeFilter = new ShapeFilter(toyCards, (filteredToyCards) => {
+        const filtered = nameFilter.filter(filteredToyCards);
+        renderCards(filtered);
+    });
 }
