@@ -9,7 +9,7 @@ const sliderYear = document.getElementById('slider-year');
 const minYear = 1940;
 const maxYear = 2020;
 
-const yearSlider = noUiSlider.create(sliderYear, {
+export const yearSlider = noUiSlider.create(sliderYear, {
     start: [minYear, maxYear],
     tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
     connect: true,
