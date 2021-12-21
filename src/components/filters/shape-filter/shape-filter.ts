@@ -3,7 +3,7 @@ import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class ShapeFilter extends Component implements Filter {
-    private shapes: string[];
+    private shapes: string[] = [];
     constructor(private toyCards: ToyCard[], private onFilter: (toyCards: ToyCard[]) => void) {
         super('');
         this.addListener();
