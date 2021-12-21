@@ -5,6 +5,7 @@ import NameFilter from './filters/name-filter/name-filter';
 import ShapeFilter from './filters/shape-filter/shape-filter';
 import ColorFilter from './filters/color-filter/color-filter';
 import SizeFilter from './filters/size-filter/size-filter';
+import FavoriteFilter from './filters/favorite-filter/favorite-filter';
 
 export async function bootstrap(): Promise<void> {
     const result = await readData();
@@ -21,9 +22,9 @@ export async function bootstrap(): Promise<void> {
         for (const item of toyCards) {
             toysSection.append(item.render());
         }
-        // if (toyCards.length === 0) {
-        //     alert('Извините, совпадений не обнаружено');
-        // }
+        if (toyCards.length === 0) {
+            alert('Извините, совпадений не обнаружено');
+        }
     }
     renderCards(toyCards);
 
@@ -31,25 +32,39 @@ export async function bootstrap(): Promise<void> {
         const filteredShape = shapeFilter.filter(filteredToyCards);
         const filteredColor = colorFilter.filter(filteredShape);
         const filteredSize = sizeFilter.filter(filteredColor);
-        renderCards(filteredSize);
+        const filteredFavorite = favoriteFilter.filter(filteredSize);
+        renderCards(filteredFavorite);
     });
+
     const shapeFilter = new ShapeFilter(toyCards, (filteredToyCards) => {
         const filteredName = nameFilter.filter(filteredToyCards);
         const filteredColor = colorFilter.filter(filteredName);
         const filteredSize = sizeFilter.filter(filteredColor);
-        renderCards(filteredSize);
+        const filteredFavorite = favoriteFilter.filter(filteredSize);
+        renderCards(filteredFavorite);
     });
+
     const colorFilter = new ColorFilter(toyCards, (filteredToyCards) => {
         const filteredName = nameFilter.filter(filteredToyCards);
         const filteredShape = shapeFilter.filter(filteredName);
         const filteredSize = sizeFilter.filter(filteredShape);
-        renderCards(filteredSize);
+        const filteredFavorite = favoriteFilter.filter(filteredSize);
+        renderCards(filteredFavorite);
     });
 
     const sizeFilter = new SizeFilter(toyCards, (filteredToyCards) => {
         const filteredName = nameFilter.filter(filteredToyCards);
         const filteredShape = shapeFilter.filter(filteredName);
         const filteredColor = colorFilter.filter(filteredShape);
-        renderCards(filteredColor);
+        const filteredFavorite = favoriteFilter.filter(filteredColor);
+        renderCards(filteredFavorite);
+    });
+
+    const favoriteFilter = new FavoriteFilter(toyCards, (filteredToyCards) => {
+        const filteredName = nameFilter.filter(filteredToyCards);
+        const filteredShape = shapeFilter.filter(filteredName);
+        const filteredColor = colorFilter.filter(filteredShape);
+        const filteredSize = sizeFilter.filter(filteredColor);
+        renderCards(filteredSize);
     });
 }
