@@ -16,6 +16,7 @@ export default class ToyCard extends Component {
         public favorite: boolean
     ) {
         super('toy-card');
+        this.onClick = this.onClick.bind(this);
     }
 
     render(): HTMLElement {
@@ -35,18 +36,21 @@ export default class ToyCard extends Component {
             size: this.size,
             favorite: favoriteText,
         });
-        this.container.addEventListener('click', () => {
-            if (this.container.classList.contains('icon-chosen')) {
-                this.container.classList.remove('icon-chosen');
-                chosenArray.splice(chosenArray.indexOf(this.num), 1);
-            } else {
-                if (chosenArray.length !== 20) {
-                    this.container.classList.add('icon-chosen');
-                    chosenArray.push(this.num);
-                } else alert('Извините, все слоты заполнены');
-            }
-            chosen.innerHTML = `Избранные игрушки: ${chosenArray.length}/20`;
-        });
+        this.container.removeEventListener('click', this.onClick);
+        this.container.addEventListener('click', this.onClick);
         return this.container;
+    }
+
+    onClick() {
+        if (this.container.classList.contains('icon-chosen')) {
+            this.container.classList.remove('icon-chosen');
+            chosenArray.splice(chosenArray.indexOf(this.num), 1);
+        } else {
+            if (chosenArray.length !== 20) {
+                this.container.classList.add('icon-chosen');
+                chosenArray.push(this.num);
+            } else alert('Извините, все слоты заполнены');
+        }
+        chosen.innerHTML = `Избранные игрушки: ${chosenArray.length}/20`;
     }
 }
