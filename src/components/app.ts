@@ -8,7 +8,7 @@ import FavoriteFilter from './filters/favorite-filter/favorite-filter';
 import reset from './filters/reset-filters/reset-filters';
 import CountFilter from './range/count-filter';
 import YearFilter from './range/year-filter';
-import AlfabeticalSort from './sorts/sort/sort';
+import Sorter from './sorts/sort/sort';
 
 export async function bootstrap(): Promise<void> {
     const result = await readData();
@@ -38,7 +38,8 @@ export async function bootstrap(): Promise<void> {
         const filteredFavorite = favoriteFilter.filter(filteredSize);
         const filteredCount = countFilter.filter(filteredFavorite);
         const filteredYear = yearFilter.filter(filteredCount);
-        renderCards(filteredYear);
+        const sorted = sorter.sort(filteredYear);
+        renderCards(sorted);
     });
 
     const shapeFilter = new ShapeFilter(toyCards, (filteredToyCards) => {
@@ -48,7 +49,8 @@ export async function bootstrap(): Promise<void> {
         const filteredFavorite = favoriteFilter.filter(filteredSize);
         const filteredCount = countFilter.filter(filteredFavorite);
         const filteredYear = yearFilter.filter(filteredCount);
-        renderCards(filteredYear);
+        const sorted = sorter.sort(filteredYear);
+        renderCards(sorted);
     });
 
     const colorFilter = new ColorFilter(toyCards, (filteredToyCards) => {
@@ -58,7 +60,8 @@ export async function bootstrap(): Promise<void> {
         const filteredFavorite = favoriteFilter.filter(filteredSize);
         const filteredCount = countFilter.filter(filteredFavorite);
         const filteredYear = yearFilter.filter(filteredCount);
-        renderCards(filteredYear);
+        const sorted = sorter.sort(filteredYear);
+        renderCards(sorted);
     });
 
     const sizeFilter = new SizeFilter(toyCards, (filteredToyCards) => {
@@ -68,7 +71,8 @@ export async function bootstrap(): Promise<void> {
         const filteredFavorite = favoriteFilter.filter(filteredColor);
         const filteredCount = countFilter.filter(filteredFavorite);
         const filteredYear = yearFilter.filter(filteredCount);
-        renderCards(filteredYear);
+        const sorted = sorter.sort(filteredYear);
+        renderCards(sorted);
     });
 
     const favoriteFilter = new FavoriteFilter(toyCards, (filteredToyCards) => {
@@ -78,7 +82,8 @@ export async function bootstrap(): Promise<void> {
         const filteredSize = sizeFilter.filter(filteredColor);
         const filteredCount = countFilter.filter(filteredSize);
         const filteredYear = yearFilter.filter(filteredCount);
-        renderCards(filteredYear);
+        const sorted = sorter.sort(filteredYear);
+        renderCards(sorted);
     });
 
     const countFilter = new CountFilter(toyCards, (filteredToyCards) => {
@@ -88,7 +93,8 @@ export async function bootstrap(): Promise<void> {
         const filteredSize = sizeFilter.filter(filteredColor);
         const filteredFavorite = favoriteFilter.filter(filteredSize);
         const filteredYear = yearFilter.filter(filteredFavorite);
-        renderCards(filteredYear);
+        const sorted = sorter.sort(filteredYear);
+        renderCards(sorted);
     });
 
     const yearFilter = new YearFilter(toyCards, (filteredToyCards) => {
@@ -98,7 +104,8 @@ export async function bootstrap(): Promise<void> {
         const filteredSize = sizeFilter.filter(filteredColor);
         const filteredFavorite = favoriteFilter.filter(filteredSize);
         const filteredCount = countFilter.filter(filteredFavorite);
-        renderCards(filteredCount);
+        const sorted = sorter.sort(filteredCount);
+        renderCards(sorted);
     });
 
     const resetFilters = document.querySelector<HTMLInputElement>('.reset-filters');
@@ -116,7 +123,14 @@ export async function bootstrap(): Promise<void> {
         yearFilter.maxCurrentYear = 2020;
     });
 
-    const alfabeticalSort = new AlfabeticalSort(toyCards, (sortedToyCards) => {
-        renderCards(sortedToyCards);
+    const sorter = new Sorter(toyCards, (sortedToyCards) => {
+        const filteredName = nameFilter.filter(sortedToyCards);
+        const filteredShape = shapeFilter.filter(filteredName);
+        const filteredColor = colorFilter.filter(filteredShape);
+        const filteredSize = sizeFilter.filter(filteredColor);
+        const filteredFavorite = favoriteFilter.filter(filteredSize);
+        const filteredCount = countFilter.filter(filteredFavorite);
+        const filteredYear = yearFilter.filter(filteredCount);
+        renderCards(filteredYear);
     });
 }

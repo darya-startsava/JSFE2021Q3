@@ -2,8 +2,8 @@ import Component from '../../abstract-component';
 import Sort from '../interface-sort';
 import ToyCard from '../../toy-card/toy-card';
 
-export default class AlfabeticalSort extends Component implements Sort {
-    public sortType = '';
+export default class Sorter extends Component implements Sort {
+    public sortType = 'default';
     constructor(private toyCards: ToyCard[], private onSort: (toyCards: ToyCard[]) => void) {
         super('');
         this.addListener();
@@ -39,6 +39,10 @@ export default class AlfabeticalSort extends Component implements Sort {
                 if (a.name < b.name) return 1;
                 else if (a.name == b.name) return 0;
                 else if (a.name > b.name) return -1;
+            });
+        } else {
+            return toyCards.sort(function (a, b) {
+                return +a.num - +b.num;
             });
         }
     }
