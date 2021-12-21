@@ -4,6 +4,7 @@ import readData from './service';
 import NameFilter from './filters/name-filter/name-filter';
 import ShapeFilter from './filters/shape-filter/shape-filter';
 import ColorFilter from './filters/color-filter/color-filter';
+import SizeFilter from './filters/size-filter/size-filter';
 
 export async function bootstrap(): Promise<void> {
     const result = await readData();
@@ -29,16 +30,26 @@ export async function bootstrap(): Promise<void> {
     const nameFilter = new NameFilter(toyCards, (filteredToyCards) => {
         const filteredShape = shapeFilter.filter(filteredToyCards);
         const filteredColor = colorFilter.filter(filteredShape);
-        renderCards(filteredColor);
+        const filteredSize = sizeFilter.filter(filteredColor);
+        renderCards(filteredSize);
     });
     const shapeFilter = new ShapeFilter(toyCards, (filteredToyCards) => {
         const filteredName = nameFilter.filter(filteredToyCards);
         const filteredColor = colorFilter.filter(filteredName);
-        renderCards(filteredColor);
+        const filteredSize = sizeFilter.filter(filteredColor);
+        renderCards(filteredSize);
     });
     const colorFilter = new ColorFilter(toyCards, (filteredToyCards) => {
         const filteredName = nameFilter.filter(filteredToyCards);
         const filteredShape = shapeFilter.filter(filteredName);
-        renderCards(filteredShape);
+        const filteredSize = sizeFilter.filter(filteredShape);
+        renderCards(filteredSize);
+    });
+
+    const sizeFilter = new SizeFilter(toyCards, (filteredToyCards) => {
+        const filteredName = nameFilter.filter(filteredToyCards);
+        const filteredShape = shapeFilter.filter(filteredName);
+        const filteredColor = colorFilter.filter(filteredShape);
+        renderCards(filteredColor);
     });
 }
