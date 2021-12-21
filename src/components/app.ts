@@ -8,6 +8,7 @@ import FavoriteFilter from './filters/favorite-filter/favorite-filter';
 import reset from './filters/reset-filters/reset-filters';
 import CountFilter from './range/count-filter';
 import YearFilter from './range/year-filter';
+import AlfabeticalSort from './sorts/sort/sort';
 
 export async function bootstrap(): Promise<void> {
     const result = await readData();
@@ -113,5 +114,9 @@ export async function bootstrap(): Promise<void> {
         countFilter.maxCurrentCount = 12;
         yearFilter.minCurrentYear = 1940;
         yearFilter.maxCurrentYear = 2020;
+    });
+
+    const alfabeticalSort = new AlfabeticalSort(toyCards, (sortedToyCards) => {
+        renderCards(sortedToyCards);
     });
 }
