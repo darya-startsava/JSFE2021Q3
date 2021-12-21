@@ -3,7 +3,7 @@ import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class NameFilter extends Component implements Filter {
-    private text = '';
+    public text = '';
     constructor(private toyCards: ToyCard[], private onFilter: (toyCards: ToyCard[]) => void) {
         super('');
         this.addListener();

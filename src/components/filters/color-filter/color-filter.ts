@@ -3,7 +3,7 @@ import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class ColorFilter extends Component implements Filter {
-    private colors: string[] = [];
+    public colors: string[] = [];
     constructor(private toyCards: ToyCard[], private onFilter: (toyCards: ToyCard[]) => void) {
         super('');
         this.addListener();

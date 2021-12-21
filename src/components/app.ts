@@ -6,6 +6,7 @@ import ShapeFilter from './filters/shape-filter/shape-filter';
 import ColorFilter from './filters/color-filter/color-filter';
 import SizeFilter from './filters/size-filter/size-filter';
 import FavoriteFilter from './filters/favorite-filter/favorite-filter';
+import reset from './filters/reset-filters/reset-filters';
 
 export async function bootstrap(): Promise<void> {
     const result = await readData();
@@ -66,5 +67,16 @@ export async function bootstrap(): Promise<void> {
         const filteredColor = colorFilter.filter(filteredShape);
         const filteredSize = sizeFilter.filter(filteredColor);
         renderCards(filteredSize);
+    });
+
+    const resetFilters = document.querySelector<HTMLInputElement>('.reset-filters');
+    resetFilters.addEventListener('click', () => {
+        reset();
+        nameFilter.text = '';
+        shapeFilter.shapes = [];
+        colorFilter.colors = [];
+        sizeFilter.sizes = [];
+        favoriteFilter.isFavorite = false;
+        renderCards(toyCards);
     });
 }

@@ -4,6 +4,7 @@ $light-text-color: #fff4f4;
 $border-color: #0091b0;
 $dark-text-color: #07084f;
 $field-color: #fff4f4;
+$interactive-color: #225c3e;
 
 body {
     margin: 0;
@@ -263,6 +264,12 @@ button,
     border-radius: 6px;
     border: 2px solid $border-color;
     padding: 5px 10px;
+    transition: 0.3s;
+}
+
+.reset-filters:hover {
+    border: 2px solid $interactive-color;
+    background-color: $field-color;
 }
 
 // FOOTER
