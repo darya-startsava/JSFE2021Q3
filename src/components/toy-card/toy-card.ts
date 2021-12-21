@@ -5,14 +5,14 @@ import Component from '../abstract-component';
 
 export default class ToyCard extends Component {
     constructor(
-        private num: string,
-        private name: string,
-        private count: string,
-        private year: string,
-        private shape: string,
-        private color: string,
-        private size: string,
-        private favorite: boolean
+        public num: string,
+        public name: string,
+        public count: string,
+        public year: string,
+        public shape: string,
+        public color: string,
+        public size: string,
+        public favorite: boolean
     ) {
         super('toy-card');
     }
