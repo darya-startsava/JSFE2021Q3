@@ -3,10 +3,11 @@ import Sort from '../interface-sort';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class Sorter extends Component implements Sort {
-    public sortType = 'default';
-    constructor(private toyCards: ToyCard[], private onSort: (toyCards: ToyCard[]) => void) {
+    public sortType = JSON.parse(localStorage.getItem('StDaTa-sortType')) || 'default';
+    constructor(private onSort: () => void) {
         super('');
         this.addListener();
+        this.loadFilter();
     }
 
     addListener() {
@@ -14,9 +15,14 @@ export default class Sorter extends Component implements Sort {
         sortField.addEventListener('change', (event: Event) => {
             const target = event.target as HTMLOptionElement;
             this.sortType = target.value;
-            const sorted = this.sort(this.toyCards);
-            this.onSort(sorted);
+            localStorage.setItem('StDaTa-sortType', JSON.stringify(this.sortType));
+            this.onSort();
         });
+    }
+
+    loadFilter(){
+        const sortField = document.querySelector<HTMLSelectElement>('.sort-field');
+        sortField.value = this.sortType;
     }
 
     sort(toyCards: ToyCard[]): ToyCard[] {

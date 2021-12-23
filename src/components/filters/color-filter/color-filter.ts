@@ -3,10 +3,11 @@ import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class ColorFilter extends Component implements Filter {
-    public colors: string[] = [];
-    constructor(private toyCards: ToyCard[], private onFilter: (toyCards: ToyCard[]) => void) {
+    public colors: string[] =  JSON.parse(localStorage.getItem('StDaTa-colors')) || [];
+    constructor(private onFilter: () => void) {
         super('');
         this.addListener();
+        this.loadFilter();
     }
 
     addListener() {
@@ -21,10 +22,19 @@ export default class ColorFilter extends Component implements Filter {
                         this.colors.push(item.value);
                     }
                 });
-                const filtered = this.filter(this.toyCards);
-                this.onFilter(filtered);
+                localStorage.setItem('StDaTa-colors', JSON.stringify(this.colors));
+                this.onFilter();
             })
         );
+    }
+
+    loadFilter() {
+        const colorButtons = document.querySelectorAll<HTMLInputElement>('.color-button');
+        colorButtons.forEach((item) => {
+            if (this.colors.indexOf(item.value) !== -1) {
+                item.classList.add('active-color');
+            }
+        });
     }
 
     filter(toyCards: ToyCard[]): ToyCard[] {

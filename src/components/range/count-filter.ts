@@ -21,21 +21,27 @@ export const countSlider = noUiSlider.create(sliderQuantity, {
 });
 
 export default class CountFilter extends Component implements Filter {
-    public minCurrentCount = 1;
-    public maxCurrentCount = 12;
-    constructor(private toyCards: ToyCard[], private onFilter: (toyCards: ToyCard[]) => void) {
+    public minCurrentCount = JSON.parse(localStorage.getItem('StDaTa-minCurrentCount')) || 1;
+    public maxCurrentCount = JSON.parse(localStorage.getItem('StDaTa-maxCurrentCount')) || 12;
+    constructor(private onFilter: () => void) {
         super('');
         this.addListener();
+        this.loadFilter();
     }
 
     addListener() {
         const slider = document.querySelectorAll<HTMLInputElement>('.noUi-handle-lower');
         countSlider.on('change.one', () => {
-            this.minCurrentCount = +slider[0].ariaValueNow;
-            this.maxCurrentCount = +slider[0].ariaValueMax;
-            const filtered = this.filter(this.toyCards);
-            this.onFilter(filtered);
+            this.minCurrentCount = slider[0].ariaValueNow;
+            this.maxCurrentCount = slider[0].ariaValueMax;
+            localStorage.setItem('StDaTa-minCurrentCount', JSON.stringify(this.minCurrentCount));
+            localStorage.setItem('StDaTa-maxCurrentCount', JSON.stringify(this.maxCurrentCount));
+            this.onFilter();
         });
+    }
+
+    loadFilter() {
+        countSlider.set([this.minCurrentCount,this.maxCurrentCount]);
     }
 
     filter(toyCards: ToyCard[]): ToyCard[] {

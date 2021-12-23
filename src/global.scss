@@ -259,15 +259,15 @@ button,
     margin-left: 10px;
 }
 
-.reset-filters {
-    margin: 0 auto;
+.reset-button{
+    margin: 10px auto;
     border-radius: 6px;
     border: 2px solid $border-color;
     padding: 5px 10px;
     transition: 0.3s;
 }
 
-.reset-filters:hover {
+.reset-button:hover {
     border: 2px solid $interactive-color;
     background-color: $field-color;
 }

@@ -4,7 +4,7 @@ import ToyCard from '../../toy-card/toy-card';
 
 export default class NameFilter extends Component implements Filter {
     public text = '';
-    constructor(private toyCards: ToyCard[], private onFilter: (toyCards: ToyCard[]) => void) {
+    constructor(private onFilter: () => void) {
         super('');
         this.addListener();
     }
@@ -13,8 +13,7 @@ export default class NameFilter extends Component implements Filter {
         const searchInput = document.querySelector<HTMLInputElement>('.search-input');
         searchInput.addEventListener('input', () => {
             this.text = searchInput.value;
-            const filtered = this.filter(this.toyCards);
-            this.onFilter(filtered);
+            this.onFilter();
         });
     }
 

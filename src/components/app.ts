@@ -17,6 +17,7 @@ export async function bootstrap(): Promise<void> {
     for (let i = 0; i < countCards; i++) {
         const { num, name, count, year, shape, color, size, favorite } = result[i];
         const toyCard = new ToyCard(num, name, count, year, shape, color, size, favorite);
+        toyCard.loadChosen();
         toyCards.push(toyCard);
     }
     function renderCards(toyCards: ToyCard[]) {
@@ -29,10 +30,10 @@ export async function bootstrap(): Promise<void> {
             alert('Извините, совпадений не обнаружено');
         }
     }
-    renderCards(toyCards);
 
-    const nameFilter = new NameFilter(toyCards, (filteredToyCards) => {
-        const filteredShape = shapeFilter.filter(filteredToyCards);
+    function onFilter() {
+        const filteredName = nameFilter.filter(toyCards);
+        const filteredShape = shapeFilter.filter(filteredName);
         const filteredColor = colorFilter.filter(filteredShape);
         const filteredSize = sizeFilter.filter(filteredColor);
         const filteredFavorite = favoriteFilter.filter(filteredSize);
@@ -40,76 +41,31 @@ export async function bootstrap(): Promise<void> {
         const filteredYear = yearFilter.filter(filteredCount);
         const sorted = sorter.sort(filteredYear);
         renderCards(sorted);
-    });
+    }
 
-    const shapeFilter = new ShapeFilter(toyCards, (filteredToyCards) => {
-        const filteredName = nameFilter.filter(filteredToyCards);
-        const filteredColor = colorFilter.filter(filteredName);
-        const filteredSize = sizeFilter.filter(filteredColor);
-        const filteredFavorite = favoriteFilter.filter(filteredSize);
-        const filteredCount = countFilter.filter(filteredFavorite);
-        const filteredYear = yearFilter.filter(filteredCount);
-        const sorted = sorter.sort(filteredYear);
-        renderCards(sorted);
-    });
+    const nameFilter = new NameFilter(onFilter);
+    const shapeFilter = new ShapeFilter(onFilter);
+    const colorFilter = new ColorFilter(onFilter);
+    const sizeFilter = new SizeFilter(onFilter);
+    const favoriteFilter = new FavoriteFilter(onFilter);
+    const countFilter = new CountFilter(onFilter);
+    const yearFilter = new YearFilter(onFilter);
+    const sorter = new Sorter(onFilter);
 
-    const colorFilter = new ColorFilter(toyCards, (filteredToyCards) => {
-        const filteredName = nameFilter.filter(filteredToyCards);
-        const filteredShape = shapeFilter.filter(filteredName);
-        const filteredSize = sizeFilter.filter(filteredShape);
-        const filteredFavorite = favoriteFilter.filter(filteredSize);
-        const filteredCount = countFilter.filter(filteredFavorite);
-        const filteredYear = yearFilter.filter(filteredCount);
-        const sorted = sorter.sort(filteredYear);
-        renderCards(sorted);
-    });
+    onFilter();
 
-    const sizeFilter = new SizeFilter(toyCards, (filteredToyCards) => {
-        const filteredName = nameFilter.filter(filteredToyCards);
-        const filteredShape = shapeFilter.filter(filteredName);
-        const filteredColor = colorFilter.filter(filteredShape);
-        const filteredFavorite = favoriteFilter.filter(filteredColor);
-        const filteredCount = countFilter.filter(filteredFavorite);
-        const filteredYear = yearFilter.filter(filteredCount);
-        const sorted = sorter.sort(filteredYear);
-        renderCards(sorted);
-    });
+    function loadFilters() {
+        shapeFilter.loadFilter();
+        colorFilter.loadFilter();
+        sizeFilter.loadFilter();
+        favoriteFilter.loadFilter();
+        countFilter.loadFilter();
+        sorter.loadFilter();
+    }
 
-    const favoriteFilter = new FavoriteFilter(toyCards, (filteredToyCards) => {
-        const filteredName = nameFilter.filter(filteredToyCards);
-        const filteredShape = shapeFilter.filter(filteredName);
-        const filteredColor = colorFilter.filter(filteredShape);
-        const filteredSize = sizeFilter.filter(filteredColor);
-        const filteredCount = countFilter.filter(filteredSize);
-        const filteredYear = yearFilter.filter(filteredCount);
-        const sorted = sorter.sort(filteredYear);
-        renderCards(sorted);
-    });
+    loadFilters();
 
-    const countFilter = new CountFilter(toyCards, (filteredToyCards) => {
-        const filteredName = nameFilter.filter(filteredToyCards);
-        const filteredShape = shapeFilter.filter(filteredName);
-        const filteredColor = colorFilter.filter(filteredShape);
-        const filteredSize = sizeFilter.filter(filteredColor);
-        const filteredFavorite = favoriteFilter.filter(filteredSize);
-        const filteredYear = yearFilter.filter(filteredFavorite);
-        const sorted = sorter.sort(filteredYear);
-        renderCards(sorted);
-    });
-
-    const yearFilter = new YearFilter(toyCards, (filteredToyCards) => {
-        const filteredName = nameFilter.filter(filteredToyCards);
-        const filteredShape = shapeFilter.filter(filteredName);
-        const filteredColor = colorFilter.filter(filteredShape);
-        const filteredSize = sizeFilter.filter(filteredColor);
-        const filteredFavorite = favoriteFilter.filter(filteredSize);
-        const filteredCount = countFilter.filter(filteredFavorite);
-        const sorted = sorter.sort(filteredCount);
-        renderCards(sorted);
-    });
-
-    const resetFilters = document.querySelector<HTMLInputElement>('.reset-filters');
-    resetFilters.addEventListener('click', () => {
+    function resetOnClick() {
         reset();
         nameFilter.text = '';
         shapeFilter.shapes = [];
@@ -121,16 +77,16 @@ export async function bootstrap(): Promise<void> {
         countFilter.maxCurrentCount = 12;
         yearFilter.minCurrentYear = 1940;
         yearFilter.maxCurrentYear = 2020;
+    }
+
+    const resetFilters = document.querySelector<HTMLInputElement>('.reset-filters');
+    resetFilters.addEventListener('click', () => {
+        resetOnClick();
     });
 
-    const sorter = new Sorter(toyCards, (sortedToyCards) => {
-        const filteredName = nameFilter.filter(sortedToyCards);
-        const filteredShape = shapeFilter.filter(filteredName);
-        const filteredColor = colorFilter.filter(filteredShape);
-        const filteredSize = sizeFilter.filter(filteredColor);
-        const filteredFavorite = favoriteFilter.filter(filteredSize);
-        const filteredCount = countFilter.filter(filteredFavorite);
-        const filteredYear = yearFilter.filter(filteredCount);
-        renderCards(filteredYear);
+    const resetLocalStorage = document.querySelector<HTMLElement>('.reset-localStorage');
+    resetLocalStorage.addEventListener('click', () => {
+        localStorage.clear();
+        location.reload();
     });
 }

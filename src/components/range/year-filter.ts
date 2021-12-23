@@ -20,27 +20,31 @@ export const yearSlider = noUiSlider.create(sliderYear, {
     },
 });
 
-
 export default class YearFilter extends Component implements Filter {
-    public minCurrentYear = 1940;
-    public maxCurrentYear = 2020;
-    constructor(private toyCards: ToyCard[], private onFilter: (toyCards: ToyCard[]) => void) {
+    public minCurrentYear = JSON.parse(localStorage.getItem('StDaTa-minCurrentYear')) || 1940;
+    public maxCurrentYear = JSON.parse(localStorage.getItem('StDaTa-maxCurrentYear')) || 2020;
+    constructor(private onFilter: () => void) {
         super('');
         this.addListener();
+        this.loadFilter();
     }
 
     addListener() {
         const slider = document.querySelectorAll<HTMLInputElement>('.noUi-handle-lower');
         yearSlider.on('change.one', () => {
-            this.minCurrentYear = +slider[1].ariaValueNow;
-            this.maxCurrentYear = +slider[1].ariaValueMax;
-            const filtered = this.filter(this.toyCards);
-            this.onFilter(filtered);
+            this.minCurrentYear = slider[1].ariaValueNow;
+            this.maxCurrentYear = slider[1].ariaValueMax;
+            localStorage.setItem('StDaTa-minCurrentYear', JSON.stringify(this.minCurrentYear));
+            localStorage.setItem('StDaTa-maxCurrentYear', JSON.stringify(this.maxCurrentYear));
+            this.onFilter();
         });
+    }
+
+    loadFilter() {
+        yearSlider.set([this.minCurrentYear, this.maxCurrentYear]);
     }
 
     filter(toyCards: ToyCard[]): ToyCard[] {
         return toyCards.filter((item) => +item.year <= this.maxCurrentYear && +item.year >= this.minCurrentYear);
     }
 }
-
