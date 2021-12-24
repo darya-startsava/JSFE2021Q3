@@ -1,0 +1,71 @@
+.title {
+  text-align: center;
+}
+
+.settings-items {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.settings-item {
+  text-align: center;
+  border: var(--light-text-color) solid 2px;
+  border-radius: 10px;
+  width: 200px;
+  background-color: grey;
+}
+
+.settings-range {
+  margin: 10px 0;
+}
+
+.settings:hover {
+  border: none;
+  background-color: rgba(255,0,0,0);
+  filter: invert(13%) sepia(78%) saturate(5785%) hue-rotate(358deg) brightness(106%) contrast(118%);
+}
+
+input[type='checkbox'] {
+  transform: scale(2);
+}
+
+.checkbox > span {
+  padding-left: 5px;
+}
+
+.button-wrapper {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 520px) and (max-width: 1024px) {
+  .settings-items {
+    gap: 40px;
+  }
+
+  .settings-item {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .settings-items {
+    flex-direction: row;
+    gap: 40px;
+    margin-top: 100px;
+  }
+
+  .settings-item {
+    width: 300px;
+  }
+
+  .button-wrapper {
+    margin-top: 100px;
+  }
+}
+  

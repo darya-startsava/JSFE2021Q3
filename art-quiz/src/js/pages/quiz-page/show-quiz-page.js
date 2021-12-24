@@ -1,11 +1,14 @@
-import showStartPage from './show-start-page.js';
-import showArtistQuestionPage from './show-artist-question-page.js';
-import showPictureQuestionPage from './show-picture-question-page.js';
-import showResultPage from './show-result-page.js';
-import App from '../app/index.js';
+import './quiz-page.css';
+import showStartPage from '../start-page/show-start-page.js';
+import showArtistQuestionPage from '../artist-question-page/show-artist-question-page.js';
+import showPictureQuestionPage from '../picture-question-page/show-picture-question-page.js';
+import showResultPage from '../result-page/show-result-page.js';
+import App from '../../app/index.js';
 
 const body = document.querySelector('body');
 const main = document.querySelector('main');
+const CATEGORY_IMAGES_COUNT = 12;
+const QUESTIONS_COUNT = 10;
 
 function showQuizPage(type) {
     main.innerHTML = `<h2 class="title">Категории</h2>
@@ -32,10 +35,10 @@ function showQuizPage(type) {
     function createCategory() {
         let counter = 1;
         let start = 0;
-        let end = 12;
+        let end = CATEGORY_IMAGES_COUNT;
         if (type === 'findPicture') {
-            start += 12;
-            end += 12;
+            start += CATEGORY_IMAGES_COUNT;
+            end += CATEGORY_IMAGES_COUNT;
         }
         for (let i = start; i < end; i++) {
             let counterRightAnswers = 0;
@@ -43,7 +46,7 @@ function showQuizPage(type) {
             let result = '';
             let myButtonImageClass = 'button-grayscale';
             let myButtonShowResultClass = 'button-hide';
-            for (let j = 0; j < 10; j++) {
+            for (let j = 0; j < QUESTIONS_COUNT; j++) {
                 if (App.categories[i].questions[j].status === 'right') {
                     counterRightAnswers++;
                     counterAnswers++;
@@ -73,8 +76,6 @@ function showQuizPage(type) {
     const buttonCategoryImage = document.querySelectorAll('.button-category-image');
     const backToStartButton = document.querySelector('.back-to-start-button');
 
-    // TO DO!! Realise showResult
-
     const showResult = document.querySelectorAll('.show-result');
 
     backToStartButton.addEventListener('click', showStartPage);
@@ -83,7 +84,7 @@ function showQuizPage(type) {
             if (type === 'findArtist') {
                 showResultPage(type, index);
             } else {
-                showResultPage(type, index + 12);
+                showResultPage(type, index + CATEGORY_IMAGES_COUNT);
             }
         })
     );
@@ -92,7 +93,7 @@ function showQuizPage(type) {
             if (type === 'findArtist') {
                 showArtistQuestionPage(type, index, 0);
             } else {
-                showPictureQuestionPage(type, index + 12, 0);
+                showPictureQuestionPage(type, index + CATEGORY_IMAGES_COUNT, 0);
             }
         })
     );

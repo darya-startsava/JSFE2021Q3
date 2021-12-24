@@ -1,5 +1,6 @@
-import showQuizPage from './show-quiz-page.js';
-import showSettingsPage from './show-settings-page.js';
+import './start-page.css';
+import showQuizPage from '../quiz-page/show-quiz-page.js';
+import showSettingsPage from '../settings/show-settings-page.js';
 
 const body = document.querySelector('body');
 const main = document.querySelector('main');
@@ -15,14 +16,12 @@ function showStartPage() {
         </div>
     </div>
 </section>`;
-    body.style.backgroundImage = 'url(\'./assets/img/j-retrato-de-cardenal-rafael.png\')';
+    body.style.backgroundImage = "url('./assets/img/j-retrato-de-cardenal-rafael.png')";
     const buttonArtistQuiz = document.querySelector('.button-artist-quiz');
     const buttonArtQuiz = document.querySelector('.button-art-quiz');
     const settings = document.querySelector('.settings');
 
-    buttonArtistQuiz.addEventListener('click', () =>
-        showQuizPage('findArtist')
-    );
+    buttonArtistQuiz.addEventListener('click', () => showQuizPage('findArtist'));
     buttonArtQuiz.addEventListener('click', () => showQuizPage('findPicture'));
     settings.addEventListener('click', showSettingsPage);
 }

@@ -1,5 +1,6 @@
-import showStartPage from './show-start-page.js';
-import App from '../app/index.js';
+import './settings.css';
+import showStartPage from '../start-page/show-start-page.js';
+import App from '../../app/index.js';
 
 const body = document.querySelector('body');
 const main = document.querySelector('main');

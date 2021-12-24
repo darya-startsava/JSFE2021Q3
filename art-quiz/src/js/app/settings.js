@@ -1,9 +1,12 @@
+const DEFAULT_VOLUME = 0.1;
+const DEFAULT_TIME = 20;
+
 class Settings {
     constructor() {
         this.isVolume = localStorage.getItem('isVolume') || 'false';
-        this.volume = localStorage.getItem('volume') || 0.1;
+        this.volume = localStorage.getItem('volume') || DEFAULT_VOLUME;
         this.isTime = localStorage.getItem('isTime') || 'false';
-        this.time = localStorage.getItem('time') || 20;
+        this.time = localStorage.getItem('time') || DEFAULT_TIME;
     }
     setIsVolume() {
         localStorage.setItem('isVolume', this.isVolume);

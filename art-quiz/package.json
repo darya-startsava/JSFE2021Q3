@@ -6,9 +6,10 @@
   "scripts": {
     "start": "rss-scripts start",
     "build": "rss-scripts build",
-    "lint" : "eslint ."
+    "lint": "eslint ."
   },
   "devDependencies": {
+    "css-loader": "^6.5.1",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "prettier": "^2.4.1",

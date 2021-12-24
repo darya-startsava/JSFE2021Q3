@@ -1,6 +1,7 @@
-import showStartPage from './show-start-page.js';
-import showQuizPage from './show-quiz-page.js';
-import App from '../app/index.js';
+import './result-page.css';
+import showStartPage from '../start-page/show-start-page.js';
+import showQuizPage from '../quiz-page/show-quiz-page.js';
+import App from '../../app/index.js';
 
 const main = document.querySelector('main');
 
@@ -32,9 +33,10 @@ function showResultPage(type, index) {
     const results = document.querySelector('.results');
     const result = document.querySelector('.result');
 
+    const QUESTIONS_COUNT = 10;
     let counterRightAnswers = 0;
     function createResultPicture() {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < QUESTIONS_COUNT; i++) {
             const { imageNum, author, name, year } = App.categories[index].questions[i];
             const image = `url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${imageNum}.jpg')`;
             const resultPictureButton = document.createElement('button');
@@ -48,7 +50,7 @@ function showResultPage(type, index) {
                 counterRightAnswers++;
                 resultPictureButton.classList.remove('button-grayscale');
             }
-            result.innerHTML = `${counterRightAnswers}/10`;
+            result.innerHTML = `${counterRightAnswers}/${QUESTIONS_COUNT}`;
             resultPictureButton.style.backgroundImage = `${image}`;
             results.append(resultPictureButton);
         }

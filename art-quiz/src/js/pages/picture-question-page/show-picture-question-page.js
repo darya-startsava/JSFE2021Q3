@@ -1,47 +1,45 @@
-import showStartPage from './show-start-page.js';
-import showQuizPage from './show-quiz-page.js';
-import App from '../app/index.js';
+import './picture-question-page.css';
+import showStartPage from '../start-page/show-start-page.js';
+import showQuizPage from '../quiz-page/show-quiz-page.js';
+import App from '../../app/index.js';
 
 const main = document.querySelector('main');
 
-function showArtistQuestionPage(type, index, questionNum) {
+function showPictureQuestionPage(type, index, questionNum) {
     const question = App.categories[index].questions[questionNum];
     const { imageNum } = question;
-    main.innerHTML = `<h3 class="title">Кто автор этой картины?</h3>
-<div class="time-left">&nbsp;</div>
-<div class="image-author-quiz-wrapper">
-    <div class="image-author-quiz" id="image-author-quiz" style="background-image:url(https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${imageNum}.jpg)" ></div>
-</div>
-<div class="answers-author-quiz-wrapper">
-    <button type="button" class="answer-author-button" data-isCorrect="${question.options[0].isCorrect}" >${question.options[0].author}</button>
-    <button type="button" class="answer-author-button" data-isCorrect="${question.options[1].isCorrect}" >${question.options[1].author}</button>
-    <button type="button" class="answer-author-button" data-isCorrect="${question.options[2].isCorrect}" >${question.options[2].author}</button>
-    <button type="button" class="answer-author-button" data-isCorrect="${question.options[3].isCorrect}" >${question.options[3].author}</button>
-    <div class="window-correct-answer">
-        <div class="correct-answer-message"></div>
-        <div class="correct-answer-image-with-information">
-            <img src="https://raw.githubusercontent.com/darya-startsava/image-data/master/full/${imageNum}full.jpg"
-                alt="тут должна быть картина" class="correct-answer-picture">
-            <div class="window-correct-answer-right-block">
-                <div class="correct-answer-information">Автор: ${question.author}<br>
-                   Название картины: ${question.name}<br>
-                    год: ${question.year}
+    main.innerHTML = `<h3 class="title">Какую картину написал<br> ${question.author} ?</h3>
+    <div class="time-left">&nbsp;</div>
+        <div class="answers-pictures-quiz-wrapper">
+            <button type="button" class="answer-picture-button" style="background-image:url(https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${question.options[0].imageNum}.jpg)" data-isCorrect="${question.options[0].isCorrect}" ></button>
+            <button type="button" class="answer-picture-button" style="background-image:url(https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${question.options[1].imageNum}.jpg)" data-isCorrect="${question.options[1].isCorrect}" ></button>
+            <button type="button" class="answer-picture-button" style="background-image:url(https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${question.options[2].imageNum}.jpg)" data-isCorrect="${question.options[2].isCorrect}" ></button>
+            <button type="button" class="answer-picture-button" style="background-image:url(https://raw.githubusercontent.com/darya-startsava/image-data/master/img/${question.options[3].imageNum}.jpg)" data-isCorrect="${question.options[3].isCorrect}" ></button>
+            <div class="window-correct-answer">
+                <div class="correct-answer-message"></div>
+                <div class="correct-answer-image-with-information">
+                    <img src="https://raw.githubusercontent.com/darya-startsava/image-data/master/full/${imageNum}full.jpg"
+                        alt="тут должна быть картина" class="correct-answer-picture">
+                    <div class="window-correct-answer-right-block">
+                        <div class="correct-answer-information">Автор: ${question.author}<br>
+                            name: ${question.name}<br>
+                            year: ${question.year}
+                        </div>
+                        <button type="button" class="continue-button">Продолжить</button>
+                    </div>
                 </div>
-                <button type="button" class="continue-button">Продолжить</button>
             </div>
+        <div class="end-quiz-window">
+            <div class="end-quiz-message"></div>
+            <button type="button" class="back-to-button" id="go-to-categories-button">Продолжить</button>
         </div>
     </div>
-    <div class="end-quiz-window">
-        <div class="end-quiz-message"></div>
-        <button type="button" class="back-to-button" id="go-to-categories-button">Продолжить</button>
-    </div>
-</div>
-<div class="buttons-wrapper">
-    <button type="button" class="back-to-button" id="back-to-start-button" >На главную</button>
-    <button type="button" class="back-to-button" id="back-to-categories-button">Категории</button>
-</div>`;
+    <div class="buttons-wrapper">
+        <button type="button" class="back-to-button" id="back-to-start-button">На главную</button>
+        <button type="button" class="back-to-button" id="back-to-categories-button">Категории</button>
+    </div>`;
 
-    const answersAuthorQuizWrapper = document.querySelector('.answers-author-quiz-wrapper');
+    const answersPicturesQuizWrapper = document.querySelector('.answers-pictures-quiz-wrapper');
 
     const backToStartButton = document.querySelector('#back-to-start-button');
     const backToCategoriesButton = document.querySelector('#back-to-categories-button');
@@ -97,6 +95,8 @@ function showArtistQuestionPage(type, index, questionNum) {
         }, 1000);
     }
 
+    const QUESTIONS_COUNT = 10;
+
     function showEndMessage() {
         endQuizWindow.style.visibility = 'visible';
         endQuizWindow.style.opacity = 1;
@@ -107,7 +107,7 @@ function showArtistQuestionPage(type, index, questionNum) {
                 counter++;
             }
         }
-        endQuizMessage.innerHTML = ` Конец игры! <br> Ваш результат:<br> ${counter}/10`;
+        endQuizMessage.innerHTML = ` Конец игры! <br> Ваш результат:<br> ${counter}/${QUESTIONS_COUNT}`;
     }
 
     function nextQuestion() {
@@ -116,7 +116,7 @@ function showArtistQuestionPage(type, index, questionNum) {
             showEndMessage();
         } else {
             questionNum++;
-            showArtistQuestionPage(type, index, questionNum);
+            showPictureQuestionPage(type, index, questionNum);
         }
     }
 
@@ -133,8 +133,8 @@ function showArtistQuestionPage(type, index, questionNum) {
         }
         showQuizPage(type);
     });
-    answersAuthorQuizWrapper.addEventListener('click', (e) => {
-        if (e.target.className === 'answer-author-button') {
+    answersPicturesQuizWrapper.addEventListener('click', (e) => {
+        if (e.target.className === 'answer-picture-button') {
             const isCorrect = JSON.parse(e.target.dataset.iscorrect);
             showRightAnswerWindow(isCorrect);
         }
@@ -142,4 +142,4 @@ function showArtistQuestionPage(type, index, questionNum) {
     continueButton.addEventListener('click', nextQuestion);
 }
 
-export default showArtistQuestionPage;
+export default showPictureQuestionPage;
