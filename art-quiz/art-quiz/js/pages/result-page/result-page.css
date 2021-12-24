@@ -1,0 +1,67 @@
+.result {
+  text-align: center;
+  font-size: 40px;
+}
+
+.results-wrapper {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.results {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 90%;
+}
+
+.result-picture-button {
+  background-image: url('https://raw.githubusercontent.com/darya-startsava/image-data/master/img/0.jpg');
+  background-size: cover;
+  height: 120px;
+  width: 120px;
+  border-radius: 10px;
+  border: var(--light-text-color) solid 2px;
+}
+
+.about-picture {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  position: absolute;
+  width: 80%;
+  height: 70%;
+  top: 10%;
+  left: 10%;
+  background-color: black;
+  border-radius: 15px;
+  border: var(--light-text-color) solid 3px;
+  text-align: center;
+  padding-top: 50px;
+  min-height: 350px;
+}
+
+.show-result:hover {
+  border: none;
+}
+
+.window-about-picture-right-block {
+  max-height: 15%;
+  margin-bottom: 15%;
+}
+
+@media screen and (min-width: 520px) and (max-width: 1024px) {
+  .results {
+    max-width: 600px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .results {
+    max-width: 800px;
+  }
+}
+  
