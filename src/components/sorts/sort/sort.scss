@@ -1,0 +1,11 @@
+$border-color: #0091b0;
+
+.sort {
+    display: flex;
+}
+
+.sort-field {
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 2px solid $border-color;
+}

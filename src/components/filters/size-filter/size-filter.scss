@@ -1,0 +1,29 @@
+$light-text-color: #fff4f4;
+$border-color: #0091b0;
+$dark-text-color: #07084f;
+$field-color: #fff4f4;
+$interactive-color: #225c3e;
+
+.size-filter .size-button:nth-child(1) {
+    background-size: auto 45px;
+}
+
+.size-filter .size-button:nth-child(2) {
+    background-size: auto 35px;
+}
+
+.size-filter .size-button:nth-child(3) {
+    background-size: auto 25px;
+}
+
+.size-button {
+    width: 45px;
+    height: 45px;
+    margin: 0 10px;
+    background-image: url('../../../assets/svg/shapes/ball.svg');
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.3s;
+}
