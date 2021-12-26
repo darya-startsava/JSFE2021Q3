@@ -1,0 +1,42 @@
+$interactive-color: #225c3e;
+$field-color: #fff4f4;
+
+.popup-wrapper {
+    z-index: 2;
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.popup {
+    margin: 0 auto;
+    font-size: 30px;
+    position: fixed;
+    top: 5%;
+    left: 33%;
+    width: 20%;
+    background-color: #0091b0;
+    border-radius: 25px;
+    text-align: center;
+    padding: 100px;
+    border: 7px solid $interactive-color;
+}
+
+.close-button {
+    margin-top: 30px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    border: 4px solid $interactive-color;
+}
+
+.close-button:hover {
+    border: 4px solid $field-color;
+}
+
+.popup-active {
+    display: block;
+}

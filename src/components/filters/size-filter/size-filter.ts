@@ -1,3 +1,6 @@
+import template from 'lodash.template';
+import SizeFilterHTML from './size-filter.html';
+import './size-filter.scss';
 import Component from '../../abstract-component';
 import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
@@ -5,13 +8,18 @@ import ToyCard from '../../toy-card/toy-card';
 export default class SizeFilter extends Component implements Filter {
     public sizes: string[] = JSON.parse(localStorage.getItem('StDaTa-sizes')) || [];
     constructor(private onFilter: () => void) {
-        super('');
-        this.addListener();
+        super('size-filter');
+    }
+
+    render(): HTMLElement {
+        this.container.innerHTML = template(SizeFilterHTML)();
         this.loadFilter();
+        this.addListener();
+        return this.container;
     }
 
     addListener() {
-        const sizeButtons = document.querySelectorAll<HTMLInputElement>('.size-button');
+        const sizeButtons = this.container.querySelectorAll<HTMLInputElement>('.size-button');
         sizeButtons.forEach((item) =>
             item.addEventListener('click', (event: Event) => {
                 const target = event.target as HTMLElement;
@@ -29,7 +37,7 @@ export default class SizeFilter extends Component implements Filter {
     }
 
     loadFilter() {
-        const sizeButtons = document.querySelectorAll<HTMLInputElement>('.size-button');
+        const sizeButtons = this.container.querySelectorAll<HTMLInputElement>('.size-button');
         sizeButtons.forEach((item) => {
             if (this.sizes.indexOf(item.value) !== -1) {
                 item.classList.add('active-shape-size');

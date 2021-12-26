@@ -1,17 +1,25 @@
+import template from 'lodash.template';
+import ColorFilterHTML from './color-filter.html';
+import './color-filter.scss';
 import Component from '../../abstract-component';
 import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class ColorFilter extends Component implements Filter {
-    public colors: string[] =  JSON.parse(localStorage.getItem('StDaTa-colors')) || [];
+    public colors: string[] = JSON.parse(localStorage.getItem('StDaTa-colors')) || [];
     constructor(private onFilter: () => void) {
-        super('');
-        this.addListener();
+        super('color-filter');
+    }
+
+    render(): HTMLElement {
+        this.container.innerHTML = template(ColorFilterHTML)();
         this.loadFilter();
+        this.addListener();
+        return this.container;
     }
 
     addListener() {
-        const colorButtons = document.querySelectorAll<HTMLInputElement>('.color-button');
+        const colorButtons = this.container.querySelectorAll<HTMLInputElement>('.color-button');
         colorButtons.forEach((item) =>
             item.addEventListener('click', (event: Event) => {
                 const target = event.target as HTMLElement;
@@ -29,7 +37,7 @@ export default class ColorFilter extends Component implements Filter {
     }
 
     loadFilter() {
-        const colorButtons = document.querySelectorAll<HTMLInputElement>('.color-button');
+        const colorButtons = this.container.querySelectorAll<HTMLInputElement>('.color-button');
         colorButtons.forEach((item) => {
             if (this.colors.indexOf(item.value) !== -1) {
                 item.classList.add('active-color');

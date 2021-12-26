@@ -1,3 +1,6 @@
+import template from 'lodash.template';
+import SortHTML from './sort.html';
+import './sort.scss';
 import Component from '../../abstract-component';
 import Sort from '../interface-sort';
 import ToyCard from '../../toy-card/toy-card';
@@ -5,13 +8,18 @@ import ToyCard from '../../toy-card/toy-card';
 export default class Sorter extends Component implements Sort {
     public sortType = JSON.parse(localStorage.getItem('StDaTa-sortType')) || 'default';
     constructor(private onSort: () => void) {
-        super('');
-        this.addListener();
+        super('sort search-chosen-sort-fields');
+    }
+
+    render(): HTMLElement {
+        this.container.innerHTML = template(SortHTML)();
         this.loadFilter();
+        this.addListener();
+        return this.container;
     }
 
     addListener() {
-        const sortField = document.querySelector<HTMLSelectElement>('.sort-field');
+        const sortField = this.container.querySelector<HTMLSelectElement>('.sort-field');
         sortField.addEventListener('change', (event: Event) => {
             const target = event.target as HTMLOptionElement;
             this.sortType = target.value;
@@ -21,7 +29,7 @@ export default class Sorter extends Component implements Sort {
     }
 
     loadFilter(){
-        const sortField = document.querySelector<HTMLSelectElement>('.sort-field');
+        const sortField = this.container.querySelector<HTMLSelectElement>('.sort-field');
         sortField.value = this.sortType;
     }
 

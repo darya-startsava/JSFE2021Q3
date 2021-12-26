@@ -1,0 +1,36 @@
+$light-text-color: #fff4f4;
+$border-color: #0091b0;
+$dark-text-color: #07084f;
+$field-color: #fff4f4;
+$interactive-color: #225c3e;
+
+.shape-filter .shape-button:nth-child(1) {
+    background-image: url('../../../assets/svg/shapes/ball.svg');
+}
+
+.shape-filter .shape-button:nth-child(2) {
+    background-image: url('../../../assets/svg/shapes/toy.svg');
+}
+
+.shape-filter .shape-button:nth-child(3) {
+    background-image: url('../../../assets/svg/shapes/bell.svg');
+}
+
+.shape-filter .shape-button:nth-child(4) {
+    background-image: url('../../../assets/svg/shapes/cone.svg');
+}
+
+.shape-filter .shape-button:nth-child(5) {
+    background-image: url('../../../assets/svg/shapes/snowflake.svg');
+}
+
+.shape-button {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    background-size: auto 40px;
+    background-repeat: no-repeat;
+    margin: 0 10px;
+    transition: 0.3s;
+}

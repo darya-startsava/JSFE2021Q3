@@ -1,3 +1,6 @@
+import template from 'lodash.template';
+import FavoriteFilterHTML from './favorite-filter.html';
+import './favorite-filter.scss';
 import Component from '../../abstract-component';
 import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
@@ -5,13 +8,18 @@ import ToyCard from '../../toy-card/toy-card';
 export default class FavoriteFilter extends Component implements Filter {
     public isFavorite = JSON.parse(localStorage.getItem('StDaTa-isFavorite')) || false;
     constructor(private onFilter: () => void) {
-        super('');
-        this.addListener();
+        super('favorite');
+    }
+
+    render(): HTMLElement {
+        this.container.innerHTML = template(FavoriteFilterHTML)();
         this.loadFilter();
+        this.addListener();
+        return this.container;
     }
 
     addListener() {
-        const favoriteCheckbox = document.querySelector<HTMLInputElement>('.favorite-checkbox');
+        const favoriteCheckbox = this.container.querySelector<HTMLInputElement>('.favorite-checkbox');
         favoriteCheckbox.addEventListener('change', () => {
             this.isFavorite = favoriteCheckbox.checked;
             localStorage.setItem('StDaTa-isFavorite', JSON.stringify(this.isFavorite));
@@ -20,7 +28,7 @@ export default class FavoriteFilter extends Component implements Filter {
     }
 
     loadFilter() {
-        const favoriteCheckbox = document.querySelector<HTMLInputElement>('.favorite-checkbox');
+        const favoriteCheckbox = this.container.querySelector<HTMLInputElement>('.favorite-checkbox');
         if (this.isFavorite === true) {
             favoriteCheckbox.checked = true;
         }

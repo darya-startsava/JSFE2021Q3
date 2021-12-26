@@ -1,6 +1,3 @@
-import { countSlider } from '../../range/count-filter';
-import { yearSlider } from '../../range/year-filter';
-
 export default function reset(): void {
     const searchInput = document.querySelector<HTMLInputElement>('.search-input');
     searchInput.value = '';
@@ -16,7 +13,4 @@ export default function reset(): void {
 
     const favoriteCheckbox = document.querySelector<HTMLInputElement>('.favorite-checkbox');
     favoriteCheckbox.checked = false;
-
-    countSlider.reset();
-    yearSlider.reset();
 }
