@@ -1,0 +1,30 @@
+.settings-wrapper {
+    display: flex;
+    column-gap: 30px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.settings-button {
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-size: 40px auto;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.volume-button {
+    background-image: url('../../assets/svg/audio.svg');
+}
+
+.snow-button {
+    background-image: url('../../assets/svg/snow.svg');
+}
+
+.settings-button:hover {
+    filter: invert(28%) sepia(85%) saturate(1771%) hue-rotate(167deg) brightness(106%) contrast(101%);
+}
+
+.settings-button-active {
+    filter: invert(25%) sepia(91%) saturate(321%) hue-rotate(96deg) brightness(92%) contrast(87%);
+}

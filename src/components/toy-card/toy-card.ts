@@ -2,8 +2,8 @@ import template from 'lodash.template';
 import ToyCardHTML from './toy-card.html';
 import './toy-card.scss';
 import Component from '../abstract-component';
-import chosenSingleton, { MAX_CHOSEN_TOYS_COUNT, chosenArray } from '../chosen/chosen';
-import Popup from '../popup/popup';
+import chosenSingleton, {chosenArray } from '../chosen/chosen';
+
 
 export default class ToyCard extends Component {
     constructor(

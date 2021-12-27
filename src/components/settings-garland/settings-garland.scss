@@ -1,0 +1,60 @@
+$border-color: #0091b0;
+$interactive-color: #225c3e;
+
+.settings-garland {
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.garland-wrapper {
+    display: flex;
+    gap: 30px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+}
+
+.garlands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 90%;
+}
+
+.garlands .button-garland-item:nth-child(1) {
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8);
+}
+
+.garlands .button-garland-item:nth-child(2) {
+    background-color: red;
+}
+
+.garlands .button-garland-item:nth-child(3) {
+    background-color: blue;
+}
+
+.garlands .button-garland-item:nth-child(4) {
+    background-color: yellow;
+}
+
+.garlands .button-garland-item:nth-child(5) {
+    background-color: green;
+}
+
+.button-garland-item {
+    padding: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    border: 2px solid $border-color;
+}
+
+.button-garland-item:hover {
+    border: 2px solid $interactive-color;
+}
+
+.checkbox-garland {
+    width: 15px;
+    height: 15px;
+}

@@ -1,0 +1,71 @@
+$border-color: #0091b0;
+$interactive-color: #225c3e;
+
+.settings-background {
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.backgrounds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 90%;
+}
+
+.backgrounds .button-background-item:nth-child(1) {
+    background-image: url('../../assets/backgrounds/1.jpg');
+}
+
+.backgrounds .button-background-item:nth-child(2) {
+    background-image: url('../../assets/backgrounds/2.jpg');
+}
+
+.backgrounds .button-background-item:nth-child(3) {
+    background-image: url('../../assets/backgrounds/3.jpg');
+}
+
+.backgrounds .button-background-item:nth-child(4) {
+    background-image: url('../../assets/backgrounds/4.jpg');
+}
+
+.backgrounds .button-background-item:nth-child(5) {
+    background-image: url('../../assets/backgrounds/5.jpg');
+}
+
+.backgrounds .button-background-item:nth-child(6) {
+    background-image: url('../../assets/backgrounds/6.jpg');
+}
+
+.backgrounds .button-background-item:nth-child(7) {
+    background-image: url('../../assets/backgrounds/7.jpg');
+}
+
+.backgrounds .button-background-item:nth-child(8) {
+    background-image: url('../../assets/backgrounds/8.jpg');
+}
+
+.backgrounds .button-background-item:nth-child(9) {
+    background-image: url('../../assets/backgrounds/9.jpg');
+}
+
+.backgrounds .button-background-item:nth-child(10) {
+    background-image: url('../../assets/backgrounds/10.jpg');
+}
+
+.button-background-item {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    border: 2px solid $border-color;
+}
+
+.button-background-item:hover {
+    border: 2px solid $interactive-color;
+}
+
+.button-background-item-active {
+    border: 4px solid $interactive-color;
+}

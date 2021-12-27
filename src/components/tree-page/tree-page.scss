@@ -1,0 +1,33 @@
+$light-text-color: #fff4f4;
+
+.tree-page {
+    display: flex;
+    min-height: 95vh;
+}
+
+.settings-section,
+.chosen-toys-section {
+    width: 28%;
+}
+
+.tree-section {
+    background-image: url('../../assets/backgrounds/1.jpg');
+    background-size: cover;
+    width: 44%;
+}
+
+.main-tree {
+    background-image: url('../../assets/trees/1.png');
+    height: 95%;
+    width: 95%;
+    z-index: 3;
+    background-size: 80% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 5%;
+}
+
+.tree-title {
+    text-transform: uppercase;
+    color: $light-text-color;
+}
