@@ -30,6 +30,14 @@ button,
 
 // HEADER
 
+.button-tree {
+    background-image: url('./assets/svg/tree.svg');
+    width: 35px;
+    background-repeat: no-repeat;
+    background-size: 35px auto;
+    margin-top: 10px;
+}
+
 .header-button-wrapper {
     display: flex;
     justify-content: center;
@@ -44,6 +52,12 @@ button,
     color: $light-text-color;
     font-size: 30px;
     padding: 10px;
+    transition: 0.3s;
+    border-bottom: 7px solid black;
+}
+
+.header-button:hover {
+    filter: invert(28%) sepia(85%) saturate(1771%) hue-rotate(167deg) brightness(106%) contrast(101%);
 }
 
 .active {
