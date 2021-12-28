@@ -2,8 +2,11 @@ import template from 'lodash.template';
 import SettingsHTML from './settings.html';
 import './settings.scss';
 import Component from '../abstract-component';
+import christmasAudioSingleton from './audio';
 
 export default class Settings extends Component {
+    public isMusic: string = localStorage.getItem('StDaTa-isMusic') || 'off';
+    public isSnow: string = localStorage.getItem('StDaTa-isSnow') || 'off';
     constructor() {
         super('settings-wrapper');
     }
@@ -16,15 +19,21 @@ export default class Settings extends Component {
     }
 
     addListenerVolumeButton() {
-        const volumeButton = this.container.querySelector('.volume-button');
-        const audio: HTMLAudioElement = new Audio('./assets/mp3/assets_audio_audio.mp3');
+        const volumeButton = this.container.querySelector<HTMLElement>('.volume-button');
+        if (this.isMusic == 'on') {
+            volumeButton.classList.add('settings-button-active');
+            christmasAudioSingleton.play();
+        }
         volumeButton.addEventListener('click', () => {
             volumeButton.classList.toggle('settings-button-active');
             if (volumeButton.classList.contains('settings-button-active')) {
-                audio.play();
+                this.isMusic = 'on';
+                christmasAudioSingleton.play();
             } else {
-                audio.pause();
+                this.isMusic = 'off';
+                christmasAudioSingleton.pause();
             }
+            localStorage.setItem('StDaTa-isMusic', this.isMusic);
         });
     }
 
@@ -35,12 +44,15 @@ export default class Settings extends Component {
             snowButton.classList.toggle('settings-button-active');
             const treeSection = document.querySelector('.tree-section');
             if (snowButton.classList.contains('settings-button-active')) {
+                this.isSnow = 'on';
                 refreshIntervalId = setInterval(createSnowFlake, 50);
             } else {
+                this.isSnow = 'off';
                 clearInterval(refreshIntervalId);
                 const snowFlakes = document.querySelectorAll('.snowflake');
                 snowFlakes.forEach((item) => item.remove());
             }
+            localStorage.setItem('StDaTa-isSnow', this.isSnow);
             function createSnowFlake() {
                 const treeSectionRect = treeSection.getBoundingClientRect();
                 const snowFlake = document.createElement('i');

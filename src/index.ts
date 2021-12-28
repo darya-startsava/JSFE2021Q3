@@ -4,8 +4,7 @@ import { bootstrap as bootstrapToys } from './components/appToys';
 import { bootstrap as bootstrapTree } from './components/appTree'
 import './self-assessment';
 
-// bootstrapStart();
-bootstrapTree();
+bootstrapStart();
 
 const headerButtons = document.querySelectorAll('.header-button');
 headerButtons.forEach((item) =>
