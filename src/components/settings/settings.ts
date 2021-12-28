@@ -17,7 +17,7 @@ export default class Settings extends Component {
 
     addListenerVolumeButton() {
         const volumeButton = this.container.querySelector('.volume-button');
-        const audio: HTMLAudioElement = new Audio('../assets/mp3/assets_audio_audio.mp3');
+        const audio: HTMLAudioElement = new Audio('./assets/mp3/assets_audio_audio.mp3');
         volumeButton.addEventListener('click', () => {
             volumeButton.classList.toggle('settings-button-active');
             if (volumeButton.classList.contains('settings-button-active')) {
