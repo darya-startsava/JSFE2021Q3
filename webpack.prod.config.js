@@ -10,6 +10,7 @@ module.exports = {
                 { from: 'src/assets/json', to: 'assets/json' },
                 { from: 'src/assets/backgrounds', to: 'assets/backgrounds' },
                 { from: 'src/assets/trees', to: 'assets/trees' },
+                { from: 'src/assets/mp3', to: 'assets/mp3' },
             ]
         })
     ]

@@ -10,11 +10,25 @@ export default class Settings extends Component {
 
     render(): HTMLElement {
         this.container.innerHTML = template(SettingsHTML)();
-        this.addListener();
+        this.addListenerVolumeButton();
+        this.addListenerSnowButton();
         return this.container;
     }
 
-    addListener() {
+    addListenerVolumeButton() {
+        const volumeButton = this.container.querySelector('.volume-button');
+        const audio: HTMLAudioElement = new Audio('../assets/mp3/assets_audio_audio.mp3');
+        volumeButton.addEventListener('click', () => {
+            volumeButton.classList.toggle('settings-button-active');
+            if (volumeButton.classList.contains('settings-button-active')) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        });
+    }
+
+    addListenerSnowButton() {
         const snowButton = this.container.querySelector('.snow-button');
         let refreshIntervalId: NodeJS.Timer;
         snowButton.addEventListener('click', () => {
