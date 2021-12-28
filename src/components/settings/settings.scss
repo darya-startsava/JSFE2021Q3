@@ -1,3 +1,8 @@
+$light-text-color: #fff4f4;
+$border-color: #0091b0;
+$field-color: #fff4f4;
+$dark-text-color: #07084f;
+
 .settings-wrapper {
     display: flex;
     column-gap: 30px;
@@ -19,6 +24,16 @@
 
 .snow-button {
     background-image: url('../../assets/svg/snow.svg');
+}
+
+.reset-settings-button {
+    color: $light-text-color;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border: 3px solid $border-color;
+    border-radius: 15px;
+    background-color:#000;
 }
 
 .settings-button:hover {

@@ -128,8 +128,17 @@ export async function bootstrap(): Promise<void> {
 
     const resetLocalStorage = document.querySelector<HTMLElement>('.reset-localStorage');
     resetLocalStorage.addEventListener('click', () => {
-        localStorage.clear();
-        location.reload();
+        localStorage.removeItem('StDaTa-chosenArray');
+        localStorage.removeItem('StDaTa-sortType');
+        localStorage.removeItem('StDaTa-shapes');
+        localStorage.removeItem('StDaTa-colors');
+        localStorage.removeItem('StDaTa-sizes');
+        localStorage.removeItem('StDaTa-isFavorite');
+        localStorage.removeItem('StDaTa-minCurrentCount');
+        localStorage.removeItem('StDaTa-maxCurrentCount');
+        localStorage.removeItem('StDaTa-minCurrentYear');
+        localStorage.removeItem('StDaTa-maxCurrentYear');
+        resetOnClick();
     });
 }
 
