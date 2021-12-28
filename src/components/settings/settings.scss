@@ -28,3 +28,20 @@
 .settings-button-active {
     filter: invert(25%) sepia(91%) saturate(321%) hue-rotate(96deg) brightness(92%) contrast(87%);
 }
+
+.snowflake {
+    position: absolute;
+    top: 0px;
+    animation: fall linear forwards;
+    background-image: url('../../assets/svg/snowflake.svg');
+    width: 20px;
+    height: 20px;
+    background-size: 15px;
+    background-repeat: no-repeat;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(calc(100vh - 50px));
+    }
+}
