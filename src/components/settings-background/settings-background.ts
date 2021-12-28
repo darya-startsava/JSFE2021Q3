@@ -22,7 +22,7 @@ export default class SettingsBackground extends Component {
                 const target = event.target as HTMLElement;
                 target.classList.add('button-background-item-active');
                 const treeSection = document.querySelector<HTMLElement>('.tree-section');
-                treeSection.style.backgroundImage = `url('../../assets/backgrounds/${item.value}.jpg')`;
+                treeSection.style.backgroundImage = `url('./assets/backgrounds/${item.value}.jpg')`;
             })
         );
     }

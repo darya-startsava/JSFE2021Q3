@@ -7,7 +7,9 @@ module.exports = {
             patterns: [
                 { from: 'src/static', to: 'static' },
                 { from: 'src/assets/toys', to: 'assets/toys' },
-                { from: 'src/assets/json', to: 'assets/json' }
+                { from: 'src/assets/json', to: 'assets/json' },
+                { from: 'src/assets/backgrounds', to: 'assets/backgrounds' },
+                { from: 'src/assets/trees', to: 'assets/trees' },
             ]
         })
     ]

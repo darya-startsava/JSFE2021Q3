@@ -22,7 +22,7 @@ export default class SettingsTree extends Component {
                 const target = event.target as HTMLElement;
                 target.classList.add('button-tree-item-active');
                 const mainTree = document.querySelector<HTMLElement>('.main-tree');
-                mainTree.style.backgroundImage = `url('../../assets/trees/${item.value}.png')`;
+                mainTree.style.backgroundImage = `url('./assets/trees/${item.value}.png')`;
             })
         );
     }
