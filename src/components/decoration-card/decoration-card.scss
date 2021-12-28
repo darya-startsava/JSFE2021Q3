@@ -1,0 +1,22 @@
+$interactive-color: #225c3e;
+
+.decoration-count {
+    z-index: 10;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    padding: 1px;
+    margin: 0;
+    border-radius: 10px;
+    background-color: $interactive-color;
+}
+
+.decoration-image {
+    display: block;
+    position: absolute;
+    width: auto;
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    cursor: move;
+}
