@@ -6,6 +6,7 @@ import SettingsGarland from './settings-garland/settings-garland';
 import TreeDecorations from './tree-decorations/tree-decorations';
 import readData from './service';
 import DecorationCard from './decoration-card/decoration-card';
+import dragNDrop from './drag-n-drop/drag-n-drop';
 
 export function bootstrap() {
     const treePage = new TreePage();
@@ -35,15 +36,20 @@ export function bootstrap() {
         const toysNum = JSON.parse(localStorage.getItem('StDaTa-chosenArray'));
         if (toysNum && toysNum.length !== 0) {
             for (let j = 0; j < toysNum.length; j++) {
-                const decorationCard = new DecorationCard(data[toysNum[j] - 1].num, data[toysNum[j] - 1].count);
+                const decorationCard = new DecorationCard(
+                    data[toysNum[j] - 1].num,
+                    data[toysNum[j] - 1].count,
+                    (j + 1).toString()
+                );
                 decorationsWrapper.append(decorationCard.render());
             }
         } else {
             for (let j = 0; j < 20; j++) {
-                const decorationCard = new DecorationCard(data[j].num, data[j].count);
+                const decorationCard = new DecorationCard(data[j].num, data[j].count, (j + 1).toString());
                 decorationsWrapper.append(decorationCard.render());
             }
         }
+        dragNDrop();
     }
 
     renderMain();
