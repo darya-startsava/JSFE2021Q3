@@ -53,6 +53,7 @@ $dark-text-color: #07084f;
     height: 20px;
     background-size: 15px;
     background-repeat: no-repeat;
+    pointer-events: none;
 }
 
 @keyframes fall {
