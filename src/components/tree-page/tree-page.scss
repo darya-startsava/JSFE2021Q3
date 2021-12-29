@@ -17,15 +17,17 @@ $light-text-color: #fff4f4;
 }
 
 .main-tree {
-    background-image: url('../../assets/trees/1.png');
     height: 95%;
     width: 95%;
     z-index: 3;
-    background-size: 70% auto;
-    background-repeat: no-repeat;
-    background-position: center;
     margin-top: 5%;
-    // pointer-events: none;
+}
+
+.main-tree-image {
+    height: auto;
+    width: 75%;
+    margin: 0 auto;
+    display: block;
 }
 
 .tree-title {

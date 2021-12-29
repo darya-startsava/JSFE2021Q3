@@ -50,7 +50,13 @@ const baseConfig = {
             {
                 test: /\.html$/,
                 exclude: /node_modules/,
-                use: { loader: 'html-loader' }
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                        // Disables attributes processing
+                        sources: false,
+                    },
+                }
             }
         ],
     },
