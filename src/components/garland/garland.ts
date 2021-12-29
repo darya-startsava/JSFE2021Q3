@@ -18,6 +18,7 @@ export default class Garland extends Component {
             for (let i = 1; i <= 6 + k * 2; i++) {
                 const li = document.createElement('li');
                 li.classList.add('garland-bulb');
+                li.classList.add('default');
                 ul.append(li);
                 li.style.transform = `rotate(${65 + j}deg) translate(${50 + l}px)`;
                 j += 10 - k * 0.8;

@@ -40,25 +40,25 @@
     animation-duration: 2s;
 }
 
-.garland-line .garland-bulb:nth-child(4n) {
+.garland-line .default:nth-child(4n) {
     background-color: red;
     animation-name: flash-1;
     box-shadow: 0px 0px 5px 5px rgba(255, 0, 0, 0.5);
 }
 
-.garland-line .garland-bulb:nth-child(4n + 1) {
+.garland-line .default:nth-child(4n + 1) {
     background-color: blue;
     animation-name: flash-2;
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 255, 0.5);
 }
 
-.garland-line .garland-bulb:nth-child(4n + 2) {
+.garland-line .default:nth-child(4n + 2) {
     background-color: yellow;
     animation-name: flash-1;
     box-shadow: 0px 0px 5px 5px rgba(255, 255, 0, 0.5);
 }
 
-.garland-line .garland-bulb:nth-child(4n + 3) {
+.garland-line .default:nth-child(4n + 3) {
     background-color: green;
     animation-name: flash-2;
     box-shadow: 0px 0px 5px 5px rgba(0, 255, 0, 0.5);
@@ -100,4 +100,28 @@
     100% {
         opacity: 0.2;
     }
+}
+
+.red {
+    background-color: red;
+    animation-name: flash-1;
+    box-shadow: 0px 0px 5px 5px rgba(255, 0, 0, 0.5);
+}
+
+.blue {
+    background-color: blue;
+    animation-name: flash-1;
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 255, 0.5);
+}
+
+.yellow {
+    background-color: yellow;
+    animation-name: flash-1;
+    box-shadow: 0px 0px 5px 5px rgba(255, 255, 0, 0.5);
+}
+
+.green {
+    background-color: green;
+    animation-name: flash-1;
+    box-shadow: 0px 0px 5px 5px rgba(0, 255, 0, 0.5);
 }
