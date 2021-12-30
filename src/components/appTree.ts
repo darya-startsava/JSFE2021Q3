@@ -9,6 +9,16 @@ import DecorationCard from './decoration-card/decoration-card';
 import dragNDrop from './drag-n-drop/drag-n-drop';
 
 export function bootstrap() {
+
+    const decorationImages = document?.querySelectorAll<HTMLElement>('.decoration-image');
+    if (decorationImages) {
+        decorationImages.forEach((item) => {
+            if (item.dataset.onTree === 'true') {
+                item.style.opacity = '1';
+            }
+        });
+    }
+
     const treePage = new TreePage();
     const settings = new Settings();
     const settingsTree = new SettingsTree();

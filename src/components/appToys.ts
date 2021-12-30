@@ -16,6 +16,16 @@ import Sorter from './sorts/sort/sort';
 import Popup from './popup/popup';
 
 export async function bootstrap(): Promise<void> {
+
+    const decorationImages = document?.querySelectorAll<HTMLElement>('.decoration-image');
+    if (decorationImages) {
+        decorationImages.forEach((item) => {
+            if (item.dataset.onTree === 'true') {
+                item.style.opacity = '0';
+            }
+        });
+    }
+    
     const toysPage = new ToysPage();
     const filters = new Filters();
     const range = new Range();

@@ -44,7 +44,7 @@ export default function dragNDrop() {
             decorationItem.onmouseup = function () {
                 document.removeEventListener('mousemove', onMouseMove);
                 decorationItem.onmouseup = null;
-                if (elemBelow.classList.contains('droppable')) {
+                if (elemBelow?.classList.contains('droppable')) {
                     decorationsCount.forEach((decorationCount) => {
                         if (
                             decorationCount.dataset.id === decorationItem.dataset.id &&
