@@ -1,6 +1,7 @@
 import ResponseObjectArticles from '../interfaces/responseObjectArticles';
 import ResponseObjectSources from '../interfaces/responseObjectSources';
 import { CallbackType } from '../types/CallbackType';
+import { Status } from '../enums/status';
 
 class Loader {
     public baseLink: string;
@@ -23,7 +24,7 @@ class Loader {
 
     errorHandler(res: Response) {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404) {
+            if (res.status === Status.unauthorized || res.status === Status.fileNotFound) {
                 // eslint-disable-next-line no-console
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             }
