@@ -6,7 +6,7 @@ import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class ColorFilter extends Component implements Filter {
-    public colors: string[] = JSON.parse(localStorage.getItem('StDaTa-colors')) || [];
+    public colors: string[] = JSON.parse(localStorage.getItem('StDaTa-colors') ?? '[]');
     constructor(private onFilter: () => void) {
         super('color-filter');
     }
@@ -18,7 +18,7 @@ export default class ColorFilter extends Component implements Filter {
         return this.container;
     }
 
-    addListener() {
+    addListener(): void {
         const colorButtons = this.container.querySelectorAll<HTMLInputElement>('.color-button');
         colorButtons.forEach((item) =>
             item.addEventListener('click', (event: Event) => {
@@ -36,7 +36,7 @@ export default class ColorFilter extends Component implements Filter {
         );
     }
 
-    loadFilter() {
+    loadFilter(): void {
         const colorButtons = this.container.querySelectorAll<HTMLInputElement>('.color-button');
         colorButtons.forEach((item) => {
             if (this.colors.indexOf(item.value) !== -1) {

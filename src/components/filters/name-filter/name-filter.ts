@@ -19,7 +19,7 @@ export default class NameFilter extends Component implements Filter {
 
     addListener() {
         const searchInput =this.container.querySelector<HTMLInputElement>('.search-input');
-        searchInput.addEventListener('input', () => {
+        searchInput?.addEventListener('input', () => {
             this.text = searchInput.value;
             this.onFilter();
         });

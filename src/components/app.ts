@@ -27,10 +27,10 @@ export async function bootstrap(): Promise<void> {
 
     function renderFiltersSection() {
         const filterSection = document.querySelector('.filter-section');
-        filterSection.prepend(filters.render());
-        filterSection.append(popup.render());
+        filterSection?.prepend(filters.render());
+        filterSection?.append(popup.render());
         const filterWrapper = document.querySelector('.filter-wrapper');
-        filterWrapper.append(range.render());
+        filterWrapper?.append(range.render());
     }
 
     renderMain();
@@ -47,29 +47,29 @@ export async function bootstrap(): Promise<void> {
 
     function renderNameFilter() {
         const searchChosenSortSection = document.querySelector('.search-chosen-sort-section');
-        searchChosenSortSection.prepend(nameFilter.render());
+        searchChosenSortSection?.prepend(nameFilter.render());
     }
     function renderChosen() {
         const searchChosenSortSection = document.querySelector('.search-chosen-sort-section');
-        searchChosenSortSection.append(chosenSingleton.render());
+        searchChosenSortSection?.append(chosenSingleton.render());
     }
     function renderSort() {
         const searchChosenSortSection = document.querySelector('.search-chosen-sort-section');
-        searchChosenSortSection.append(sorter.render());
+        searchChosenSortSection?.append(sorter.render());
     }
     function renderRangeFilters() {
         const sliderQuantity = document.getElementById('slider-quantity');
-        sliderQuantity.append(countFilter.render());
+        sliderQuantity?.append(countFilter.render());
 
         const sliderYear = document.getElementById('slider-year');
-        sliderYear.append(yearFilter.render());
+        sliderYear?.append(yearFilter.render());
     }
     function renderAppearanceFilters() {
         const appearanceFilter = document.querySelector('.appearance-filter');
-        appearanceFilter.append(shapeFilter.render());
-        appearanceFilter.append(colorFilter.render());
-        appearanceFilter.append(sizeFilter.render());
-        appearanceFilter.append(favoriteFilter.render());
+        appearanceFilter?.append(shapeFilter.render());
+        appearanceFilter?.append(colorFilter.render());
+        appearanceFilter?.append(sizeFilter.render());
+        appearanceFilter?.append(favoriteFilter.render());
     }
 
     renderNameFilter();
@@ -82,9 +82,11 @@ export async function bootstrap(): Promise<void> {
 
     function renderCards(toyCards: ToyCard[]) {
         const toysSection = document.querySelector('.toys-section');
-        toysSection.innerHTML = '';
+        if (toysSection) {
+            toysSection.innerHTML = '';
+        }
         for (const item of toyCards) {
-            toysSection.append(item.render());
+            toysSection?.append(item.render());
         }
         if (toyCards.length === 0) {
             popup.showPopup();
@@ -122,12 +124,12 @@ export async function bootstrap(): Promise<void> {
     }
 
     const resetFilters = document.querySelector<HTMLInputElement>('.reset-filters');
-    resetFilters.addEventListener('click', () => {
+    resetFilters?.addEventListener('click', () => {
         resetOnClick();
     });
 
     const resetLocalStorage = document.querySelector<HTMLElement>('.reset-localStorage');
-    resetLocalStorage.addEventListener('click', () => {
+    resetLocalStorage?.addEventListener('click', () => {
         localStorage.clear();
         location.reload();
     });

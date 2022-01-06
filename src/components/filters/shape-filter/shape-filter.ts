@@ -6,7 +6,7 @@ import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class ShapeFilter extends Component implements Filter {
-    public shapes: string[] = JSON.parse(localStorage.getItem('StDaTa-shapes')) || [];
+    public shapes: string[] = JSON.parse(localStorage.getItem('StDaTa-shapes') ?? '[]');
     constructor(private onFilter: () => void) {
         super('shape-filter');
     }
@@ -17,7 +17,7 @@ export default class ShapeFilter extends Component implements Filter {
         this.addListener();
         return this.container;
     }
-    addListener() {
+    addListener(): void {
         const shapeButtons = this.container.querySelectorAll<HTMLInputElement>('.shape-button');
         shapeButtons.forEach((item) =>
             item.addEventListener('click', (event: Event) => {
@@ -31,12 +31,11 @@ export default class ShapeFilter extends Component implements Filter {
                 });
                 localStorage.setItem('StDaTa-shapes', JSON.stringify(this.shapes));
                 this.onFilter();
-                
             })
         );
     }
 
-    loadFilter() {
+    loadFilter(): void {
         const shapeButtons = this.container.querySelectorAll<HTMLInputElement>('.shape-button');
         shapeButtons.forEach((item) => {
             if (this.shapes.indexOf(item.value) !== -1) {

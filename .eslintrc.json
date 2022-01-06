@@ -13,11 +13,15 @@
     "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
     "ignorePatterns": ["webpack.config.js", "webpack.dev.config.js", "webpack.prod.config.js"],
     "rules": {
-        "no-console": "error"
+        "no-console": "error",
+        "@typescript-eslint/explicit-function-return-type": "off"
     },
     "overrides": [
         {
-            "files": "*.ts"
+            "files": "*.ts",
+            "rules": {
+                "@typescript-eslint/explicit-function-return-type": ["error"]
+            }
         }
     ]
 }
