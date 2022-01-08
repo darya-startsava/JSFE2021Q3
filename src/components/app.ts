@@ -21,11 +21,11 @@ export async function bootstrap(): Promise<void> {
     const range = new Range();
     const popup = new Popup('Извините, совпадений не обнаружено');
 
-    function renderMain() {
+    function renderMain(): void {
         toysPage.render();
     }
 
-    function renderFiltersSection() {
+    function renderFiltersSection(): void {
         const filterSection = document.querySelector('.filter-section');
         filterSection?.prepend(filters.render());
         filterSection?.append(popup.render());
@@ -45,26 +45,26 @@ export async function bootstrap(): Promise<void> {
     const yearFilter = new YearFilter(onFilter);
     const sorter = new Sorter(onFilter);
 
-    function renderNameFilter() {
+    function renderNameFilter(): void {
         const searchChosenSortSection = document.querySelector('.search-chosen-sort-section');
         searchChosenSortSection?.prepend(nameFilter.render());
     }
-    function renderChosen() {
+    function renderChosen(): void {
         const searchChosenSortSection = document.querySelector('.search-chosen-sort-section');
         searchChosenSortSection?.append(chosenSingleton.render());
     }
-    function renderSort() {
+    function renderSort(): void {
         const searchChosenSortSection = document.querySelector('.search-chosen-sort-section');
         searchChosenSortSection?.append(sorter.render());
     }
-    function renderRangeFilters() {
+    function renderRangeFilters(): void {
         const sliderQuantity = document.getElementById('slider-quantity');
         sliderQuantity?.append(countFilter.render());
 
         const sliderYear = document.getElementById('slider-year');
         sliderYear?.append(yearFilter.render());
     }
-    function renderAppearanceFilters() {
+    function renderAppearanceFilters(): void {
         const appearanceFilter = document.querySelector('.appearance-filter');
         appearanceFilter?.append(shapeFilter.render());
         appearanceFilter?.append(colorFilter.render());
@@ -80,7 +80,7 @@ export async function bootstrap(): Promise<void> {
 
     const toyCards = await loadCards();
 
-    function renderCards(toyCards: ToyCard[]) {
+    function renderCards(toyCards: ToyCard[]): void {
         const toysSection = document.querySelector('.toys-section');
         if (toysSection) {
             toysSection.innerHTML = '';
@@ -93,7 +93,7 @@ export async function bootstrap(): Promise<void> {
         }
     }
 
-    function onFilter() {
+    function onFilter(): void {
         const filteredName = nameFilter.filter(toyCards);
         const filteredShape = shapeFilter.filter(filteredName);
         const filteredColor = colorFilter.filter(filteredShape);
@@ -107,7 +107,7 @@ export async function bootstrap(): Promise<void> {
 
     onFilter();
 
-    function resetOnClick() {
+    function resetOnClick(): void {
         reset();
         nameFilter.text = '';
         shapeFilter.shapes = [];

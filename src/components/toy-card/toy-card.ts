@@ -42,7 +42,7 @@ export default class ToyCard extends Component {
         return this.container;
     }
 
-    onClick() {
+    onClick(): void {
         if (this.container.classList.contains('icon-chosen')) {
             chosenSingleton.remove(this.num);
             this.container.classList.remove('icon-chosen');
@@ -54,7 +54,7 @@ export default class ToyCard extends Component {
         }
     }
 
-    loadChosen() {
+    loadChosen(): void {
         if (chosenArray.indexOf(this.num) !== -1) {
             this.container.classList.add('icon-chosen');
         }
