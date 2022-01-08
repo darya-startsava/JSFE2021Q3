@@ -1,7 +1,7 @@
 import ToysPage from './toys-page/toys-page';
 import ToyCard from './toy-card/toy-card';
 import readData from './service';
-import chosenSingleton from './chosen/chosen';
+import chosenSingleton, { chosenArray } from './chosen/chosen';
 import Filters from './filters/common/filters';
 import Range from './filters/range/range';
 import NameFilter from './filters/name-filter/name-filter';
@@ -16,7 +16,6 @@ import Sorter from './sorts/sort/sort';
 import Popup from './popup/popup';
 
 export async function bootstrap(): Promise<void> {
-
     const decorationImages = document?.querySelectorAll<HTMLElement>('.decoration-image');
     if (decorationImages) {
         decorationImages.forEach((item) => {
@@ -25,22 +24,22 @@ export async function bootstrap(): Promise<void> {
             }
         });
     }
-    
+
     const toysPage = new ToysPage();
     const filters = new Filters();
     const range = new Range();
     const popup = new Popup('Извините, совпадений не обнаружено');
 
-    function renderMain() {
+    function renderMain(): void {
         toysPage.render();
     }
 
-    function renderFiltersSection() {
+    function renderFiltersSection(): void {
         const filterSection = document.querySelector('.filter-section');
-        filterSection.prepend(filters.render());
-        filterSection.append(popup.render());
+        filterSection?.prepend(filters.render());
+        filterSection?.append(popup.render());
         const filterWrapper = document.querySelector('.filter-wrapper');
-        filterWrapper.append(range.render());
+        filterWrapper?.append(range.render());
     }
 
     renderMain();
@@ -55,31 +54,31 @@ export async function bootstrap(): Promise<void> {
     const yearFilter = new YearFilter(onFilter);
     const sorter = new Sorter(onFilter);
 
-    function renderNameFilter() {
+    function renderNameFilter(): void {
         const searchChosenSortSection = document.querySelector('.search-chosen-sort-section');
-        searchChosenSortSection.prepend(nameFilter.render());
+        searchChosenSortSection?.prepend(nameFilter.render());
     }
-    function renderChosen() {
+    function renderChosen(): void {
         const searchChosenSortSection = document.querySelector('.search-chosen-sort-section');
-        searchChosenSortSection.append(chosenSingleton.render());
+        searchChosenSortSection?.append(chosenSingleton.render());
     }
-    function renderSort() {
+    function renderSort(): void {
         const searchChosenSortSection = document.querySelector('.search-chosen-sort-section');
-        searchChosenSortSection.append(sorter.render());
+        searchChosenSortSection?.append(sorter.render());
     }
-    function renderRangeFilters() {
+    function renderRangeFilters(): void {
         const sliderQuantity = document.getElementById('slider-quantity');
-        sliderQuantity.append(countFilter.render());
+        sliderQuantity?.append(countFilter.render());
 
         const sliderYear = document.getElementById('slider-year');
-        sliderYear.append(yearFilter.render());
+        sliderYear?.append(yearFilter.render());
     }
-    function renderAppearanceFilters() {
+    function renderAppearanceFilters(): void {
         const appearanceFilter = document.querySelector('.appearance-filter');
-        appearanceFilter.append(shapeFilter.render());
-        appearanceFilter.append(colorFilter.render());
-        appearanceFilter.append(sizeFilter.render());
-        appearanceFilter.append(favoriteFilter.render());
+        appearanceFilter?.append(shapeFilter.render());
+        appearanceFilter?.append(colorFilter.render());
+        appearanceFilter?.append(sizeFilter.render());
+        appearanceFilter?.append(favoriteFilter.render());
     }
 
     renderNameFilter();
@@ -90,18 +89,20 @@ export async function bootstrap(): Promise<void> {
 
     const toyCards = await loadCards();
 
-    function renderCards(toyCards: ToyCard[]) {
+    function renderCards(toyCards: ToyCard[]): void {
         const toysSection = document.querySelector('.toys-section');
-        toysSection.innerHTML = '';
+        if (toysSection) {
+            toysSection.innerHTML = '';
+        }
         for (const item of toyCards) {
-            toysSection.append(item.render());
+            toysSection?.append(item.render());
         }
         if (toyCards.length === 0) {
             popup.showPopup();
         }
     }
 
-    function onFilter() {
+    function onFilter(): void {
         const filteredName = nameFilter.filter(toyCards);
         const filteredShape = shapeFilter.filter(filteredName);
         const filteredColor = colorFilter.filter(filteredShape);
@@ -115,7 +116,7 @@ export async function bootstrap(): Promise<void> {
 
     onFilter();
 
-    function resetOnClick() {
+    function resetOnClick(): void {
         reset();
         nameFilter.text = '';
         shapeFilter.shapes = [];
@@ -132,13 +133,20 @@ export async function bootstrap(): Promise<void> {
     }
 
     const resetFilters = document.querySelector<HTMLInputElement>('.reset-filters');
-    resetFilters.addEventListener('click', () => {
+    resetFilters?.addEventListener('click', () => {
         resetOnClick();
     });
 
     const resetLocalStorage = document.querySelector<HTMLElement>('.reset-localStorage');
-    resetLocalStorage.addEventListener('click', () => {
-        localStorage.removeItem('StDaTa-chosenArray');
+    resetLocalStorage?.addEventListener('click', () => {
+        const chosen = document.querySelector('.chosen');
+        const toyCards = document.querySelectorAll('.toy-card');
+        toyCards.forEach((item) => item.classList.remove('icon-chosen'));
+        if (chosen) {
+            chosen.innerHTML = 'Избранные игрушки: 0/20';
+            chosenArray.length = 0;
+        }
+        localStorage.setItem('StDaTa-chosenArray', '[]');
         localStorage.removeItem('StDaTa-sortType');
         localStorage.removeItem('StDaTa-shapes');
         localStorage.removeItem('StDaTa-colors');

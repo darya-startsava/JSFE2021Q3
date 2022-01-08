@@ -20,13 +20,13 @@ export default class Settings extends Component {
         return this.container;
     }
 
-    addListenerVolumeButton() {
+    addListenerVolumeButton(): void {
         const volumeButton = this.container.querySelector<HTMLElement>('.volume-button');
         if (this.isMusic == 'on') {
-            volumeButton.classList.add('settings-button-active');
+            volumeButton?.classList.add('settings-button-active');
             christmasAudioSingleton.play();
         }
-        volumeButton.addEventListener('click', () => {
+        volumeButton?.addEventListener('click', () => {
             volumeButton.classList.toggle('settings-button-active');
             if (volumeButton.classList.contains('settings-button-active')) {
                 this.isMusic = 'on';
@@ -39,30 +39,32 @@ export default class Settings extends Component {
         });
     }
 
-    addListenerSnowButton() {
+    addListenerSnowButton(): void {
         const snowButton = this.container.querySelector('.snow-button');
         let refreshIntervalId: NodeJS.Timer;
         const treeSection = document.querySelector('.tree-section');
         if (this.isSnow == 'on') {
-            snowButton.classList.add('settings-button-active');
+            snowButton?.classList.add('settings-button-active');
             refreshIntervalId = setInterval(createSnowFlake, 50);
         }
-        function createSnowFlake() {
-            const treeSectionRect = treeSection.getBoundingClientRect();
+        function createSnowFlake(): void {
+            const treeSectionRect = treeSection?.getBoundingClientRect();
             const snowFlake = document.createElement('i');
             snowFlake.classList.add('snowflake');
-            snowFlake.style.left = treeSectionRect.left + Math.random() * treeSectionRect.width + 'px';
+            if (treeSectionRect) {
+                snowFlake.style.left = treeSectionRect.left + Math.random() * treeSectionRect.width + 'px';
+            }
             snowFlake.style.animationDuration = Math.random() * 3 + 5 + 's';
             snowFlake.style.opacity = Math.random().toString();
             snowFlake.style.backgroundSize = Math.random() * 10 + 10 + 'px';
 
-            treeSection.appendChild(snowFlake);
+            treeSection?.appendChild(snowFlake);
 
             setTimeout(() => {
                 snowFlake.remove();
             }, 5000);
         }
-        snowButton.addEventListener('click', () => {
+        snowButton?.addEventListener('click', () => {
             snowButton.classList.toggle('settings-button-active');
 
             if (snowButton.classList.contains('settings-button-active')) {
@@ -78,9 +80,9 @@ export default class Settings extends Component {
         });
     }
 
-    addLIstenerResetButton() {
+    addLIstenerResetButton(): void {
         const resetSettingsButton = this.container.querySelector('.reset-settings-button');
-        resetSettingsButton.addEventListener('click', () => {
+        resetSettingsButton?.addEventListener('click', () => {
             localStorage.removeItem('StDaTa-isMusic');
             localStorage.removeItem('StDaTa-isSnow');
             localStorage.removeItem('StDaTa-backgroundNum');

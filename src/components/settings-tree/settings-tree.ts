@@ -4,7 +4,7 @@ import './settings-tree.scss';
 import Component from '../abstract-component';
 
 export default class SettingsTree extends Component {
-    public treeNum: number = parseInt(localStorage.getItem('StDaTa-treeNum')) || 1;
+    public treeNum: number = parseInt(localStorage.getItem('StDaTa-treeNum') || '1');
     constructor() {
         super('settings-tree');
     }
@@ -15,7 +15,7 @@ export default class SettingsTree extends Component {
         return this.container;
     }
 
-    addListener() {
+    addListener(): void {
         const treeItemButtons = this.container.querySelectorAll<HTMLInputElement>('.button-tree-item');
         const mainTree = document.querySelector<HTMLImageElement>('.main-tree-image');
         treeItemButtons.forEach((item) =>
@@ -24,12 +24,16 @@ export default class SettingsTree extends Component {
                 const target = event.target as HTMLElement;
                 target.classList.add('button-tree-item-active');
                 this.treeNum = parseInt(item.value);
-                mainTree.src = `./assets/trees/${this.treeNum}.png`;
+                if (mainTree) {
+                    mainTree.src = `./assets/trees/${this.treeNum}.png`;
+                }
                 localStorage.setItem('StDaTa-treeNum', JSON.stringify(this.treeNum));
             })
         );
-        mainTree.src = `./assets/trees/${this.treeNum}.png`;
-        treeItemButtons.forEach(item => item.classList.remove('button-tree-item-active'))
-        treeItemButtons[this.treeNum-1].classList.add('button-tree-item-active');
+        if (mainTree) {
+            mainTree.src = `./assets/trees/${this.treeNum}.png`;
+        }
+        treeItemButtons.forEach((item) => item.classList.remove('button-tree-item-active'));
+        treeItemButtons[this.treeNum - 1].classList.add('button-tree-item-active');
     }
 }

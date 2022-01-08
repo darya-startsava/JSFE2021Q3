@@ -3,14 +3,16 @@ import ToysPageHTML from './toys-page.html';
 import './toys-page.scss';
 
 export default class ToysPage {
-    container: HTMLElement;
+    container: HTMLElement | null;
 
     constructor() {
-        this.container = document.querySelector('main');
+        this.container = document.querySelector<HTMLElement>('main');
     }
 
-    render(): HTMLElement {
-        this.container.innerHTML = template(ToysPageHTML)();
+    render(): HTMLElement | null {
+        if (this.container) {
+            this.container.innerHTML = template(ToysPageHTML)();
+        }
         return this.container;
     }
 }

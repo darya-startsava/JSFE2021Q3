@@ -1,7 +1,7 @@
 import StartPage from './start-page/start-page';
 import { bootstrap as bootstrapToys } from './appToys';
 
-export function bootstrap() {
+export function bootstrap(): void {
     const decorationImages = document?.querySelectorAll<HTMLElement>('.decoration-image');
     if (decorationImages) {
         decorationImages.forEach((item) => {
@@ -11,12 +11,18 @@ export function bootstrap() {
         });
     }
     const startPage = new StartPage();
-    function renderMain() {
+    function renderMain(): void {
         startPage.render();
     }
 
     renderMain();
 
     const startButton = document.querySelector('.start-button');
-    startButton.addEventListener('click', () => bootstrapToys());
+    const headerStartButton = document.getElementById('start');
+    const headerToysButton = document.getElementById('toys');
+    startButton?.addEventListener('click', () => {
+        headerStartButton?.classList.remove('active');
+        headerToysButton?.classList.add('active');
+        bootstrapToys();
+    });
 }

@@ -9,7 +9,7 @@ export default class SettingsGarland extends Component {
     }
 
     render(): HTMLElement {
-        function removeClasses(item: HTMLElement) {
+        function removeClasses(item: HTMLElement): void {
             item.classList.remove('default');
             item.classList.remove('red');
             item.classList.remove('blue');
@@ -22,11 +22,13 @@ export default class SettingsGarland extends Component {
         const bulbs = document.querySelectorAll<HTMLElement>('.garland-bulb');
         const checkboxGarland = this.container.querySelector<HTMLInputElement>('.checkbox-garland');
         const garlandButtons = this.container.querySelectorAll<HTMLButtonElement>('.button-garland-item');
-        checkboxGarland.addEventListener('change', () => {
-            if (checkboxGarland.checked == true) {
-                garland.style.display = 'flex';
-            } else {
-                garland.style.display = 'none';
+        checkboxGarland?.addEventListener('change', () => {
+            if (garland) {
+                if (checkboxGarland.checked == true) {
+                    garland.style.display = 'flex';
+                } else {
+                    garland.style.display = 'none';
+                }
             }
         });
         garlandButtons.forEach((item) => {

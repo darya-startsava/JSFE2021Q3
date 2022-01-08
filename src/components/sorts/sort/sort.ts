@@ -6,7 +6,7 @@ import Sort from '../interface-sort';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class Sorter extends Component implements Sort {
-    public sortType = JSON.parse(localStorage.getItem('StDaTa-sortType')) || 'default';
+    public sortType = JSON.parse(localStorage.getItem('StDaTa-sortType') || '"default"');
     constructor(private onSort: () => void) {
         super('sort search-chosen-sort-fields');
     }
@@ -18,9 +18,9 @@ export default class Sorter extends Component implements Sort {
         return this.container;
     }
 
-    addListener() {
+    addListener(): void {
         const sortField = this.container.querySelector<HTMLSelectElement>('.sort-field');
-        sortField.addEventListener('change', (event: Event) => {
+        sortField?.addEventListener('change', (event: Event) => {
             const target = event.target as HTMLOptionElement;
             this.sortType = target.value;
             localStorage.setItem('StDaTa-sortType', JSON.stringify(this.sortType));
@@ -28,9 +28,11 @@ export default class Sorter extends Component implements Sort {
         });
     }
 
-    loadFilter(){
+    loadFilter(): void {
         const sortField = this.container.querySelector<HTMLSelectElement>('.sort-field');
-        sortField.value = this.sortType;
+        if (sortField) {
+            sortField.value = this.sortType;
+        }
     }
 
     sort(toyCards: ToyCard[]): ToyCard[] {
@@ -46,13 +48,13 @@ export default class Sorter extends Component implements Sort {
             return toyCards.sort(function (a, b) {
                 if (a.name > b.name) return 1;
                 else if (a.name == b.name) return 0;
-                else if (a.name < b.name) return -1;
+                else return -1;
             });
         } else if (this.sortType === 'name-reverse') {
             return toyCards.sort(function (a, b) {
                 if (a.name < b.name) return 1;
                 else if (a.name == b.name) return 0;
-                else if (a.name > b.name) return -1;
+                else return -1;
             });
         } else {
             return toyCards.sort(function (a, b) {

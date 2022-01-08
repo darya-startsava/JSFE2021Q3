@@ -1,12 +1,12 @@
-export default function dragNDrop() {
+export default function dragNDrop(): void {
     const decorationItems = document.querySelectorAll<HTMLElement>('.decoration-image');
     const decorations = document.querySelectorAll<HTMLElement>('.decoration');
     const decorationsCount = document.querySelectorAll<HTMLElement>('.decoration-count');
     decorationItems.forEach((decorationItem) => {
-        decorationItem.ondragstart = function () {
+        decorationItem.ondragstart = function (): boolean {
             return false;
         };
-        decorationItem.onmousedown = function (event: MouseEvent) {
+        decorationItem.onmousedown = function (event: MouseEvent): void {
             let elemBelow: Element | null;
 
             decorationItem.style.position = 'absolute';
@@ -16,12 +16,12 @@ export default function dragNDrop() {
 
             moveAt(event.pageX, event.pageY);
 
-            function moveAt(pageX: number, pageY: number) {
+            function moveAt(pageX: number, pageY: number): void {
                 decorationItem.style.left = pageX - decorationItem.offsetWidth / 2 + 'px';
                 decorationItem.style.top = pageY - decorationItem.offsetHeight / 2 + 'px';
             }
 
-            function back() {
+            function back(): void {
                 decorationItem.style.zIndex = '1';
                 decorations.forEach((decoration) => {
                     if (decoration.dataset.id === decorationItem.dataset.id) {
@@ -32,7 +32,7 @@ export default function dragNDrop() {
                 });
             }
 
-            function onMouseMove(event: MouseEvent) {
+            function onMouseMove(event: MouseEvent): void {
                 moveAt(event.pageX, event.pageY);
                 decorationItem.style.display = 'none';
                 elemBelow = document.elementFromPoint(event.clientX, event.clientY);
@@ -41,7 +41,7 @@ export default function dragNDrop() {
 
             document.addEventListener('mousemove', onMouseMove);
 
-            decorationItem.onmouseup = function () {
+            decorationItem.onmouseup = function (): void {
                 document.removeEventListener('mousemove', onMouseMove);
                 decorationItem.onmouseup = null;
                 if (elemBelow?.classList.contains('droppable')) {

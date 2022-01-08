@@ -1,7 +1,7 @@
 import Component from '../abstract-component';
 import Popup from '../popup/popup';
 
-export const chosenArray: string[] = JSON.parse(localStorage.getItem('StDaTa-chosenArray')) || [];
+export const chosenArray: string[] = JSON.parse(localStorage.getItem('StDaTa-chosenArray') || '[]');
 export const MAX_CHOSEN_TOYS_COUNT = 20;
 
 class Chosen extends Component {

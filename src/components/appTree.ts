@@ -8,8 +8,7 @@ import readData from './service';
 import DecorationCard from './decoration-card/decoration-card';
 import dragNDrop from './drag-n-drop/drag-n-drop';
 
-export function bootstrap() {
-
+export function bootstrap(): void {
     const decorationImages = document?.querySelectorAll<HTMLElement>('.decoration-image');
     if (decorationImages) {
         decorationImages.forEach((item) => {
@@ -25,25 +24,25 @@ export function bootstrap() {
     const settingsBackground = new SettingsBackground();
     const settingsGarland = new SettingsGarland();
 
-    function renderMain() {
+    function renderMain(): void {
         treePage.render();
     }
 
-    function renderSettingsSection() {
+    function renderSettingsSection(): void {
         const settingSection = document.querySelector('.settings-section');
-        settingSection.append(settings.render());
-        settingSection.append(settingsTree.render());
-        settingSection.append(settingsBackground.render());
-        settingSection.append(settingsGarland.render());
+        settingSection?.append(settings.render());
+        settingSection?.append(settingsTree.render());
+        settingSection?.append(settingsBackground.render());
+        settingSection?.append(settingsGarland.render());
     }
 
-    async function renderChosenToysSection() {
+    async function renderChosenToysSection(): Promise<void> {
         const chosenToysSection = document.querySelector('.chosen-toys-section');
         const treeDecorations = new TreeDecorations();
-        chosenToysSection.append(treeDecorations.render());
+        chosenToysSection?.append(treeDecorations.render());
         const decorationsWrapper = document.querySelector('.decorations-wrapper');
         const data = await readData();
-        const toysNum = JSON.parse(localStorage.getItem('StDaTa-chosenArray'));
+        const toysNum = JSON.parse(localStorage.getItem('StDaTa-chosenArray') || '[]');
         if (toysNum && toysNum.length !== 0) {
             for (let j = 0; j < toysNum.length; j++) {
                 const decorationCard = new DecorationCard(
@@ -51,12 +50,12 @@ export function bootstrap() {
                     data[toysNum[j] - 1].count,
                     (j + 1).toString()
                 );
-                decorationsWrapper.append(decorationCard.render());
+                decorationsWrapper?.append(decorationCard.render());
             }
         } else {
             for (let j = 0; j < 20; j++) {
                 const decorationCard = new DecorationCard(data[j].num, data[j].count, (j + 1).toString());
-                decorationsWrapper.append(decorationCard.render());
+                decorationsWrapper?.append(decorationCard.render());
             }
         }
         dragNDrop();

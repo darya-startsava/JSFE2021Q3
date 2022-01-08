@@ -6,7 +6,7 @@ import Filter from '../interface-filter';
 import ToyCard from '../../toy-card/toy-card';
 
 export default class SizeFilter extends Component implements Filter {
-    public sizes: string[] = JSON.parse(localStorage.getItem('StDaTa-sizes')) || [];
+    public sizes: string[] = JSON.parse(localStorage.getItem('StDaTa-sizes') || '[]');
     constructor(private onFilter: () => void) {
         super('size-filter');
     }
@@ -18,7 +18,7 @@ export default class SizeFilter extends Component implements Filter {
         return this.container;
     }
 
-    addListener() {
+    addListener(): void {
         const sizeButtons = this.container.querySelectorAll<HTMLInputElement>('.size-button');
         sizeButtons.forEach((item) =>
             item.addEventListener('click', (event: Event) => {
@@ -36,7 +36,7 @@ export default class SizeFilter extends Component implements Filter {
         );
     }
 
-    loadFilter() {
+    loadFilter(): void {
         const sizeButtons = this.container.querySelectorAll<HTMLInputElement>('.size-button');
         sizeButtons.forEach((item) => {
             if (this.sizes.indexOf(item.value) !== -1) {

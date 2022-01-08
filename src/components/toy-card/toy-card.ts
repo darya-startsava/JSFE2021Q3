@@ -2,8 +2,7 @@ import template from 'lodash.template';
 import ToyCardHTML from './toy-card.html';
 import './toy-card.scss';
 import Component from '../abstract-component';
-import chosenSingleton, {chosenArray } from '../chosen/chosen';
-
+import chosenSingleton, { chosenArray } from '../chosen/chosen';
 
 export default class ToyCard extends Component {
     constructor(
@@ -43,7 +42,7 @@ export default class ToyCard extends Component {
         return this.container;
     }
 
-    onClick() {
+    onClick(): void {
         if (this.container.classList.contains('icon-chosen')) {
             chosenSingleton.remove(this.num);
             this.container.classList.remove('icon-chosen');
@@ -55,7 +54,7 @@ export default class ToyCard extends Component {
         }
     }
 
-    loadChosen() {
+    loadChosen(): void {
         if (chosenArray.indexOf(this.num) !== -1) {
             this.container.classList.add('icon-chosen');
         }

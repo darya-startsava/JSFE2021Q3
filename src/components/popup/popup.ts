@@ -4,28 +4,25 @@ import Component from '../abstract-component';
 import './popup.scss';
 
 export default class Popup extends Component {
-    container: HTMLElement;
-
     constructor(public message: string) {
-        
         super('popup-wrapper');
         this.message = message;
     }
 
     render(): HTMLElement {
-        this.container.innerHTML = template(PopupHTML)({message: this.message});
+        this.container.innerHTML = template(PopupHTML)({ message: this.message });
         this.addListener();
         return this.container;
     }
 
-    addListener() {
+    addListener(): void {
         const closeButton = this.container.querySelector('.close-button');
-        closeButton.addEventListener('click', () => {
+        closeButton?.addEventListener('click', () => {
             this.container.classList.remove('popup-active');
         });
     }
 
-    showPopup() {
+    showPopup(): void {
         this.container.classList.add('popup-active');
     }
 }
