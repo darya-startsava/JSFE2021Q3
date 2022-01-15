@@ -32,17 +32,6 @@ const baseConfig = {
                 test: /\.svg/,
                 type: 'asset/inline',
             },
-            {
-                test: /\.html$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'html-loader',
-                    options: {
-                        // Disables attributes processing
-                        sources: false,
-                    },
-                }
-            }
         ],
     },
     resolve: {

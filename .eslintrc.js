@@ -16,11 +16,8 @@ module.exports = {
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
-        'import/no-unresolved': 'error',
         'no-console': 'error',
-        'import/extensions': 'off',
-        'import/no-cycle': 'off',
-        'no-param-reassign': 'off',
+        'import/no-unresolved': 'error',
         'no-plusplus': 'off',
         'no-shadow': 'off',
         'no-restricted-syntax': 'off',
