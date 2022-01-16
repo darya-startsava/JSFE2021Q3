@@ -1,0 +1,12 @@
+body {
+    background-color: blue;
+}
+
+.car-picture {
+    height: 200px;
+    background-image: url('./assets/svg/car.svg');
+    background-repeat: no-repeat;
+}
+.modified {
+    filter: invert(34%) sepia(73%) saturate(7236%) hue-rotate(308deg) brightness(107%) contrast(102%);
+}
