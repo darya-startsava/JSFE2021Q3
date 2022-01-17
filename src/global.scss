@@ -1,12 +1,79 @@
-body {
-    background-color: blue;
+$button-color: #fe8b01;
+$active-button-color: #b22032;
+$hover-button-color: #f4b404;
+$border-color: #3b3b6b;
+$button-text-color: #3b3b6b;
+$background-color: #421a55;
+$text-color: #fe8b01;
+
+%button {
+    padding: 2px 15px;
+    background-color: $button-color;
+    transition: background-color 0.5s;
+    border-radius: 5px;
+    border: $border-color solid 2px;
+    text-transform: uppercase;
+    color: $button-text-color;
+    font-weight: bold;
 }
 
-.car-picture {
-    height: 200px;
-    background-image: url('./assets/svg/car.svg');
-    background-repeat: no-repeat;
+%button-hover {
+    background-color: $hover-button-color;
 }
-.modified {
-    filter: invert(34%) sepia(73%) saturate(7236%) hue-rotate(308deg) brightness(107%) contrast(102%);
+
+%button-active {
+    background-color: $active-button-color;
+}
+
+body {
+    background-color: $background-color;
+}
+
+// HEADER
+
+.header-buttons {
+    display: flex;
+    gap: 20px;
+    button {
+        @extend %button;
+    }
+    button:hover {
+        @extend %button-hover;
+    }
+    button:active {
+        @extend %button-active;
+    }
+}
+
+// FOOTER
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    height: 5vh;
+    width: 70%;
+    color: $text-color;
+    filter: invert(60%) sepia(75%) saturate(2124%) hue-rotate(355deg) brightness(97%) contrast(112%);
+}
+
+.logo-rs-school {
+    height: 50px;
+    width: 85px;
+    background: url('./assets/svg/rs_school_js.svg');
+    background-repeat: no-repeat;
+    background-size: auto auto;
+}
+
+.github-link {
+    text-decoration: none;
+}
+
+.github-link:hover,
+.logo-rs-school:hover {
+    filter: invert(67%) sepia(79%) saturate(2976%) hue-rotate(12deg) brightness(109%) contrast(106%);
 }
