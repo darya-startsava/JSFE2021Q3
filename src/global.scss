@@ -2,9 +2,16 @@ $button-color: #fe8b01;
 $active-button-color: #b22032;
 $hover-button-color: #f4b404;
 $border-color: #3b3b6b;
+$hover-border-color: #33b333;
 $button-text-color: #3b3b6b;
 $background-color: #421a55;
 $text-color: #fe8b01;
+$race-color: #33b333;
+
+%buttons-wrapper {
+    display: flex;
+    gap: 20px;
+}
 
 %button {
     padding: 2px 15px;
@@ -12,28 +19,36 @@ $text-color: #fe8b01;
     transition: background-color 0.5s;
     border-radius: 5px;
     border: $border-color solid 2px;
-    text-transform: uppercase;
     color: $button-text-color;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 %button-hover {
     background-color: $hover-button-color;
+    border: $hover-border-color solid 2px;
 }
 
 %button-active {
     background-color: $active-button-color;
 }
 
+%input {
+    border-radius: 5px;
+    border: $border-color solid 2px;
+}
+
 body {
     background-color: $background-color;
+    color: $text-color;
 }
 
 // HEADER
 
-.header-buttons {
-    display: flex;
-    gap: 20px;
+.header-buttons,
+.car-buttons {
+    @extend %buttons-wrapper;
+
     button {
         @extend %button;
     }
@@ -43,6 +58,111 @@ body {
     button:active {
         @extend %button-active;
     }
+}
+
+// GARAGE
+
+.garage-buttons-wrapper {
+    margin-bottom: 50px;
+
+    button {
+        @extend %button;
+    }
+
+    button:hover {
+        @extend %button-hover;
+    }
+
+    button:active {
+        @extend %button-active;
+    }
+
+    div {
+        margin-top: 15px;
+    }
+}
+
+label {
+    text-transform: uppercase;
+}
+
+.control-buttons-wrapper {
+    button {
+        margin-right: 10px;
+    }
+}
+
+.input-text {
+    @extend %input;
+    width: 65px;
+}
+
+.input-color {
+    @extend %input;
+    width: 30px;
+    height: 20px;
+    border-width: 0px;
+}
+
+.create-car-wrapper,
+.update-car-wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+// CAR-ITEM
+
+%background-image {
+    position: absolute;
+    bottom: 0;
+    height: 75px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-size: 100px 100px;
+}
+
+.car-name {
+    align-self: center;
+}
+
+.car-race {
+    position: relative;
+    width: 100%;
+    border-bottom: 5px dashed $race-color;
+}
+
+.start-stop-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px 0;
+    width: 60px;
+
+    button {
+        @extend %button;
+        padding: 2px 5px;
+    }
+
+    button:hover {
+        @extend %button-hover;
+    }
+
+    button:active {
+        @extend %button-active;
+    }
+}
+
+.car {
+    @extend %background-image;
+    left: 70px;
+    background-image: url('./assets/svg/car.svg');
+}
+
+.flag {
+    @extend %background-image;
+    right: 70px;
+    background-image: url('./assets/svg/racing-flag.svg');
+    filter: invert(22%) sepia(22%) saturate(5882%) hue-rotate(329deg) brightness(97%) contrast(105%);
 }
 
 // FOOTER
@@ -57,7 +177,7 @@ body {
     margin: 0 auto;
     height: 5vh;
     width: 70%;
-    color: $text-color;
+    text-transform: uppercase;
     filter: invert(60%) sepia(75%) saturate(2124%) hue-rotate(355deg) brightness(97%) contrast(112%);
 }
 
