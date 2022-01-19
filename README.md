@@ -1,2 +1,1 @@
-# darya-startsava-JSFE2021Q3
-Private repository for @darya-startsava
+Deploy: https://rolling-scopes-school.github.io/darya-startsava-JSFE2021Q3/async-race/
