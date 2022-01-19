@@ -16,6 +16,7 @@ module.exports = {
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-unused-vars': 'error',
         'no-console': 'error',
         'import/no-unresolved': 'error',
         'import/extensions': [
@@ -28,6 +29,7 @@ module.exports = {
         'no-plusplus': 'off',
         'no-shadow': 'off',
         'no-restricted-syntax': 'off',
+        'no-unused-vars': 'off',
         // formatting is forced by prettier
         'linebreak-style': 'off',
         'implicit-arrow-linebreak': 'off',
