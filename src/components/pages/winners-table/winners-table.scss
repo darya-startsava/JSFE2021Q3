@@ -1,0 +1,26 @@
+$button-color: #fe8b01;
+$button-text-color: #3b3b6b;
+
+.column-car {
+    height: 25px;
+    width: 25px;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-image: url('../../../assets/svg/car.svg');
+    background-position: center;
+    filter: invert(22%) sepia(22%) saturate(5882%) hue-rotate(329deg) brightness(97%) contrast(105%);
+}
+
+td {
+    text-align: center;
+}
+
+th,
+td {
+    padding: 5px 10px;
+}
+
+th {
+    background-color: $button-color;
+    color: $button-text-color;
+}

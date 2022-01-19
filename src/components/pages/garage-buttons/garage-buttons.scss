@@ -1,0 +1,41 @@
+$border-color: #3b3b6b;
+
+%input {
+    border-radius: 5px;
+    border: $border-color solid 2px;
+}
+
+.garage-buttons-wrapper {
+    margin-bottom: 50px;
+    div {
+        margin-top: 15px;
+    }
+}
+
+label {
+    text-transform: uppercase;
+}
+
+.control-buttons-wrapper {
+    button {
+        margin-right: 10px;
+    }
+}
+
+.input-text {
+    @extend %input;
+    width: 65px;
+}
+
+.input-color {
+    @extend %input;
+    width: 30px;
+    height: 20px;
+    border-width: 0px;
+}
+
+.create-car-wrapper,
+.update-car-wrapper {
+    display: flex;
+    gap: 8px;
+}

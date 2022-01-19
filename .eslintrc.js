@@ -18,6 +18,13 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'error',
         'no-console': 'error',
         'import/no-unresolved': 'error',
+        'import/extensions': [
+            'error',
+            'ignorePackages',
+            {
+                'ts': 'newer'
+            }
+        ],
         'no-plusplus': 'off',
         'no-shadow': 'off',
         'no-restricted-syntax': 'off',
