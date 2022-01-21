@@ -1,5 +1,5 @@
-import PrevNextButtons from './prev-next-buttons/prev-next-buttons';
-import Winners from './winners-table/winners-table';
+import PrevNextButtons from '../components/prev-next-buttons/prev-next-buttons';
+import Winners from '../components/winners-table/winners-table';
 
 export default function renderWinnerPage(): void {
     const main = document.querySelector('main');

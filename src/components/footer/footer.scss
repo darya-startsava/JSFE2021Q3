@@ -9,19 +9,19 @@
     height: 5vh;
     width: 70%;
     text-transform: uppercase;
-    filter: invert(60%) sepia(75%) saturate(2124%) hue-rotate(355deg) brightness(97%) contrast(112%);
 }
 
 .logo-rs-school {
     height: 50px;
     width: 85px;
-    background: url('../../../assets/svg/rs_school_js.svg');
+    background: url('../../assets/svg/rs_school_js.svg');
     background-repeat: no-repeat;
     background-size: auto auto;
 }
 
 .github-link {
     text-decoration: none;
+    filter: invert(60%) sepia(75%) saturate(2124%) hue-rotate(355deg) brightness(97%) contrast(112%);
 }
 
 .github-link:hover,

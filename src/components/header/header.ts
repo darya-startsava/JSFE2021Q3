@@ -1,4 +1,4 @@
-import Component from '../../abstract-component';
+import Component from '../abstract-component';
 
 export default class Header extends Component {
     constructor() {

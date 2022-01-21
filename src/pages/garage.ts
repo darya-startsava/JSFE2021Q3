@@ -1,6 +1,6 @@
-import GarageButtons from './garage-buttons/garage-buttons';
-import CarItem from './car-item/car-item';
-import PrevNextButtons from './prev-next-buttons/prev-next-buttons';
+import GarageButtons from '../components/garage-buttons/garage-buttons';
+import CarItem from '../components/car-item/car-item';
+import PrevNextButtons from '../components/prev-next-buttons/prev-next-buttons';
 
 export default function renderGaragePage(): void {
     const garageButtons = new GarageButtons();

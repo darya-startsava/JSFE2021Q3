@@ -33,12 +33,11 @@ $race-color: #33b333;
 .car {
     @extend %background-image;
     left: 70px;
-    background-image: url('../../../assets/svg/car.svg');
+    background-image: url('../../assets/svg/car.svg');
 }
 
 .flag {
     @extend %background-image;
     right: 70px;
-    background-image: url('../../../assets/svg/racing-flag.svg');
-    filter: invert(22%) sepia(22%) saturate(5882%) hue-rotate(329deg) brightness(97%) contrast(105%);
+    background-image: url('../../assets/svg/racing-flag.svg');
 }

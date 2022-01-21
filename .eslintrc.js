@@ -23,13 +23,13 @@ module.exports = {
             'error',
             'ignorePackages',
             {
-                'ts': 'newer'
+                'ts': 'never'
             }
         ],
         'no-plusplus': 'off',
         'no-shadow': 'off',
         'no-restricted-syntax': 'off',
-        'no-unused-vars': 'off',
+        'no-unused-vars': 'off', /*instead of this rule was added '@typescript-eslint/no-unused-vars'*/
         // formatting is forced by prettier
         'linebreak-style': 'off',
         'implicit-arrow-linebreak': 'off',
