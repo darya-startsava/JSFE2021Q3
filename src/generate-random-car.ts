@@ -1,5 +1,12 @@
+const COUNT_COLOR_HEX_SYMBOLS = 6;
+
 export function generateRandomColor(): string {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < COUNT_COLOR_HEX_SYMBOLS; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
 const carBrand = ['Fiat', 'Jeep', 'Mercedes', 'Renault', 'Peugeot', 'Opel', 'Ford', 'Audi', 'Toyota', 'Nissan'];

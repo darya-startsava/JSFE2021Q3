@@ -1,10 +1,15 @@
 import ServerUrl from './enums/server-url-enum';
 import JSONValue from './types/json-value-type';
+import store from './store';
 
-export default async function getCars(): Promise<[JSONValue]> {
-    const response = await fetch(ServerUrl.garage);
+export default async function getCars(
+    page = store.carPage,
+    limit = 7
+): Promise<{ carsArray: [JSONValue]; count: number }> {
+    const response = await fetch(`${ServerUrl.garage}?_page=${page}&_limit=${limit}`);
     const carsArray = await response.json();
-    return carsArray;
+    const count = Number(response.headers.get('X-Total-Count'));
+    return { carsArray, count };
 }
 
 export async function getCar(id: Number): Promise<JSONValue> {

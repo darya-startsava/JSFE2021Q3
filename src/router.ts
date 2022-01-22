@@ -3,9 +3,10 @@ import renderWinnerPage from './pages/winner';
 import Hash from './enums/hash-enum';
 
 export function locationHashChanged(): void {
-    if (window.location.hash === Hash.garage) {
+    const hashPart = window.location.hash;
+    if (hashPart.slice(0, hashPart.indexOf('-') + 1) === Hash.garage) {
         renderGaragePage();
-    } else if (window.location.hash === Hash.winners) {
+    } else if (hashPart.slice(0, hashPart.indexOf('-') + 1) === Hash.winners) {
         renderWinnerPage();
     }
 }
