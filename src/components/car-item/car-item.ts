@@ -1,5 +1,7 @@
 import './car-item.scss';
 import Component from '../abstract-component';
+import { deleteCar } from '../../api';
+import renderGaragePage from '../../pages/garage';
 
 export default class CarItem extends Component {
     constructor(public name: string, public color: string, public id: number) {
@@ -32,13 +34,30 @@ export default class CarItem extends Component {
 
         const divCarButtons = document.createElement('div');
         divCarButtons.classList.add('car-buttons');
-        divCarButtons.innerHTML = `<button class="button-select">Select</button>
-        <button class="button-remove">Remove</button>`;
+        const buttonSelect = document.createElement('button');
+        buttonSelect.classList.add('button-select');
+        buttonSelect.innerHTML = 'Select';
+        const buttonRemove = document.createElement('button');
+        buttonRemove.classList.add('button-remove');
+        buttonRemove.innerHTML = 'Remove';
+        buttonRemove.dataset.id = `${this.id}`;
         const divCarName = document.createElement('div');
         divCarName.classList.add('car-name');
         divCarName.innerHTML = `${this.name}`;
-        divCarButtons.append(divCarName);
+        divCarButtons.append(buttonSelect, buttonRemove, divCarName);
         this.container.append(divCarButtons, divCarRace);
+        this.addListeners();
         return this.container;
+    }
+
+    addListeners(): void {
+        const removeButton = this.container.querySelectorAll<HTMLButtonElement>('.button-remove');
+        removeButton?.forEach((item) =>
+            item.addEventListener('click', async () => {
+                const id = Number(item.dataset.id);
+                await deleteCar(id);
+                renderGaragePage();
+            })
+        );
     }
 }

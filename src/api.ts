@@ -2,9 +2,11 @@ import ServerUrl from './enums/server-url-enum';
 import JSONValue from './types/json-value-type';
 import store from './store';
 
+const NUMBER_OF_CARS_ON_PAGE = 7;
+
 export default async function getCars(
     page = store.carPage,
-    limit = 7
+    limit = NUMBER_OF_CARS_ON_PAGE
 ): Promise<{ carsArray: [JSONValue]; count: number }> {
     const response = await fetch(`${ServerUrl.garage}?_page=${page}&_limit=${limit}`);
     const carsArray = await response.json();
@@ -27,4 +29,12 @@ export async function createCar(newCar: object): Promise<JSONValue> {
     });
     const car = await response.json();
     return car;
+}
+
+export async function deleteCar(id: number): Promise<JSONValue> {
+    const response = await fetch(`${ServerUrl.garage}/${id}`, {
+        method: 'DELETE',
+    });
+    const deleted = await response.json();
+    return deleted;
 }
