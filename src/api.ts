@@ -38,3 +38,15 @@ export async function deleteCar(id: number): Promise<JSONValue> {
     const deleted = await response.json();
     return deleted;
 }
+
+export async function updateCar(id: number, updatedCar: {name:string, color:string}): Promise<JSONValue> {
+    const response = await fetch(`${ServerUrl.garage}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedCar),
+    });
+    const car = await response.json();
+    return car;
+}

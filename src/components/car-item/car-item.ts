@@ -2,6 +2,8 @@ import './car-item.scss';
 import Component from '../abstract-component';
 import { deleteCar } from '../../api';
 import renderGaragePage from '../../pages/garage';
+import store2 from '../../store2';
+import store from '../../store';
 
 export default class CarItem extends Component {
     constructor(public name: string, public color: string, public id: number) {
@@ -37,6 +39,7 @@ export default class CarItem extends Component {
         const buttonSelect = document.createElement('button');
         buttonSelect.classList.add('button-select');
         buttonSelect.innerHTML = 'Select';
+        buttonSelect.dataset.id = `${this.id}`;
         const buttonRemove = document.createElement('button');
         buttonRemove.classList.add('button-remove');
         buttonRemove.innerHTML = 'Remove';
@@ -51,12 +54,26 @@ export default class CarItem extends Component {
     }
 
     addListeners(): void {
-        const removeButton = this.container.querySelectorAll<HTMLButtonElement>('.button-remove');
-        removeButton?.forEach((item) =>
+        const removeButtons = this.container.querySelectorAll<HTMLButtonElement>('.button-remove');
+        removeButtons?.forEach((item) =>
             item.addEventListener('click', async () => {
                 const id = Number(item.dataset.id);
                 await deleteCar(id);
                 renderGaragePage();
+            })
+        );
+        const selectButtons = this.container.querySelectorAll<HTMLButtonElement>('.button-select');
+        selectButtons?.forEach((item) =>
+            item.addEventListener('click', () => {
+                const id = Number(item.dataset.id);
+                const selectedCar = store2.carsArray.find((item) => item.id === id);
+                store.selectedCarId = selectedCar?.id;
+                const updateCarName = document.querySelector<HTMLInputElement>('#update-car-name');
+                const updateCarColor = document.querySelector<HTMLInputElement>('#update-car-color');
+                if (updateCarName && updateCarColor && selectedCar) {
+                    updateCarName.value = selectedCar.name;
+                    updateCarColor.value = selectedCar.color;
+                }
             })
         );
     }

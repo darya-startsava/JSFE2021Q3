@@ -1,9 +1,10 @@
 import GarageButtonsHTML from './garage-buttons.html';
 import './garage-buttons.scss';
 import Component from '../abstract-component';
-import { createCar } from '../../api';
+import { createCar, updateCar } from '../../api';
 import renderGaragePage from '../../pages/garage';
 import { generateRandomCarName, generateRandomColor } from '../../generate-random-car';
+import store from '../../store';
 
 export default class GarageButtons extends Component {
     constructor() {
@@ -36,6 +37,18 @@ export default class GarageButtons extends Component {
             }
             await Promise.all(promiseArray);
             renderGaragePage();
+        });
+        const updateCarButton = this.container.querySelector('.update-car-button');
+        const updateCarName = this.container.querySelector<HTMLInputElement>('#update-car-name');
+        const updateCarColor = this.container.querySelector<HTMLInputElement>('#update-car-color');
+        updateCarButton?.addEventListener('click', async () => {
+            if (updateCarName && updateCarColor && store.selectedCarId) {
+                await updateCar(store.selectedCarId, {
+                    name: `${updateCarName.value}`,
+                    color: `${updateCarColor.value}`,
+                });
+                renderGaragePage();
+            }
         });
     }
 }
