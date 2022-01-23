@@ -56,6 +56,7 @@ export async function updateCar(id: number, updatedCar: { name: string; color: s
 export async function startEngine(id: number): Promise<JSONStartInform> {
     const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=started`, { method: 'PATCH' });
     const start = await response.json();
+    console.log(start);
     return start;
 }
 
@@ -70,4 +71,11 @@ export async function go(id: number): Promise<JSONDriveInform> {
     const answer = await drive(id);
     console.log(answer);
     return answer;
+}
+
+export async function stopEngine(id: number): Promise<JSONStartInform> {
+    const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=stopped`, { method: 'PATCH' });
+    const stop = await response.json();
+    console.log(stop);
+    return stop;
 }

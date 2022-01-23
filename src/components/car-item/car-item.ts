@@ -1,6 +1,6 @@
 import './car-item.scss';
 import Component from '../abstract-component';
-import { deleteCar, go } from '../../api';
+import { deleteCar, go, stopEngine } from '../../api';
 import renderGaragePage from '../../pages/garage';
 import store2 from '../../store2';
 import store from '../../store';
@@ -81,6 +81,14 @@ export default class CarItem extends Component {
             item.addEventListener('click', async () => {
                 const id = Number(item.dataset.id);
                 await go(id);
+            })
+        );
+
+        const stopButtons = this.container.querySelectorAll<HTMLButtonElement>('.button-stop');
+        stopButtons?.forEach((item) =>
+            item.addEventListener('click', async () => {
+                const id = Number(item.dataset.id);
+                await stopEngine(id);
             })
         );
     }
