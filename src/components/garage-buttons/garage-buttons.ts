@@ -1,7 +1,7 @@
 import GarageButtonsHTML from './garage-buttons.html';
 import './garage-buttons.scss';
 import Component from '../abstract-component';
-import { createCar, go, updateCar } from '../../api';
+import { createCar, race, updateCar } from '../../api';
 import renderGaragePage from '../../pages/garage';
 import { generateRandomCarName, generateRandomColor } from '../../generate-random-car';
 import store from '../../store';
@@ -55,7 +55,7 @@ export default class GarageButtons extends Component {
         raceButton?.addEventListener('click', async () => {
             const promiseArray = [];
             for (let i = 0; i < store2.carsArray.length; i++) {
-                promiseArray.push(go(store2.carsArray[i].id));
+                promiseArray.push(race(store2.carsArray[i].id));
             }
             await Promise.all(promiseArray);
         });

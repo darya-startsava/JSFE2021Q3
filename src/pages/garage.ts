@@ -1,3 +1,4 @@
+import './popup-winner.scss';
 import GarageButtons from '../components/garage-buttons/garage-buttons';
 import CarItem from '../components/car-item/car-item';
 import PrevNextButtons from '../components/prev-next-buttons/prev-next-buttons';
@@ -21,6 +22,9 @@ async function loadCars(): Promise<CarItem[]> {
 export default async function renderGaragePage(): Promise<void> {
     const garageButtons = new GarageButtons();
     const main = document.querySelector('main');
+    const winnerPopup = document.createElement('div');
+    winnerPopup.classList.add('winner-popup');
+    // winnerPopup.innerHTML = 'The winner is Audi Qashqai (10.55s)';
     const garageHeader = document.createElement('h2');
     const garagePage = document.createElement('h3');
 
@@ -41,7 +45,7 @@ export default async function renderGaragePage(): Promise<void> {
     if (main) {
         main.innerHTML = '';
         main.append(garageButtons.render());
-        main.append(garageHeader, garagePage, divCarsItems);
+        main.append(garageHeader, garagePage, winnerPopup, divCarsItems);
         main.append(prevNextButtons.render());
     }
 }

@@ -3,12 +3,11 @@ import JSONValue from './types/json-value-type';
 import store from './store';
 import JSONDriveInform from './types/json-drive-information';
 import JSONStartInform from './types/json-start-information';
-
-const NUMBER_OF_CARS_ON_PAGE = 7;
+import store2 from './store2';
 
 export default async function getCars(
     page = store.carPage,
-    limit = NUMBER_OF_CARS_ON_PAGE
+    limit = store.NUMBER_OF_CARS_ON_PAGE
 ): Promise<{ carsArray: [JSONValue]; count: number }> {
     const response = await fetch(`${ServerUrl.garage}?_page=${page}&_limit=${limit}`);
     const carsArray = await response.json();
@@ -70,6 +69,20 @@ export async function go(id: number): Promise<JSONDriveInform> {
     await startEngine(id);
     const answer = await drive(id);
     console.log(answer);
+    return answer;
+}
+
+export async function race(id: number): Promise<JSONDriveInform> {
+    await startEngine(id);
+    const answer = await drive(id);
+    console.log('answer:', answer);
+    if (answer.success === true) {
+        console.log('id:', id);
+        const winnerPopup = document.querySelector('.winner-popup');
+        if (winnerPopup && winnerPopup.innerHTML === '') {
+            winnerPopup.innerHTML = `The winner is: ${store2.carsArray.find((item) => item.id === id)?.name}`;
+        }
+    }
     return answer;
 }
 
