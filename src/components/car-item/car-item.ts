@@ -1,6 +1,6 @@
 import './car-item.scss';
 import Component from '../abstract-component';
-import { deleteCar } from '../../api';
+import { deleteCar, go } from '../../api';
 import renderGaragePage from '../../pages/garage';
 import store2 from '../../store2';
 import store from '../../store';
@@ -13,8 +13,8 @@ export default class CarItem extends Component {
         const divCarRace = document.createElement('div');
         divCarRace.classList.add('car-race');
         divCarRace.innerHTML = ` <div class="start-stop-buttons">
-        <button>Start</button>
-        <button>Stop</button>
+        <button class="button-start" data-id="${this.id}">Start</button>
+        <button class="button-stop" data-id="${this.id}">Stop</button>
         </div>`;
 
         const svgObject = document.createElement('object');
@@ -74,6 +74,13 @@ export default class CarItem extends Component {
                     updateCarName.value = selectedCar.name;
                     updateCarColor.value = selectedCar.color;
                 }
+            })
+        );
+        const startButtons = this.container.querySelectorAll<HTMLButtonElement>('.button-start');
+        startButtons?.forEach((item) =>
+            item.addEventListener('click', async () => {
+                const id = Number(item.dataset.id);
+                await go(id);
             })
         );
     }

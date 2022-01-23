@@ -1,6 +1,8 @@
 import ServerUrl from './enums/server-url-enum';
 import JSONValue from './types/json-value-type';
 import store from './store';
+import JSONDriveInform from './types/json-drive-information';
+import JSONStartInform from './types/json-start-information';
 
 const NUMBER_OF_CARS_ON_PAGE = 7;
 
@@ -39,7 +41,7 @@ export async function deleteCar(id: number): Promise<JSONValue> {
     return deleted;
 }
 
-export async function updateCar(id: number, updatedCar: {name:string, color:string}): Promise<JSONValue> {
+export async function updateCar(id: number, updatedCar: { name: string; color: string }): Promise<JSONValue> {
     const response = await fetch(`${ServerUrl.garage}/${id}`, {
         method: 'PUT',
         headers: {
@@ -49,4 +51,23 @@ export async function updateCar(id: number, updatedCar: {name:string, color:stri
     });
     const car = await response.json();
     return car;
+}
+
+export async function startEngine(id: number): Promise<JSONStartInform> {
+    const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=started`, { method: 'PATCH' });
+    const start = await response.json();
+    return start;
+}
+
+export async function drive(id: number): Promise<JSONDriveInform> {
+    const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=drive`, { method: 'PATCH' }).catch();
+    const result = response.status;
+    return result !== 200 ? { success: false } : { ...(await response.json()) };
+}
+
+export async function go(id: number): Promise<JSONDriveInform> {
+    await startEngine(id);
+    const answer = await drive(id);
+    console.log(answer);
+    return answer;
 }
