@@ -18,14 +18,14 @@ export default class PrevNextButtons extends Component {
         const buttonPrev = this.container.querySelector('.button-prev-w');
         const buttonNext = this.container.querySelector('.button-next-w');
         function prevPage(): void {
-            if (store.carPage > 1) {
-                store.carPage -= 1;
+            if (store.winnersPage > 1) {
+                store.winnersPage -= 1;
                 renderWinnerPage();
             }
         }
         function nextPage(): void {
-            if (store.carPage < Math.ceil(store2.count / store.NUMBER_OF_WINNERS_ON_PAGE)) {
-                store.carPage += 1;
+            if (store.winnersPage < Math.ceil(store2.count / store.NUMBER_OF_WINNERS_ON_PAGE)) {
+                store.winnersPage += 1;
                 renderWinnerPage();
             }
         }
