@@ -55,11 +55,12 @@ export async function updateCar(id: number, updatedCar: { name: string; color: s
     return car;
 }
 
-export async function startEngine(id: number): Promise<JSONStartInform> {
+export async function startEngine(id: number): Promise<number> {
     const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=started`, { method: 'PATCH' });
     const start = await response.json();
-    console.log(start);
-    return start;
+    const time = Math.round(start.distance / start.velocity / 10) / 100;
+    console.log('start:', start, 'time:', time);
+    return time;
 }
 
 export async function drive(id: number): Promise<JSONDriveInform> {
@@ -75,25 +76,31 @@ export async function go(id: number): Promise<JSONDriveInform> {
     return answer;
 }
 
-export async function race(id: number): Promise<JSONDriveInform> {
-    await startEngine(id);
-    const answer = await drive(id);
-    console.log('answer:', answer);
-    if (answer.success === true) {
-        console.log('id:', id);
-        const winnerPopup = document.querySelector('.winner-popup');
-        if (winnerPopup && winnerPopup.innerHTML === '') {
-            winnerPopup.innerHTML = `The winner is: ${store2.carsArray.find((item) => item.id === id)?.name}`;
-        }
-    }
-    return answer;
+async function createWinner(newWinner: object): Promise<JSONWinnerInform> {
+    const response = await fetch(ServerUrl.winners, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newWinner),
+    });
+    const winner = await response.json();
+    return winner;
 }
 
-export async function stopEngine(id: number): Promise<JSONStartInform> {
-    const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=stopped`, { method: 'PATCH' });
-    const stop = await response.json();
-    console.log(stop);
-    return stop;
+async function updateWinner(
+    id: number,
+    winnerCar: { wins: number; time: number }
+): Promise<{ wins: number; time: number }> {
+    const response = await fetch(`${ServerUrl.winners}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(winnerCar),
+    });
+    const winner = await response.json();
+    return winner;
 }
 
 export async function getWinners(
@@ -106,6 +113,38 @@ export async function getWinners(
     const winnersArray = await response.json();
     const winnersCount = Number(response.headers.get('X-Total-Count'));
     return { winnersArray, winnersCount };
+}
+
+export async function race(id: number): Promise<JSONDriveInform> {
+    const time = await startEngine(id);
+    const answer = await drive(id);
+    console.log('answer:', answer);
+    if (answer.success === true) {
+        console.log('id:', id);
+        const winnerPopup = document.querySelector('.winner-popup');
+        if (winnerPopup && winnerPopup.innerHTML === '') {
+            winnerPopup.innerHTML = `The winner is: ${
+                store2.carsArray.find((item) => item.id === id)?.name
+            } (${time}s)`;
+            const { winnersArray } = await getWinners(Sort.id, Order.ASC);
+            const winnerAgain = winnersArray.find((item) => item.id === id);
+            if (winnerAgain) {
+                const newTime = Math.min(winnerAgain.time, time);
+                await updateWinner(winnerAgain.id, { wins: winnerAgain.wins + 1, time: newTime });
+            } else {
+                await createWinner({ id, wins: 1, time });
+                store2.winnersCount += 1;
+            }
+        }
+    }
+    return answer;
+}
+
+export async function stopEngine(id: number): Promise<JSONStartInform> {
+    const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=stopped`, { method: 'PATCH' });
+    const stop = await response.json();
+    console.log(stop);
+    return stop;
 }
 
 export async function getWinnersArray(sort: Sort, order: Order): Promise<Array<JSONValue>> {
