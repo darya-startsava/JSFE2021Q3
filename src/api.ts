@@ -4,6 +4,9 @@ import store from './store';
 import JSONDriveInform from './types/json-drive-information';
 import JSONStartInform from './types/json-start-information';
 import store2 from './store2';
+import Sort from './enums/sort-enum';
+import Order from './enums/order-enum';
+import JSONWinnerInform from './types/json-winner-information';
 
 export default async function getCars(
     page = store.carPage,
@@ -91,4 +94,27 @@ export async function stopEngine(id: number): Promise<JSONStartInform> {
     const stop = await response.json();
     console.log(stop);
     return stop;
+}
+
+export async function getWinners(
+    sort: Sort,
+    order: Order,
+    page = store.winnersPage,
+    limit = store.NUMBER_OF_WINNERS_ON_PAGE
+): Promise<{ winnersArray: [JSONWinnerInform]; winnersCount: number }> {
+    const response = await fetch(`${ServerUrl.winners}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`);
+    const winnersArray = await response.json();
+    const winnersCount = Number(response.headers.get('X-Total-Count'));
+    return { winnersArray, winnersCount };
+}
+
+export async function getWinnersArray(sort: Sort, order: Order): Promise<Array<JSONValue>> {
+    const result = await getWinners(sort, order);
+    const idArray = result.winnersArray.map((item) => item.id);
+    const promiseArray = [];
+    for (let i = 0; i < idArray.length; i++) {
+        promiseArray.push(getCar(idArray[i]));
+    }
+    const carArray = await Promise.all(promiseArray);
+    return carArray;
 }

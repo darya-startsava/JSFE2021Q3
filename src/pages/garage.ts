@@ -22,9 +22,10 @@ async function loadCars(): Promise<CarItem[]> {
 export default async function renderGaragePage(): Promise<void> {
     const garageButtons = new GarageButtons();
     const main = document.querySelector('main');
+    const garageWrapper = document.createElement('div');
+    garageWrapper.classList.add('garage-wrapper');
     const winnerPopup = document.createElement('div');
     winnerPopup.classList.add('winner-popup');
-    // winnerPopup.innerHTML = 'The winner is Audi Qashqai (10.55s)';
     const garageHeader = document.createElement('h2');
     const garagePage = document.createElement('h3');
 
@@ -42,10 +43,14 @@ export default async function renderGaragePage(): Promise<void> {
     }
     renderCars(carItems);
 
+    if (garageWrapper) {
+        garageWrapper.innerHTML = '';
+        garageWrapper.append(garageButtons.render());
+        garageWrapper.append(garageHeader, garagePage, winnerPopup, divCarsItems);
+        garageWrapper.append(prevNextButtons.render());
+    }
     if (main) {
         main.innerHTML = '';
-        main.append(garageButtons.render());
-        main.append(garageHeader, garagePage, winnerPopup, divCarsItems);
-        main.append(prevNextButtons.render());
+        main.append(garageWrapper);
     }
 }
