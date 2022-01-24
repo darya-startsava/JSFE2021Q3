@@ -1,7 +1,7 @@
 import './popup-winner.scss';
 import GarageButtons from '../components/garage-buttons/garage-buttons';
 import CarItem from '../components/car-item/car-item';
-import PrevNextButtons from '../components/prev-next-buttons/prev-next-buttons';
+import PrevNextButtons from '../components/prev-next-buttons/prev-next-buttons-garage';
 import getCars from '../api';
 import store from '../store';
 import store2 from '../store2';

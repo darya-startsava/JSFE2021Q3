@@ -8,15 +8,15 @@ export default class PrevNextButtons extends Component {
         super('div', 'prev-next-buttons');
     }
     render(): HTMLElement {
-        this.container.innerHTML = `<button class="button-prev">Prev page</button>
-        <button class="button-next">Next page</button>`;
+        this.container.innerHTML = `<button class="button-prev-g">Prev page</button>
+        <button class="button-next-g">Next page</button>`;
         this.addListeners();
         return this.container;
     }
 
     addListeners(): void {
-        const buttonPrev = this.container.querySelector('.button-prev');
-        const buttonNext = this.container.querySelector('.button-next');
+        const buttonPrev = this.container.querySelector('.button-prev-g');
+        const buttonNext = this.container.querySelector('.button-next-g');
         function prevPage(): void {
             if (store.carPage > 1) {
                 store.carPage -= 1;
@@ -24,7 +24,7 @@ export default class PrevNextButtons extends Component {
             }
         }
         function nextPage(): void {
-            if (store.carPage < Math.ceil(store2.count / 7)) {
+            if (store.carPage < Math.ceil(store2.count / store.NUMBER_OF_CARS_ON_PAGE)) {
                 store.carPage += 1;
                 renderGaragePage();
             }
