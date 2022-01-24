@@ -35,11 +35,20 @@ export async function createCar(newCar: object): Promise<JSONValue> {
     return car;
 }
 
+async function deleteWinner(id: number): Promise<JSONWinnerInform> {
+    const response = await fetch(`${ServerUrl.winners}/${id}`, {
+        method: 'DELETE',
+    });
+    const deleted = await response.json();
+    return deleted;
+}
+
 export async function deleteCar(id: number): Promise<JSONValue> {
     const response = await fetch(`${ServerUrl.garage}/${id}`, {
         method: 'DELETE',
     });
     const deleted = await response.json();
+    await deleteWinner(id);
     return deleted;
 }
 
