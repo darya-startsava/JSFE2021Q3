@@ -3,6 +3,11 @@
 $background-color: #421a55;
 $text-color: #fe8b01;
 
+%page-wrapper {
+    height: inherit;
+    width: inherit;
+}
+
 body {
     position: relative;
     background-color: $background-color;
@@ -10,4 +15,9 @@ body {
     font-family: 'Roboto', sans-serif;
     font-style: italic;
     font-weight: 300;
+}
+
+.garage-wrapper,
+.winners-wrapper {
+    @extend %page-wrapper;
 }

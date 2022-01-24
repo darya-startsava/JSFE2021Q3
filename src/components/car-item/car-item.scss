@@ -30,14 +30,16 @@ $race-color: #33b333;
     width: 60px;
 }
 
-.car {
-    @extend %background-image;
-    left: 70px;
-    background-image: url('../../assets/svg/car.svg');
-}
-
 .flag {
     @extend %background-image;
     right: 70px;
     background-image: url('../../assets/svg/racing-flag.svg');
+}
+
+.svgObject {
+    position: absolute;
+    left: 70px;
+    bottom: 0;
+    height: 75px;
+    width: 100px;
 }

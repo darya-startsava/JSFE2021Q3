@@ -1,0 +1,18 @@
+$text-color: #33b333;
+$text-shadow: #f4b404;
+
+.winner-popup {
+    position: absolute;
+    z-index: 10;
+    top: 34%;
+    left: 30%;
+    width: 50%;
+    height: 100px;
+    font-size: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    text-transform: uppercase;
+    color: $text-color;
+    text-shadow: -2px 0 $text-shadow, 0 2px $text-shadow, 2px 0 $text-shadow, 0 -2px $text-shadow;
+}

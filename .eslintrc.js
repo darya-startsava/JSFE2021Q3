@@ -26,6 +26,7 @@ module.exports = {
                 'ts': 'never'
             }
         ],
+        'import/no-cycle':'off',
         'no-plusplus': 'off',
         'no-shadow': 'off',
         'no-restricted-syntax': 'off',

@@ -1,13 +1,14 @@
 .footer {
     position: fixed;
     bottom: 0px;
-    left: 15%;
+    left: 30%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
     height: 5vh;
-    width: 70%;
+    width: 40%;
+    min-width: 300px;
     text-transform: uppercase;
 }
 

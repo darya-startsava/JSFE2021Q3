@@ -1,19 +1,58 @@
-import PrevNextButtons from '../components/prev-next-buttons/prev-next-buttons';
+import PrevNextButtons from '../components/prev-next-buttons/prev-next-buttons-winners';
+import TableRow from '../components/winners-table/table-row';
 import Winners from '../components/winners-table/winners-table';
+import { getWinners, getWinnersArray } from '../api';
+import Sort from '../enums/sort-enum';
+import Order from '../enums/order-enum';
+import store2 from '../store2';
+import WinnersTableHTML from '../components/winners-table/winners-table.html';
+import store from '../store';
 
-export default function renderWinnerPage(): void {
+async function loadWinners(sort: Sort, order: Order): Promise<TableRow[]> {
+    const { winnersArray, winnersCount } = await getWinners(sort, order);
+    store2.winnersArray = winnersArray;
+    store2.winnersCount = winnersCount;
+    const carArray = await getWinnersArray(sort, order);
+    const tableRows: TableRow[] = [];
+    for (let i = 0; i < winnersArray.length; i++) {
+        const { id, wins, time } = winnersArray[i];
+        const { name, color } = carArray[i];
+        const tableRow = new TableRow(i + 1, name, color, id, wins, time);
+        tableRows.push(tableRow);
+    }
+    return tableRows;
+}
+
+export default async function renderWinnerPage(): Promise<void> {
     const main = document.querySelector('main');
+    const winnersWrapper = document.createElement('div');
+    winnersWrapper.classList.add('garage-wrapper');
     const winnersHeader = document.createElement('h2');
     const winnersPage = document.createElement('h3');
-    winnersHeader.innerHTML = 'Winners(4)';
-    winnersPage.innerHTML = 'Page#1';
+    winnersHeader.innerHTML = `Winners(${store2.winnersCount})`;
+    winnersPage.innerHTML = `Page#${store.winnersPage}`;
     const winners = new Winners();
     const prevNextButtons = new PrevNextButtons();
-    if (main) {
-        main.innerHTML = '';
-        main.append(winnersHeader);
-        main.append(winnersPage);
-        main.append(winners.render());
-        main.append(prevNextButtons.render());
+    if (winnersWrapper) {
+        winnersWrapper.innerHTML = '';
+        winnersWrapper.append(winnersHeader);
+        winnersWrapper.append(winnersPage);
+        winnersWrapper.append(winners.render());
+        winnersWrapper.append(prevNextButtons.render());
+        if (main) {
+            main.innerHTML = '';
+            main.append(winnersWrapper);
+        }
     }
+    const tableRows = await loadWinners(Sort.id, Order.ASC);
+    const winnersTable = document.querySelector('.winners-table');
+    if (winnersTable) {
+        winnersTable.innerHTML = WinnersTableHTML;
+    }
+    function renderWinners(tableRows: TableRow[]): void {
+        for (const item of tableRows) {
+            winnersTable?.append(item.render());
+        }
+    }
+    renderWinners(tableRows);
 }
