@@ -1,0 +1,30 @@
+.footer {
+    position: fixed;
+    bottom: 0px;
+    left: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    height: 5vh;
+    width: 70%;
+    text-transform: uppercase;
+}
+
+.logo-rs-school {
+    height: 50px;
+    width: 85px;
+    background: url('../../assets/svg/rs_school_js.svg');
+    background-repeat: no-repeat;
+    background-size: auto auto;
+}
+
+.github-link {
+    text-decoration: none;
+    filter: invert(60%) sepia(75%) saturate(2124%) hue-rotate(355deg) brightness(97%) contrast(112%);
+}
+
+.github-link:hover,
+.logo-rs-school:hover {
+    filter: invert(67%) sepia(79%) saturate(2976%) hue-rotate(12deg) brightness(109%) contrast(106%);
+}

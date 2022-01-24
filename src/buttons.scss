@@ -1,0 +1,103 @@
+$button-color: #fe8b01;
+$active-button-color: #b22032;
+$hover-button-color: #f4b404;
+$border-color: #3b3b6b;
+$hover-border-color: #33b333;
+$button-text-color: #3b3b6b;
+
+%buttons-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+%button {
+    padding: 2px 15px;
+    background-color: $button-color;
+    transition: background-color 0.5s;
+    border-radius: 5px;
+    border: $border-color solid 2px;
+    color: $button-text-color;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+%button-hover {
+    background-color: $hover-button-color;
+    border: $hover-border-color solid 2px;
+}
+
+%button-active {
+    background-color: $active-button-color;
+}
+
+// HEADER
+
+.header-buttons,
+.car-buttons {
+    @extend %buttons-wrapper;
+
+    button {
+        @extend %button;
+    }
+    button:hover {
+        @extend %button-hover;
+    }
+    button:active {
+        @extend %button-active;
+    }
+}
+
+// GARAGE
+
+.garage-buttons-wrapper {
+    button {
+        @extend %button;
+    }
+
+    button:hover {
+        @extend %button-hover;
+    }
+
+    button:active {
+        @extend %button-active;
+    }
+}
+
+// CAR-ITEM
+
+.start-stop-buttons {
+    button {
+        @extend %button;
+        padding: 2px 5px;
+    }
+
+    button:hover {
+        @extend %button-hover;
+    }
+
+    button:active {
+        @extend %button-active;
+    }
+}
+
+// WINNERS
+
+.prev-next-buttons {
+    @extend %buttons-wrapper;
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    button {
+        @extend %button;
+    }
+
+    button:hover {
+        @extend %button-hover;
+    }
+
+    button:active {
+        @extend %button-active;
+    }
+}

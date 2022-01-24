@@ -32,6 +32,10 @@ const baseConfig = {
                 test: /\.svg/,
                 type: 'asset/inline',
             },
+            {
+                test: /\.html$/i,
+                loader: "html-loader",
+            },
         ],
     },
     resolve: {

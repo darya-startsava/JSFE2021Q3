@@ -16,11 +16,20 @@ module.exports = {
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-unused-vars': 'error',
         'no-console': 'error',
         'import/no-unresolved': 'error',
+        'import/extensions': [
+            'error',
+            'ignorePackages',
+            {
+                'ts': 'never'
+            }
+        ],
         'no-plusplus': 'off',
         'no-shadow': 'off',
         'no-restricted-syntax': 'off',
+        'no-unused-vars': 'off', /*instead of this rule was added '@typescript-eslint/no-unused-vars'*/
         // formatting is forced by prettier
         'linebreak-style': 'off',
         'implicit-arrow-linebreak': 'off',

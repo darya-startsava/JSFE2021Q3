@@ -1,0 +1,43 @@
+$race-color: #33b333;
+
+%background-image {
+    position: absolute;
+    bottom: 0;
+    height: 75px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-size: 100px 100px;
+}
+
+.car-item {
+    margin: 20px 0;
+}
+.car-name {
+    align-self: center;
+}
+
+.car-race {
+    position: relative;
+    width: 100%;
+    border-bottom: 5px dashed $race-color;
+}
+
+.start-stop-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px 0;
+    width: 60px;
+}
+
+.car {
+    @extend %background-image;
+    left: 70px;
+    background-image: url('../../assets/svg/car.svg');
+}
+
+.flag {
+    @extend %background-image;
+    right: 70px;
+    background-image: url('../../assets/svg/racing-flag.svg');
+}
