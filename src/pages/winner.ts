@@ -24,6 +24,7 @@ async function loadWinners(sort: Sort, order: Order): Promise<TableRow[]> {
 }
 
 export default async function renderWinnerPage(): Promise<void> {
+    const tableRows = await loadWinners(Sort.id, Order.ASC);
     const main = document.querySelector('main');
     const winnersWrapper = document.createElement('div');
     winnersWrapper.classList.add('garage-wrapper');
@@ -44,7 +45,7 @@ export default async function renderWinnerPage(): Promise<void> {
             main.append(winnersWrapper);
         }
     }
-    const tableRows = await loadWinners(Sort.id, Order.ASC);
+
     const winnersTable = document.querySelector('.winners-table');
     if (winnersTable) {
         winnersTable.innerHTML = WinnersTableHTML;

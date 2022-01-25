@@ -138,7 +138,7 @@ export async function race(id: number): Promise<JSONDriveInform> {
     if (answer.success === true) {
         console.log('id:', id);
         const winnerPopup = document.querySelector('.winner-popup');
-        if (winnerPopup && winnerPopup.innerHTML === '') {
+        if (!store.isReset && winnerPopup && winnerPopup.innerHTML === '') {
             winnerPopup.innerHTML = `The winner is: ${
                 store2.carsArray.find((item) => item.id === id)?.name
             } (${time}s)`;

@@ -53,11 +53,27 @@ export default class GarageButtons extends Component {
         });
         const raceButton = this.container.querySelector('.button-race');
         raceButton?.addEventListener('click', async () => {
+            store.resetArray = [];
+            store.isReset = false;
             const promiseArray = [];
             for (let i = 0; i < store2.carsArray.length; i++) {
                 promiseArray.push(race(store2.carsArray[i].id));
             }
             await Promise.all(promiseArray);
+        });
+        const resetButton = this.container.querySelector('.button-reset');
+        resetButton?.addEventListener('click', () => {
+            store.falseArray = [];
+            store.isReset = true;
+            const carObjects = document.querySelectorAll<HTMLElement>('.svgObject');
+            for (let i = 0; i < carObjects.length; i++) {
+                carObjects[i].style.left = '70px';
+                store.resetArray.push(Number(carObjects[i].dataset.id));
+            }
+            const winnerPopup = document.querySelector('.winner-popup');
+            if (winnerPopup) {
+                winnerPopup.innerHTML = '';
+            }
         });
     }
 }
