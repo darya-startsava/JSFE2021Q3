@@ -20,13 +20,13 @@ export default class PrevNextButtons extends Component {
         function prevPage(): void {
             if (store.winnersPage > 1) {
                 store.winnersPage -= 1;
-                renderWinnerPage();
+                renderWinnerPage(store.sort, store.order);
             }
         }
         function nextPage(): void {
             if (store.winnersPage < Math.ceil(store2.winnersCount / store.NUMBER_OF_WINNERS_ON_PAGE)) {
                 store.winnersPage += 1;
-                renderWinnerPage();
+                renderWinnerPage(store.sort, store.order);
             }
         }
         buttonNext?.addEventListener('click', nextPage);

@@ -5,7 +5,6 @@ import { getWinners, getWinnersArray } from '../api';
 import Sort from '../enums/sort-enum';
 import Order from '../enums/order-enum';
 import store2 from '../store2';
-import WinnersTableHTML from '../components/winners-table/winners-table.html';
 import store from '../store';
 
 async function loadWinners(sort: Sort, order: Order): Promise<TableRow[]> {
@@ -23,8 +22,8 @@ async function loadWinners(sort: Sort, order: Order): Promise<TableRow[]> {
     return tableRows;
 }
 
-export default async function renderWinnerPage(): Promise<void> {
-    const tableRows = await loadWinners(Sort.id, Order.ASC);
+export default async function renderWinnerPage(sort: Sort, order: Order): Promise<void> {
+    const tableRows = await loadWinners(sort, order);
     const main = document.querySelector('main');
     const winnersWrapper = document.createElement('div');
     winnersWrapper.classList.add('garage-wrapper');
@@ -46,13 +45,13 @@ export default async function renderWinnerPage(): Promise<void> {
         }
     }
 
-    const winnersTable = document.querySelector('.winners-table');
-    if (winnersTable) {
-        winnersTable.innerHTML = WinnersTableHTML;
+    const tableBody = document.querySelector('.table-body');
+    if (tableBody) {
+        tableBody.innerHTML = '';
     }
     function renderWinners(tableRows: TableRow[]): void {
         for (const item of tableRows) {
-            winnersTable?.append(item.render());
+            tableBody?.append(item.render());
         }
     }
     renderWinners(tableRows);

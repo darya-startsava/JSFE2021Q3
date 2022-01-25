@@ -6,6 +6,11 @@ $button-text-color: #3b3b6b;
     width: 25px;
 }
 
+.wins,
+.best-time {
+    cursor: pointer;
+}
+
 td {
     text-align: center;
 }

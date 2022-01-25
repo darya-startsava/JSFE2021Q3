@@ -1,3 +1,6 @@
+import Order from './enums/order-enum';
+import Sort from './enums/sort-enum';
+
 const store: {
     carPage: number;
     NUMBER_OF_CARS_ON_PAGE: number;
@@ -8,6 +11,8 @@ const store: {
     resetArray: Array<number>;
     isReset: boolean;
     stoppedArray: Array<number>;
+    sort: Sort;
+    order: Order;
 } = {
     carPage: 1,
     NUMBER_OF_CARS_ON_PAGE: 7,
@@ -18,6 +23,8 @@ const store: {
     resetArray: [],
     isReset: false,
     stoppedArray: [],
+    sort: Sort.id,
+    order: Order.ASC,
 };
 
 export default store;
