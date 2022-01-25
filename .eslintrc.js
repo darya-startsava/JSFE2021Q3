@@ -30,6 +30,7 @@ module.exports = {
         'no-plusplus': 'off',
         'no-shadow': 'off',
         'no-restricted-syntax': 'off',
+        'no-param-reassign': 'off',
         'no-unused-vars': 'off', /*instead of this rule was added '@typescript-eslint/no-unused-vars'*/
         // formatting is forced by prettier
         'linebreak-style': 'off',

@@ -4,12 +4,14 @@ const store: {
     selectedCarId: number | undefined;
     winnersPage: number;
     NUMBER_OF_WINNERS_ON_PAGE: number;
+    falseArray: Array<number>;
 } = {
     carPage: 1,
     NUMBER_OF_CARS_ON_PAGE: 7,
     selectedCarId: undefined,
     winnersPage: 1,
     NUMBER_OF_WINNERS_ON_PAGE: 10,
+    falseArray: [],
 };
 
 export default store;

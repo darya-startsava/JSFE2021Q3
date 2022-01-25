@@ -7,6 +7,7 @@ import store2 from './store2';
 import Sort from './enums/sort-enum';
 import Order from './enums/order-enum';
 import JSONWinnerInform from './types/json-winner-information';
+import animation from './animation';
 
 export default async function getCars(
     page = store.carPage,
@@ -68,7 +69,6 @@ export async function startEngine(id: number): Promise<number> {
     const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=started`, { method: 'PATCH' });
     const start = await response.json();
     const time = Math.round(start.distance / start.velocity / 10) / 100;
-    console.log('start:', start, 'time:', time);
     return time;
 }
 
@@ -79,9 +79,14 @@ export async function drive(id: number): Promise<JSONDriveInform> {
 }
 
 export async function go(id: number): Promise<JSONDriveInform> {
-    await startEngine(id);
+    const time = await startEngine(id);
+    console.log('2:', id, time);
+    animation(id, time);
     const answer = await drive(id);
-    console.log(answer);
+    console.log('answer:', answer);
+    if (answer.success === false) {
+        store.falseArray.push(id);
+    }
     return answer;
 }
 
@@ -126,6 +131,8 @@ export async function getWinners(
 
 export async function race(id: number): Promise<JSONDriveInform> {
     const time = await startEngine(id);
+    console.log('3:', id, time);
+    animation(id, time);
     const answer = await drive(id);
     console.log('answer:', answer);
     if (answer.success === true) {
@@ -145,6 +152,9 @@ export async function race(id: number): Promise<JSONDriveInform> {
                 store2.winnersCount += 1;
             }
         }
+    } else {
+        store.falseArray.push(id);
+        console.log(store.falseArray);
     }
     return answer;
 }

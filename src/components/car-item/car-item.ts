@@ -19,6 +19,7 @@ export default class CarItem extends Component {
 
         const svgObject = document.createElement('object');
         svgObject.classList.add('svgObject');
+        svgObject.dataset.id = `${this.id}`;
         svgObject.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100" height="100" viewBox="0 0 256 256" xml:space="preserve">
         <desc>Created with Fabric.js 1.7.22</desc>
         <defs>
