@@ -14,7 +14,7 @@ export default class CarItem extends Component {
         divCarRace.classList.add('car-race');
         divCarRace.innerHTML = ` <div class="start-stop-buttons">
         <button class="button-start" data-id="${this.id}">Start</button>
-        <button class="button-stop" data-id="${this.id}">Stop</button>
+        <button class="button-stop" data-id="${this.id}"disabled>Stop</button>
         </div>`;
 
         const svgObject = document.createElement('object');
@@ -78,17 +78,29 @@ export default class CarItem extends Component {
             })
         );
         const startButtons = this.container.querySelectorAll<HTMLButtonElement>('.button-start');
+        const stopButtons = this.container.querySelectorAll<HTMLButtonElement>('.button-stop');
         startButtons?.forEach((item) =>
             item.addEventListener('click', async () => {
+                item.disabled = true;
                 const id = Number(item.dataset.id);
+                stopButtons?.forEach((i) => {
+                    if (Number(i.dataset.id) === id) {
+                        i.disabled = false;
+                    }
+                });
                 await go(id);
             })
         );
 
-        const stopButtons = this.container.querySelectorAll<HTMLButtonElement>('.button-stop');
         stopButtons?.forEach((item) =>
             item.addEventListener('click', async () => {
+                item.disabled = true;
                 const id = Number(item.dataset.id);
+                startButtons?.forEach((i) => {
+                    if (Number(i.dataset.id) === id) {
+                        i.disabled = false;
+                    }
+                });
                 await stopEngine(id);
                 const carObjects = document.querySelectorAll<HTMLElement>('.svgObject');
                 for (let i = 0; i < carObjects.length; i++) {
