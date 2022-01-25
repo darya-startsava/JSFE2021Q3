@@ -66,6 +66,14 @@ export async function updateCar(id: number, updatedCar: { name: string; color: s
 }
 
 export async function startEngine(id: number): Promise<number> {
+    console.log('stoppedArray1:', store.stoppedArray);
+    if (store.stoppedArray.includes(id)) {
+        store.stoppedArray.splice(store.stoppedArray.indexOf(id), 1);
+    }
+    if (store.falseArray.includes(id)) {
+        store.falseArray.splice(store.stoppedArray.indexOf(id), 1);
+    }
+    console.log('store:', store);
     const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=started`, { method: 'PATCH' });
     const start = await response.json();
     const time = Math.round(start.distance / start.velocity / 10) / 100;
@@ -162,7 +170,9 @@ export async function race(id: number): Promise<JSONDriveInform> {
 export async function stopEngine(id: number): Promise<JSONStartInform> {
     const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=stopped`, { method: 'PATCH' });
     const stop = await response.json();
-    console.log(stop);
+    console.log('stop:', id);
+    store.stoppedArray.push(id);
+    console.log('stop:', id, store.stoppedArray);
     return stop;
 }
 

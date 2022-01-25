@@ -7,6 +7,7 @@ const store: {
     falseArray: Array<number>;
     resetArray: Array<number>;
     isReset: boolean;
+    stoppedArray: Array<number>;
 } = {
     carPage: 1,
     NUMBER_OF_CARS_ON_PAGE: 7,
@@ -16,6 +17,7 @@ const store: {
     falseArray: [],
     resetArray: [],
     isReset: false,
+    stoppedArray: [],
 };
 
 export default store;

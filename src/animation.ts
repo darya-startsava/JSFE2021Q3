@@ -27,6 +27,11 @@ export default function animation(id: number, time: number): void {
                     carObjects[i].style.left = '70px';
                     clearInterval(refreshIntervalId);
                 }
+                if (store.stoppedArray.includes(id)) {
+                    store.stoppedArray.splice(store.stoppedArray.indexOf(id), 1);
+                    carObjects[i].style.left = '70px';
+                    clearInterval(refreshIntervalId);
+                }
             }, 50);
         }
     }

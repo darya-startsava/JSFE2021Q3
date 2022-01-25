@@ -90,6 +90,12 @@ export default class CarItem extends Component {
             item.addEventListener('click', async () => {
                 const id = Number(item.dataset.id);
                 await stopEngine(id);
+                const carObjects = document.querySelectorAll<HTMLElement>('.svgObject');
+                for (let i = 0; i < carObjects.length; i++) {
+                    if (Number(carObjects[i].dataset.id) === id) {
+                        carObjects[i].style.left = '70px';
+                    }
+                }
             })
         );
     }
