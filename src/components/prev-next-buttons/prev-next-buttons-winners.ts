@@ -24,7 +24,7 @@ export default class PrevNextButtons extends Component {
             }
         }
         function nextPage(): void {
-            if (store.winnersPage < Math.ceil(store2.count / store.NUMBER_OF_WINNERS_ON_PAGE)) {
+            if (store.winnersPage < Math.ceil(store2.winnersCount / store.NUMBER_OF_WINNERS_ON_PAGE)) {
                 store.winnersPage += 1;
                 renderWinnerPage();
             }
