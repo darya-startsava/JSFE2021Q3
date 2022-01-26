@@ -35,6 +35,11 @@ $inactive-button-color: #969492;
 
 .disabled {
     background-color: $inactive-button-color !important;
+    border: $inactive-button-color solid 2px !important;
+}
+
+.disabled:hover {
+    border: $inactive-button-color solid 2px !important;
 }
 
 // HEADER

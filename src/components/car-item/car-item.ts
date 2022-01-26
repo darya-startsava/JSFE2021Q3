@@ -71,7 +71,12 @@ export default class CarItem extends Component {
                 store.selectedCarId = selectedCar?.id;
                 const updateCarName = document.querySelector<HTMLInputElement>('#update-car-name');
                 const updateCarColor = document.querySelector<HTMLInputElement>('#update-car-color');
-                if (updateCarName && updateCarColor && selectedCar) {
+                const updateCarButton = document.querySelector<HTMLButtonElement>('.update-car-button');
+                if (updateCarName && updateCarColor && selectedCar && updateCarButton) {
+                    updateCarName.disabled = false;
+                    updateCarColor.disabled = false;
+                    updateCarButton.disabled = false;
+                    updateCarButton.classList.remove('disabled');
                     updateCarName.value = selectedCar.name;
                     updateCarColor.value = selectedCar.color;
                 }
