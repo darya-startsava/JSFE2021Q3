@@ -27,7 +27,7 @@ export default class SizeFilter extends Component implements Filter {
                 this.sizes = [];
                 sizeButtons.forEach((item) => {
                     if (item.classList.contains('active-shape-size')) {
-                        this.sizes.push(item.value);
+                        this.sizes.push(item.ariaLabel);
                     }
                 });
                 localStorage.setItem('StDaTa-sizes', JSON.stringify(this.sizes));
@@ -39,7 +39,7 @@ export default class SizeFilter extends Component implements Filter {
     loadFilter(): void {
         const sizeButtons = this.container.querySelectorAll<HTMLInputElement>('.size-button');
         sizeButtons.forEach((item) => {
-            if (this.sizes.indexOf(item.value) !== -1) {
+            if (this.sizes.indexOf(item.ariaLabel) !== -1) {
                 item.classList.add('active-shape-size');
             }
         });

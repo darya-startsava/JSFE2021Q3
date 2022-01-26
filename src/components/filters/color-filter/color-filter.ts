@@ -27,7 +27,7 @@ export default class ColorFilter extends Component implements Filter {
                 this.colors = [];
                 colorButtons.forEach((item) => {
                     if (item.classList.contains('active-color')) {
-                        this.colors.push(item.value);
+                        this.colors.push(item.ariaLabel);
                     }
                 });
                 localStorage.setItem('StDaTa-colors', JSON.stringify(this.colors));
@@ -39,7 +39,7 @@ export default class ColorFilter extends Component implements Filter {
     loadFilter(): void {
         const colorButtons = this.container.querySelectorAll<HTMLInputElement>('.color-button');
         colorButtons.forEach((item) => {
-            if (this.colors.indexOf(item.value) !== -1) {
+            if (this.colors.indexOf(item.ariaLabel) !== -1) {
                 item.classList.add('active-color');
             }
         });

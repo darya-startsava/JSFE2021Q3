@@ -26,7 +26,7 @@ export default class ShapeFilter extends Component implements Filter {
                 this.shapes = [];
                 shapeButtons.forEach((item) => {
                     if (item.classList.contains('active-shape-size')) {
-                        this.shapes.push(item.value);
+                        this.shapes.push(item.ariaLabel);
                     }
                 });
                 localStorage.setItem('StDaTa-shapes', JSON.stringify(this.shapes));
@@ -38,7 +38,7 @@ export default class ShapeFilter extends Component implements Filter {
     loadFilter(): void {
         const shapeButtons = this.container.querySelectorAll<HTMLInputElement>('.shape-button');
         shapeButtons.forEach((item) => {
-            if (this.shapes.indexOf(item.value) !== -1) {
+            if (this.shapes.indexOf(item.ariaLabel) !== -1) {
                 item.classList.add('active-shape-size');
             }
         });

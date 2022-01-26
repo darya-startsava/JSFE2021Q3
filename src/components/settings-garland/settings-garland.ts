@@ -35,7 +35,7 @@ export default class SettingsGarland extends Component {
             item.addEventListener('click', () => {
                 bulbs.forEach((bulb) => {
                     removeClasses(bulb);
-                    bulb.classList.add(`${item.value}`);
+                    bulb.classList.add(`${item.ariaLabel}`);
                 });
             });
         });

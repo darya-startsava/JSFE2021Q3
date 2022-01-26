@@ -8,6 +8,8 @@ import readData from './service';
 import DecorationCard from './decoration-card/decoration-card';
 import dragNDrop from './drag-n-drop/drag-n-drop';
 
+const DECORATIONS_NUMBER = 20;
+
 export function bootstrap(): void {
     const decorationImages = document?.querySelectorAll<HTMLElement>('.decoration-image');
     if (decorationImages) {
@@ -53,7 +55,7 @@ export function bootstrap(): void {
                 decorationsWrapper?.append(decorationCard.render());
             }
         } else {
-            for (let j = 0; j < 20; j++) {
+            for (let j = 0; j < DECORATIONS_NUMBER; j++) {
                 const decorationCard = new DecorationCard(data[j].num, data[j].count, (j + 1).toString());
                 decorationsWrapper?.append(decorationCard.render());
             }
