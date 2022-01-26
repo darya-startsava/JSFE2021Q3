@@ -63,10 +63,13 @@ export default class GarageButtons extends Component {
                 resetButton.classList.remove('disabled');
             }
             const promiseArray = [];
+            store.currentRace += 1;
             for (let i = 0; i < store2.carsArray.length; i++) {
                 promiseArray.push(startEngine(store2.carsArray[i].id));
             }
-            await Promise.all(promiseArray).then((value) => value.forEach((item) => race(item.time, item.id)));
+            await Promise.all(promiseArray).then((value) => {
+                value.forEach((item) => race(store.currentRace, item.time, item.id));
+            });
         });
         resetButton?.addEventListener('click', () => {
             store.falseArray = [];
@@ -82,7 +85,6 @@ export default class GarageButtons extends Component {
                 carObjects[i].style.left = '70px';
                 store.resetArray.push(Number(carObjects[i].dataset.id));
             }
-            console.log(store.resetArray);
             const winnerPopup = document.querySelector('.winner-popup');
             if (winnerPopup) {
                 winnerPopup.innerHTML = '';

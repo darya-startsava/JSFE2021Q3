@@ -133,27 +133,30 @@ export async function getWinners(
     return { winnersArray, winnersCount };
 }
 
-export async function race(time: number, id: number): Promise<JSONDriveInform> {
+export async function race(currentRace: number, time: number, id: number): Promise<JSONDriveInform> {
     animation(id, time);
     const answer = await drive(id);
-    if (answer.success === true) {
-        const winnerPopup = document.querySelector('.winner-popup');
-        if (!store.isReset && winnerPopup && winnerPopup.innerHTML === '') {
-            winnerPopup.innerHTML = `The winner is: ${
-                store2.carsArray.find((item) => item.id === id)?.name
-            } (${time}s)`;
-            const { winnersArray } = await getWinners(Sort.id, Order.ASC);
-            const winnerAgain = winnersArray.find((item) => item.id === id);
-            if (winnerAgain) {
-                const newTime = Math.min(winnerAgain.time, time);
-                await updateWinner(winnerAgain.id, { wins: winnerAgain.wins + 1, time: newTime });
-            } else {
-                await createWinner({ id, wins: 1, time });
-                store2.winnersCount += 1;
+    console.log(id, currentRace, store.currentRace);
+    if (currentRace === store.currentRace) {
+        if (answer.success === true) {
+            const winnerPopup = document.querySelector('.winner-popup');
+            if (!store.isReset && winnerPopup && winnerPopup.innerHTML === '') {
+                winnerPopup.innerHTML = `The winner is: ${
+                    store2.carsArray.find((item) => item.id === id)?.name
+                } (${time}s)`;
+                const { winnersArray } = await getWinners(Sort.id, Order.ASC);
+                const winnerAgain = winnersArray.find((item) => item.id === id);
+                if (winnerAgain) {
+                    const newTime = Math.min(winnerAgain.time, time);
+                    await updateWinner(winnerAgain.id, { wins: winnerAgain.wins + 1, time: newTime });
+                } else {
+                    await createWinner({ id, wins: 1, time });
+                    store2.winnersCount += 1;
+                }
             }
+        } else {
+            store.falseArray.push(id);
         }
-    } else {
-        store.falseArray.push(id);
     }
     return answer;
 }

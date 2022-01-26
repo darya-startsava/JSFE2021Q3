@@ -13,6 +13,7 @@ const store: {
     stoppedArray: Array<number>;
     sort: Sort;
     order: Order;
+    currentRace: number;
 } = {
     carPage: 1,
     NUMBER_OF_CARS_ON_PAGE: 7,
@@ -25,6 +26,7 @@ const store: {
     stoppedArray: [],
     sort: Sort.id,
     order: Order.ASC,
+    currentRace: 1,
 };
 
 export default store;
