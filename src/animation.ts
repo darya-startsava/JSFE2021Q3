@@ -32,7 +32,7 @@ export default function animation(id: number, time: number): void {
                     carObjects[i].style.left = '70px';
                     clearInterval(refreshIntervalId);
                 }
-            }, 50);
+            }, 40);
         }
     }
 }

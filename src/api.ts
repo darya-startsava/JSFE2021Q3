@@ -86,7 +86,7 @@ export async function drive(id: number): Promise<JSONDriveInform> {
 
 export async function go(id: number): Promise<JSONDriveInform> {
     const { time } = await startEngine(id);
-    animation(id, time);
+    requestAnimationFrame(() => animation(id, time));
     const answer = await drive(id);
     if (answer.success === false) {
         store.falseArray.push(id);
@@ -134,7 +134,7 @@ export async function getWinners(
 }
 
 export async function race(currentRace: number, time: number, id: number): Promise<JSONDriveInform> {
-    animation(id, time);
+    requestAnimationFrame(() => animation(id, time));
     const answer = await drive(id);
     if (currentRace === store.currentRace) {
         if (answer.success === true) {
