@@ -4,6 +4,7 @@ $hover-button-color: #f4b404;
 $border-color: #3b3b6b;
 $hover-border-color: #33b333;
 $button-text-color: #3b3b6b;
+$inactive-button-color: #969492;
 
 %buttons-wrapper {
     display: flex;
@@ -30,6 +31,10 @@ $button-text-color: #3b3b6b;
 
 %button-active {
     background-color: $active-button-color;
+}
+
+.disabled {
+    background-color: $inactive-button-color !important;
 }
 
 // HEADER

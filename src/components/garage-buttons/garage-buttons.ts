@@ -51,25 +51,38 @@ export default class GarageButtons extends Component {
                 renderGaragePage();
             }
         });
-        const raceButton = this.container.querySelector('.button-race');
+        const raceButton = this.container.querySelector<HTMLButtonElement>('.button-race');
+        const resetButton = this.container.querySelector<HTMLButtonElement>('.button-reset');
         raceButton?.addEventListener('click', async () => {
             store.resetArray = [];
             store.isReset = false;
+            raceButton.disabled = true;
+            raceButton.classList.add('disabled');
+            if (resetButton) {
+                resetButton.disabled = false;
+                resetButton.classList.remove('disabled');
+            }
             const promiseArray = [];
             for (let i = 0; i < store2.carsArray.length; i++) {
                 promiseArray.push(startEngine(store2.carsArray[i].id));
             }
             await Promise.all(promiseArray).then((value) => value.forEach((item) => race(item.time, item.id)));
         });
-        const resetButton = this.container.querySelector('.button-reset');
         resetButton?.addEventListener('click', () => {
             store.falseArray = [];
             store.isReset = true;
+            resetButton.disabled = true;
+            resetButton.classList.add('disabled');
+            if (raceButton) {
+                raceButton.disabled = false;
+                raceButton.classList.remove('disabled');
+            }
             const carObjects = document.querySelectorAll<HTMLElement>('.svgObject');
             for (let i = 0; i < carObjects.length; i++) {
                 carObjects[i].style.left = '70px';
                 store.resetArray.push(Number(carObjects[i].dataset.id));
             }
+            console.log(store.resetArray);
             const winnerPopup = document.querySelector('.winner-popup');
             if (winnerPopup) {
                 winnerPopup.innerHTML = '';

@@ -14,7 +14,7 @@ export default class CarItem extends Component {
         divCarRace.classList.add('car-race');
         divCarRace.innerHTML = ` <div class="start-stop-buttons">
         <button class="button-start" data-id="${this.id}">Start</button>
-        <button class="button-stop" data-id="${this.id}"disabled>Stop</button>
+        <button class="button-stop disabled" data-id="${this.id}"disabled>Stop</button>
         </div>`;
 
         const svgObject = document.createElement('object');
@@ -81,11 +81,13 @@ export default class CarItem extends Component {
         const stopButtons = this.container.querySelectorAll<HTMLButtonElement>('.button-stop');
         startButtons?.forEach((item) =>
             item.addEventListener('click', async () => {
+                item.classList.add('disabled');
                 item.disabled = true;
                 const id = Number(item.dataset.id);
                 stopButtons?.forEach((i) => {
                     if (Number(i.dataset.id) === id) {
                         i.disabled = false;
+                        i.classList.remove('disabled');
                     }
                 });
                 await go(id);
@@ -95,10 +97,12 @@ export default class CarItem extends Component {
         stopButtons?.forEach((item) =>
             item.addEventListener('click', async () => {
                 item.disabled = true;
+                item.classList.add('disabled');
                 const id = Number(item.dataset.id);
                 startButtons?.forEach((i) => {
                     if (Number(i.dataset.id) === id) {
                         i.disabled = false;
+                        i.classList.remove('disabled');
                     }
                 });
                 await stopEngine(id);
