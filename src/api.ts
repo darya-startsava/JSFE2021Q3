@@ -136,7 +136,6 @@ export async function getWinners(
 export async function race(currentRace: number, time: number, id: number): Promise<JSONDriveInform> {
     animation(id, time);
     const answer = await drive(id);
-    console.log(id, currentRace, store.currentRace);
     if (currentRace === store.currentRace) {
         if (answer.success === true) {
             const winnerPopup = document.querySelector('.winner-popup');

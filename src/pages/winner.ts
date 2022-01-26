@@ -16,7 +16,7 @@ async function loadWinners(sort: Sort, order: Order): Promise<TableRow[]> {
     for (let i = 0; i < winnersArray.length; i++) {
         const { id, wins, time } = winnersArray[i];
         const { name, color } = carArray[i];
-        const tableRow = new TableRow(i + 1, name, color, id, wins, time);
+        const tableRow = new TableRow(i + 1 + (store.winnersPage - 1) * 10, name, color, id, wins, time);
         tableRows.push(tableRow);
     }
     return tableRows;
