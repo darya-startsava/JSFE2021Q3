@@ -65,7 +65,7 @@ export async function updateCar(id: number, updatedCar: { name: string; color: s
     return car;
 }
 
-export async function startEngine(id: number): Promise<number> {
+export async function startEngine(id: number): Promise<{ time: number; id: number }> {
     if (store.stoppedArray.includes(id)) {
         store.stoppedArray.splice(store.stoppedArray.indexOf(id), 1);
     }
@@ -75,7 +75,7 @@ export async function startEngine(id: number): Promise<number> {
     const response = await fetch(`${ServerUrl.engine}/?id=${id}&status=started`, { method: 'PATCH' });
     const start = await response.json();
     const time = Math.round(start.distance / start.velocity / 10) / 100;
-    return time;
+    return { time, id };
 }
 
 export async function drive(id: number): Promise<JSONDriveInform> {
@@ -85,7 +85,7 @@ export async function drive(id: number): Promise<JSONDriveInform> {
 }
 
 export async function go(id: number): Promise<JSONDriveInform> {
-    const time = await startEngine(id);
+    const { time } = await startEngine(id);
     animation(id, time);
     const answer = await drive(id);
     if (answer.success === false) {
@@ -133,8 +133,7 @@ export async function getWinners(
     return { winnersArray, winnersCount };
 }
 
-export async function race(id: number): Promise<JSONDriveInform> {
-    const time = await startEngine(id);
+export async function race(time: number, id: number): Promise<JSONDriveInform> {
     animation(id, time);
     const answer = await drive(id);
     if (answer.success === true) {

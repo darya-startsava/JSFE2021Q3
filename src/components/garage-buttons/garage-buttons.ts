@@ -1,7 +1,7 @@
 import GarageButtonsHTML from './garage-buttons.html';
 import './garage-buttons.scss';
 import Component from '../abstract-component';
-import { createCar, race, updateCar } from '../../api';
+import { createCar, race, startEngine, updateCar } from '../../api';
 import renderGaragePage from '../../pages/garage';
 import { generateRandomCarName, generateRandomColor } from '../../generate-random-car';
 import store from '../../store';
@@ -57,9 +57,9 @@ export default class GarageButtons extends Component {
             store.isReset = false;
             const promiseArray = [];
             for (let i = 0; i < store2.carsArray.length; i++) {
-                promiseArray.push(race(store2.carsArray[i].id));
+                promiseArray.push(startEngine(store2.carsArray[i].id));
             }
-            await Promise.all(promiseArray);
+            await Promise.all(promiseArray).then((value) => value.forEach((item) => race(item.time, item.id)));
         });
         const resetButton = this.container.querySelector('.button-reset');
         resetButton?.addEventListener('click', () => {
