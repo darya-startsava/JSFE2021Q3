@@ -1,6 +1,6 @@
 import renderGaragePage from '../../pages/garage';
-import store from '../../store';
-import store2 from '../../store2';
+import UIStorage from '../../storages/UI-storage';
+import dataStorage from '../../storages/data-storage';
 import Component from '../abstract-component';
 
 export default class PrevNextButtons extends Component {
@@ -18,14 +18,14 @@ export default class PrevNextButtons extends Component {
         const buttonPrev = this.container.querySelector('.button-prev-g');
         const buttonNext = this.container.querySelector('.button-next-g');
         function prevPage(): void {
-            if (store.carPage > 1) {
-                store.carPage -= 1;
+            if (UIStorage.carPage > 1) {
+                UIStorage.carPage--;
                 renderGaragePage();
             }
         }
         function nextPage(): void {
-            if (store.carPage < Math.ceil(store2.count / store.NUMBER_OF_CARS_ON_PAGE)) {
-                store.carPage += 1;
+            if (UIStorage.carPage < Math.ceil(dataStorage.count / UIStorage.NUMBER_OF_CARS_ON_PAGE)) {
+                UIStorage.carPage++;
                 renderGaragePage();
             }
         }

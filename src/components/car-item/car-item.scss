@@ -1,17 +1,9 @@
 $race-color: #33b333;
 
-%background-image {
-    position: absolute;
-    bottom: 0;
-    height: 75px;
-    width: 100px;
-    background-repeat: no-repeat;
-    background-size: 100px 100px;
-}
-
 .car-item {
     margin: 20px 0;
 }
+
 .car-name {
     align-self: center;
 }
@@ -31,8 +23,13 @@ $race-color: #33b333;
 }
 
 .flag {
-    @extend %background-image;
+    position: absolute;
+    bottom: 0;
     right: 70px;
+    height: 75px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-size: 100px 100px;
     background-image: url('../../assets/svg/racing-flag.svg');
 }
 

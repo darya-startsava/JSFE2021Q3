@@ -13,8 +13,8 @@ export default class TableRow extends Component {
     }
     render(): HTMLElement {
         this.container.innerHTML = `
-        <td class="column-number">${this.number}</td>
-        <td class="column-car">
+        <td class="td column-number">${this.number}</td>
+        <td class="td column-car">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25" height="25" viewBox="0 0 256 256" xml:space="preserve">
         <desc>Created with Fabric.js 1.7.22</desc>
         <defs>
@@ -26,9 +26,9 @@ export default class TableRow extends Component {
         </g>
         </svg>
         </td>
-        <td class="column-name">${this.name}</td>
-        <td class="column-wins">${this.wins}</td>
-        <td class="column-best-time">${this.time}</td>`;
+        <td class="td column-name">${this.name}</td>
+        <td class="td column-wins">${this.wins}</td>
+        <td class="td column-best-time">${this.time}</td>`;
         return this.container;
     }
 }

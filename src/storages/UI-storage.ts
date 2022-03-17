@@ -1,7 +1,7 @@
-import Order from './enums/order-enum';
-import Sort from './enums/sort-enum';
+import Order from '../enums/order-enum';
+import Sort from '../enums/sort-enum';
 
-const store: {
+const UIStorage: {
     carPage: number;
     NUMBER_OF_CARS_ON_PAGE: number;
     selectedCarId: number | undefined;
@@ -29,4 +29,4 @@ const store: {
     currentRace: 1,
 };
 
-export default store;
+export default UIStorage;

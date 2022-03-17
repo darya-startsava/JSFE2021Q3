@@ -4,8 +4,8 @@ import Component from '../abstract-component';
 import { createCar, race, startEngine, updateCar } from '../../api';
 import renderGaragePage from '../../pages/garage';
 import { generateRandomCarName, generateRandomColor } from '../../generate-random-car';
-import store from '../../store';
-import store2 from '../../store2';
+import UIStorage from '../../storages/UI-storage';
+import dataStorage from '../../storages/data-storage';
 
 export default class GarageButtons extends Component {
     constructor() {
@@ -43,8 +43,8 @@ export default class GarageButtons extends Component {
         const updateCarName = this.container.querySelector<HTMLInputElement>('#update-car-name');
         const updateCarColor = this.container.querySelector<HTMLInputElement>('#update-car-color');
         updateCarButton?.addEventListener('click', async () => {
-            if (updateCarName && updateCarColor && store.selectedCarId) {
-                await updateCar(store.selectedCarId, {
+            if (updateCarName && updateCarColor && UIStorage.selectedCarId) {
+                await updateCar(UIStorage.selectedCarId, {
                     name: `${updateCarName.value}`,
                     color: `${updateCarColor.value}`,
                 });
@@ -54,8 +54,8 @@ export default class GarageButtons extends Component {
         const raceButton = this.container.querySelector<HTMLButtonElement>('.button-race');
         const resetButton = this.container.querySelector<HTMLButtonElement>('.button-reset');
         raceButton?.addEventListener('click', async () => {
-            store.resetArray = [];
-            store.isReset = false;
+            UIStorage.resetArray = [];
+            UIStorage.isReset = false;
             raceButton.disabled = true;
             raceButton.classList.add('disabled');
             if (resetButton) {
@@ -63,17 +63,16 @@ export default class GarageButtons extends Component {
                 resetButton.classList.remove('disabled');
             }
             const promiseArray = [];
-            store.currentRace += 1;
-            for (let i = 0; i < store2.carsArray.length; i++) {
-                promiseArray.push(startEngine(store2.carsArray[i].id));
+            UIStorage.currentRace++;
+            for (let i = 0; i < dataStorage.carsArray.length; i++) {
+                promiseArray.push(startEngine(dataStorage.carsArray[i].id));
             }
-            await Promise.all(promiseArray).then((value) => {
-                value.forEach((item) => race(store.currentRace, item.time, item.id));
-            });
+            const cars = await Promise.all(promiseArray);
+            cars.forEach(({ time, id }) => race(UIStorage.currentRace, time, id));
         });
         resetButton?.addEventListener('click', () => {
-            store.falseArray = [];
-            store.isReset = true;
+            UIStorage.falseArray = [];
+            UIStorage.isReset = true;
             resetButton.disabled = true;
             resetButton.classList.add('disabled');
             if (raceButton) {
@@ -83,7 +82,7 @@ export default class GarageButtons extends Component {
             const carObjects = document.querySelectorAll<HTMLElement>('.svgObject');
             for (let i = 0; i < carObjects.length; i++) {
                 carObjects[i].style.left = '70px';
-                store.resetArray.push(Number(carObjects[i].dataset.id));
+                UIStorage.resetArray.push(Number(carObjects[i].dataset.id));
             }
             const winnerPopup = document.querySelector('.winner-popup');
             if (winnerPopup) {

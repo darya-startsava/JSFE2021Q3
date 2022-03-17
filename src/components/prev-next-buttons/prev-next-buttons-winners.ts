@@ -1,6 +1,6 @@
 import renderWinnerPage from '../../pages/winner';
-import store from '../../store';
-import store2 from '../../store2';
+import UIStorage from '../../storages/UI-storage';
+import dataStorage from '../../storages/data-storage';
 import Component from '../abstract-component';
 
 export default class PrevNextButtons extends Component {
@@ -18,15 +18,15 @@ export default class PrevNextButtons extends Component {
         const buttonPrev = this.container.querySelector('.button-prev-w');
         const buttonNext = this.container.querySelector('.button-next-w');
         function prevPage(): void {
-            if (store.winnersPage > 1) {
-                store.winnersPage -= 1;
-                renderWinnerPage(store.sort, store.order);
+            if (UIStorage.winnersPage > 1) {
+                UIStorage.winnersPage--;
+                renderWinnerPage(UIStorage.sort, UIStorage.order);
             }
         }
         function nextPage(): void {
-            if (store.winnersPage < Math.ceil(store2.winnersCount / store.NUMBER_OF_WINNERS_ON_PAGE)) {
-                store.winnersPage += 1;
-                renderWinnerPage(store.sort, store.order);
+            if (UIStorage.winnersPage < Math.ceil(dataStorage.winnersCount / UIStorage.NUMBER_OF_WINNERS_ON_PAGE)) {
+                UIStorage.winnersPage++;
+                renderWinnerPage(UIStorage.sort, UIStorage.order);
             }
         }
         buttonNext?.addEventListener('click', nextPage);

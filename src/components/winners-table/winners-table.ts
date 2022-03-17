@@ -4,7 +4,7 @@ import './winners-table.scss';
 import renderWinnerPage from '../../pages/winner';
 import Sort from '../../enums/sort-enum';
 import Order from '../../enums/order-enum';
-import store from '../../store';
+import UIStorage from '../../storages/UI-storage';
 
 export default class Winners extends Component {
     constructor() {
@@ -19,27 +19,27 @@ export default class Winners extends Component {
     addWinsListener(): void {
         const wins = this.container.querySelector<HTMLElement>('.wins');
         wins?.addEventListener('click', async () => {
-            if (store.sort === Sort.wins && store.order === Order.ASC) {
+            if (UIStorage.sort === Sort.wins && UIStorage.order === Order.ASC) {
                 renderWinnerPage(Sort.wins, Order.DESC);
-                store.sort = Sort.wins;
-                store.order = Order.DESC;
+                UIStorage.sort = Sort.wins;
+                UIStorage.order = Order.DESC;
             } else {
                 renderWinnerPage(Sort.wins, Order.ASC);
-                store.sort = Sort.wins;
-                store.order = Order.ASC;
+                UIStorage.sort = Sort.wins;
+                UIStorage.order = Order.ASC;
             }
         });
 
         const bestTime = this.container.querySelector<HTMLElement>('.best-time');
         bestTime?.addEventListener('click', async () => {
-            if (store.sort === Sort.time && store.order === Order.ASC) {
+            if (UIStorage.sort === Sort.time && UIStorage.order === Order.ASC) {
                 renderWinnerPage(Sort.time, Order.DESC);
-                store.sort = Sort.time;
-                store.order = Order.DESC;
+                UIStorage.sort = Sort.time;
+                UIStorage.order = Order.DESC;
             } else {
                 renderWinnerPage(Sort.time, Order.ASC);
-                store.sort = Sort.time;
-                store.order = Order.ASC;
+                UIStorage.sort = Sort.time;
+                UIStorage.order = Order.ASC;
             }
         });
     }

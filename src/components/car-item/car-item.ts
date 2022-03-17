@@ -2,8 +2,8 @@ import './car-item.scss';
 import Component from '../abstract-component';
 import { deleteCar, go, stopEngine } from '../../api';
 import renderGaragePage from '../../pages/garage';
-import store2 from '../../store2';
-import store from '../../store';
+import dataStorage from '../../storages/data-storage';
+import UIStorage from '../../storages/UI-storage';
 
 export default class CarItem extends Component {
     constructor(public name: string, public color: string, public id: number) {
@@ -67,8 +67,8 @@ export default class CarItem extends Component {
         selectButtons?.forEach((item) =>
             item.addEventListener('click', () => {
                 const id = Number(item.dataset.id);
-                const selectedCar = store2.carsArray.find((item) => item.id === id);
-                store.selectedCarId = selectedCar?.id;
+                const selectedCar = dataStorage.carsArray.find((item) => item.id === id);
+                UIStorage.selectedCarId = selectedCar?.id;
                 const updateCarName = document.querySelector<HTMLInputElement>('#update-car-name');
                 const updateCarColor = document.querySelector<HTMLInputElement>('#update-car-color');
                 const updateCarButton = document.querySelector<HTMLButtonElement>('.update-car-button');

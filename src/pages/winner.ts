@@ -4,19 +4,19 @@ import Winners from '../components/winners-table/winners-table';
 import { getWinners, getWinnersArray } from '../api';
 import Sort from '../enums/sort-enum';
 import Order from '../enums/order-enum';
-import store2 from '../store2';
-import store from '../store';
+import dataStorage from '../storages/data-storage';
+import UIStorage from '../storages/UI-storage';
 
 async function loadWinners(sort: Sort, order: Order): Promise<TableRow[]> {
     const { winnersArray, winnersCount } = await getWinners(sort, order);
-    store2.winnersArray = winnersArray;
-    store2.winnersCount = winnersCount;
+    dataStorage.winnersArray = winnersArray;
+    dataStorage.winnersCount = winnersCount;
     const carArray = await getWinnersArray(sort, order);
     const tableRows: TableRow[] = [];
     for (let i = 0; i < winnersArray.length; i++) {
         const { id, wins, time } = winnersArray[i];
         const { name, color } = carArray[i];
-        const tableRow = new TableRow(i + 1 + (store.winnersPage - 1) * 10, name, color, id, wins, time);
+        const tableRow = new TableRow(i + 1 + (UIStorage.winnersPage - 1) * 10, name, color, id, wins, time);
         tableRows.push(tableRow);
     }
     return tableRows;
@@ -29,8 +29,8 @@ export default async function renderWinnerPage(sort: Sort, order: Order): Promis
     winnersWrapper.classList.add('garage-wrapper');
     const winnersHeader = document.createElement('h2');
     const winnersPage = document.createElement('h3');
-    winnersHeader.innerHTML = `Winners(${store2.winnersCount})`;
-    winnersPage.innerHTML = `Page#${store.winnersPage}`;
+    winnersHeader.innerHTML = `Winners(${dataStorage.winnersCount})`;
+    winnersPage.innerHTML = `Page#${UIStorage.winnersPage}`;
     const winners = new Winners();
     const prevNextButtons = new PrevNextButtons();
     if (winnersWrapper) {
