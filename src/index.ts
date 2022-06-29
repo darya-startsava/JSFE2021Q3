@@ -2,7 +2,6 @@ import './global.scss';
 import { bootstrap as bootstrapStart } from './components/appStart';
 import { bootstrap as bootstrapToys } from './components/appToys';
 import { bootstrap as bootstrapTree } from './components/appTree';
-import './self-assessment';
 
 bootstrapStart();
 
